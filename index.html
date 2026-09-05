@@ -9,7 +9,7 @@
   content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
 >
 
-<title>App Builder</title>
+<title>App Write Code</title>
 
 <style>
 
@@ -444,7 +444,138 @@ body{
 
 
 /* =====================================================
-   9. SCROLLBAR
+   9. REGISTRATION MODAL
+===================================================== */
+
+.registration-overlay{
+  position:fixed;
+  z-index:10000;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.5);
+  padding:20px;
+}
+
+.registration-overlay.show{
+  display:flex;
+}
+
+.registration-modal{
+  width:100%;
+  max-width:380px;
+  background:#fff;
+  border-radius:16px;
+  padding:24px 20px;
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
+}
+
+.registration-title{
+  font-size:20px;
+  font-weight:700;
+  text-align:center;
+  margin-bottom:8px;
+}
+
+.registration-subtitle{
+  font-size:14px;
+  color:#666;
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.registration-step{
+  display:none;
+}
+
+.registration-step.active{
+  display:block;
+}
+
+.registration-input{
+  width:100%;
+  height:44px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:0 12px;
+  font-size:15px;
+  outline:none;
+  margin-bottom:12px;
+}
+
+.registration-input:focus{
+  border-color:#111;
+}
+
+.registration-btn{
+  width:100%;
+  height:44px;
+  border:0;
+  border-radius:10px;
+  background:#111;
+  color:#fff;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.registration-btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+.otp-container{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  margin-bottom:16px;
+}
+
+.otp-input{
+  width:44px;
+  height:48px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  text-align:center;
+  font-size:20px;
+  font-weight:700;
+  outline:none;
+}
+
+.otp-input:focus{
+  border-color:#111;
+}
+
+.resend-link{
+  display:block;
+  text-align:center;
+  margin-top:12px;
+  color:#666;
+  font-size:13px;
+  cursor:pointer;
+  text-decoration:underline;
+}
+
+.resend-link:hover{
+  color:#111;
+}
+
+.error-message{
+  color:#d32f2f;
+  font-size:13px;
+  text-align:center;
+  margin-bottom:10px;
+  display:none;
+}
+
+.error-message.show{
+  display:block;
+}
+
+
+/* =====================================================
+   10. SCROLLBAR
 ===================================================== */
 
 ::-webkit-scrollbar{
@@ -459,7 +590,7 @@ body{
 
 
 /* =====================================================
-   10. RESPONSIVE
+   11. RESPONSIVE
 ===================================================== */
 
 @media(max-width:360px){
@@ -471,6 +602,12 @@ body{
 
   .tool-btn{
     padding:0 6px;
+  }
+
+  .otp-input{
+    width:38px;
+    height:42px;
+    font-size:18px;
   }
 
 }
@@ -494,7 +631,7 @@ body{
 
     <button class="home-btn" id="homeBtn" type="button">🖥️</button>
 
-    <div class="title">App Builder</div>
+    <div class="title">App Write Code</div>
 
     <button class="settings-btn" id="settingsBtn" type="button">⚙️</button>
 
@@ -618,6 +755,61 @@ body{
 </main>
 
 
+<!-- =====================================================
+     REGISTRATION MODAL
+===================================================== -->
+
+<div class="registration-overlay" id="registrationOverlay">
+
+  <div class="registration-modal">
+
+    <h2 class="registration-title">ចុះឈ្មោះ</h2>
+    <p class="registration-subtitle">ប្រើ Gmail របស់អ្នកដើម្បីបន្ត</p>
+
+    <!-- Step 1: Enter Gmail -->
+    <div class="registration-step active" id="stepGmail">
+
+      <input
+        type="email"
+        class="registration-input"
+        id="gmailInput"
+        placeholder="example@gmail.com"
+        autocomplete="email"
+      >
+
+      <button class="registration-btn" id="sendOtpBtn" type="button">
+        ផ្ញើលេខកូដ OTP
+      </button>
+
+    </div>
+
+    <!-- Step 2: Enter OTP -->
+    <div class="registration-step" id="stepOtp">
+
+      <div class="otp-container" id="otpContainer">
+        <input class="otp-input" type="text" maxlength="1" inputmode="numeric">
+        <input class="otp-input" type="text" maxlength="1" inputmode="numeric">
+        <input class="otp-input" type="text" maxlength="1" inputmode="numeric">
+        <input class="otp-input" type="text" maxlength="1" inputmode="numeric">
+        <input class="otp-input" type="text" maxlength="1" inputmode="numeric">
+        <input class="otp-input" type="text" maxlength="1" inputmode="numeric">
+      </div>
+
+      <div class="error-message" id="otpError">លេខកូដមិនត្រឹមត្រូវ សូមព្យាយាមម្តងទៀត</div>
+
+      <button class="registration-btn" id="verifyOtpBtn" type="button">
+        បញ្ជាក់ការចុះឈ្មោះ
+      </button>
+
+      <span class="resend-link" id="resendLink">ផ្ញើលេខកូដម្តងទៀត</span>
+
+    </div>
+
+  </div>
+
+</div>
+
+
 <div class="toast" id="toast"></div>
 
 
@@ -642,7 +834,7 @@ const defaultCode = `<!DOCTYPE html>
   content="width=device-width, initial-scale=1.0"
 >
 
-<title>My App</title>
+<title>App Write Code</title>
 
 <style>
 
@@ -674,9 +866,9 @@ button{
 
 <body>
 
-<h1>My New App</h1>
+<h1>App Write Code</h1>
 
-<p>Hello from my App!</p>
+<p>Hello from App Write Code!</p>
 
 <button onclick="alert('Hello!')">
   Test Button
@@ -728,6 +920,17 @@ const deleteCodeBtn  = $("deleteCodeBtn");
 
 const homeBtn        = $("homeBtn");
 const toast          = $("toast");
+
+const registrationOverlay = $("registrationOverlay");
+const stepGmail      = $("stepGmail");
+const stepOtp        = $("stepOtp");
+const gmailInput     = $("gmailInput");
+const sendOtpBtn     = $("sendOtpBtn");
+const verifyOtpBtn   = $("verifyOtpBtn");
+const resendLink     = $("resendLink");
+const otpContainer   = $("otpContainer");
+const otpInputs      = otpContainer ? otpContainer.querySelectorAll(".otp-input") : [];
+const otpError       = $("otpError");
 
 
 /* =====================================================
@@ -1288,10 +1491,6 @@ function saveProject(){
   }
   else{
 
-    /* localStorage is blocked (common when the file is opened
-       directly from disk) — fall back to a real file download
-       so the project is never lost. */
-
     const downloaded = downloadCode();
 
     if(downloaded){
@@ -1533,13 +1732,277 @@ if(redoBtn){
 
 
 /* =====================================================
-   14. INITIALIZE
+   14. REGISTRATION SYSTEM
+===================================================== */
+
+let currentOtp = "";
+let otpExpiry = 0;
+let resendTimer = null;
+let registeredEmail = "";
+
+function checkRegistered(){
+
+  try{
+    registeredEmail = localStorage.getItem("condwriteRegisteredEmail") || "";
+  }
+  catch(error){
+    registeredEmail = "";
+  }
+
+  if(registeredEmail){
+    showToast("✓ បានចូលជាមួយ " + registeredEmail);
+  }
+  else if(registrationOverlay){
+    registrationOverlay.classList.add("show");
+  }
+
+}
+
+function isValidGmail(email){
+
+  if(!email){
+    return false;
+  }
+
+  email = email.toLowerCase();
+
+  return /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(email);
+
+}
+
+function generateOtp(){
+
+  currentOtp = "";
+
+  for(let i = 0; i < 6; i++){
+    currentOtp += Math.floor(Math.random() * 10);
+  }
+
+  otpExpiry = Date.now() + (5 * 60 * 1000); // 5 minutes
+
+  return currentOtp;
+
+}
+
+function showStep(step){
+
+  if(stepGmail){
+    stepGmail.classList.remove("active");
+  }
+
+  if(stepOtp){
+    stepOtp.classList.remove("active");
+  }
+
+  if(step === "gmail"){
+    stepGmail.classList.add("active");
+  }
+
+  if(step === "otp"){
+    stepOtp.classList.add("active");
+  }
+
+}
+
+function resetOtpInputs(){
+
+  otpInputs.forEach(function(input){
+    input.value = "";
+  });
+
+  if(otpError){
+    otpError.classList.remove("show");
+  }
+
+  const firstInput = otpInputs[0];
+
+  if(firstInput){
+    firstInput.focus();
+  }
+
+}
+
+function startResendCountdown(){
+
+  let seconds = 60;
+
+  if(resendLink){
+    resendLink.style.pointerEvents = "none";
+    resendLink.style.opacity = "0.5";
+    resendLink.textContent = "អាចផ្ញើម្តងទៀតក្នុង " + seconds + " វិនាទី";
+  }
+
+  clearInterval(resendTimer);
+
+  resendTimer = setInterval(function(){
+
+    seconds--;
+
+    if(resendLink){
+      resendLink.textContent = "អាចផ្ញើម្តងទៀតក្នុង " + seconds + " វិនាទី";
+    }
+
+    if(seconds <= 0){
+
+      clearInterval(resendTimer);
+
+      if(resendLink){
+        resendLink.style.pointerEvents = "auto";
+        resendLink.style.opacity = "1";
+        resendLink.textContent = "ផ្ញើលេខកូដម្តងទៀត";
+      }
+
+    }
+
+  }, 1000);
+
+}
+
+function sendOtp(){
+
+  const email = gmailInput ? gmailInput.value.trim() : "";
+
+  if(!isValidGmail(email)){
+    showToast("សូមបញ្ចូល Gmail ឱ្យត្រឹមត្រូវ");
+    return;
+  }
+
+  const otp = generateOtp();
+
+  /* In a real app, you would send OTP to email here.
+     For demo, we will show it in a toast. */
+
+  showToast("OTP របស់អ្នក: " + otp);
+
+  showStep("otp");
+  resetOtpInputs();
+  startResendCountdown();
+
+}
+
+function verifyOtp(){
+
+  let userOtp = "";
+
+  otpInputs.forEach(function(input){
+    userOtp += input.value;
+  });
+
+  if(userOtp.length !== 6){
+    if(otpError){
+      otpError.textContent = "សូមបញ្ចូលលេខកូដទាំង 6 ខ្ទង់";
+      otpError.classList.add("show");
+    }
+    return;
+  }
+
+  if(Date.now() > otpExpiry){
+
+    if(otpError){
+      otpError.textContent = "លេខកូដផុតកំណត់ សូមផ្ញើថ្មី";
+      otpError.classList.add("show");
+    }
+
+    return;
+
+  }
+
+  if(userOtp === currentOtp){
+
+    const email = gmailInput ? gmailInput.value.trim() : "";
+
+    try{
+      localStorage.setItem("condwriteRegisteredEmail", email);
+    }
+    catch(error){
+      /* ignore storage errors */
+    }
+
+    registeredEmail = email;
+
+    if(registrationOverlay){
+      registrationOverlay.classList.remove("show");
+    }
+
+    showToast("✓ បានចុះឈ្មោះដោយជោគជ័យ");
+
+  }
+  else{
+
+    if(otpError){
+      otpError.textContent = "លេខកូដមិនត្រឹមត្រូវ សូមព្យាយាមម្តងទៀត";
+      otpError.classList.add("show");
+    }
+
+    resetOtpInputs();
+
+  }
+
+}
+
+if(sendOtpBtn){
+  sendOtpBtn.addEventListener("click", sendOtp);
+}
+
+if(verifyOtpBtn){
+  verifyOtpBtn.addEventListener("click", verifyOtp);
+}
+
+if(resendLink){
+  resendLink.addEventListener("click", sendOtp);
+}
+
+if(gmailInput){
+  gmailInput.addEventListener("keydown", function(event){
+
+    if(event.key === "Enter"){
+      event.preventDefault();
+      sendOtp();
+    }
+
+  });
+}
+
+otpInputs.forEach(function(input, index){
+
+  input.addEventListener("input", function(){
+
+    if(input.value.length === 1 && index < otpInputs.length - 1){
+      otpInputs[index + 1].focus();
+    }
+
+    if(otpError){
+      otpError.classList.remove("show");
+    }
+
+  });
+
+  input.addEventListener("keydown", function(event){
+
+    if(event.key === "Backspace" && input.value === "" && index > 0){
+      otpInputs[index - 1].focus();
+    }
+
+    if(event.key === "Enter"){
+      event.preventDefault();
+      verifyOtp();
+    }
+
+  });
+
+});
+
+
+/* =====================================================
+   15. INITIALIZE
 ===================================================== */
 
 loadProject();
 updateCode();
 
 history = [codeEditor ? codeEditor.value : ""];
+
+checkRegistered();
 
 runApp();
 
