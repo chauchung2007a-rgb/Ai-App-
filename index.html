@@ -6,7 +6,7 @@
 
 <meta
   name="viewport"
-  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
 >
 
 <title>App Builder</title>
@@ -27,7 +27,8 @@
 html,
 body{
   width:100%;
-  height:100%;
+  height:100vh;
+  height:100dvh;
   overflow:hidden;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:#f5f5f7;
@@ -45,6 +46,8 @@ body{
   display:flex;
   flex-direction:column;
   background:#fff;
+  padding-top:env(safe-area-inset-top);
+  padding-bottom:env(safe-area-inset-bottom);
 }
 
 
@@ -255,6 +258,7 @@ body{
   display:flex;
   overflow:hidden;
   background:#111318;
+  -webkit-overflow-scrolling:touch;
 }
 
 .line-numbers{
@@ -285,9 +289,12 @@ body{
   inset:0;
   margin:0;
   padding:14px 10px;
-  overflow:auto;
+  overflow-y:auto;
+  overflow-x:hidden;
   pointer-events:none;
-  white-space:pre;
+  white-space:pre-wrap;
+  word-break:break-word;
+  overflow-wrap:anywhere;
   font-family:monospace;
   font-size:14px;
   line-height:1.7;
@@ -303,8 +310,12 @@ body{
   border:0;
   outline:0;
   padding:14px 10px;
-  overflow:auto;
-  white-space:pre;
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  white-space:pre-wrap;
+  word-break:break-word;
+  overflow-wrap:anywhere;
   font-family:monospace;
   font-size:14px;
   line-height:1.7;
@@ -405,6 +416,7 @@ body{
   position:relative;
   width:min(330px,88vw);
   height:min(675px,calc(100vh - 140px));
+  height:min(675px,calc(100dvh - 140px));
   min-height:500px;
   padding:9px;
   border:2px solid #c7c9ce;
@@ -511,7 +523,6 @@ body{
   <button class="setting-item" id="settingsCopy" type="button">📎 Copy Code</button>
   <button class="setting-item" id="undoBtn" type="button">↶ Undo</button>
   <button class="setting-item" id="redoBtn" type="button">↷ Redo</button>
-  <button class="setting-item" id="testBtn" type="button">▶ Test Project</button>
   <button class="setting-item" id="saveBtn" type="button">💾 Save Project</button>
   <button class="setting-item" id="deleteCodeBtn" type="button">🗑️ លុបកូដ</button>
 
@@ -597,7 +608,7 @@ body{
 
     <div class="phone">
       <div class="phone-screen">
-        <iframe class="preview-frame" id="previewFrame" title="App Preview" sandbox="allow-scripts"></iframe>
+        <iframe class="preview-frame" id="previewFrame" title="App Preview" sandbox="allow-scripts allow-forms allow-modals allow-popups allow-same-origin allow-popups-to-escape-sandbox"></iframe>
       </div>
     </div>
 
@@ -712,7 +723,6 @@ const settingsPanel  = $("settingsPanel");
 const settingsCopy   = $("settingsCopy");
 const undoBtn        = $("undoBtn");
 const redoBtn        = $("redoBtn");
-const testBtn        = $("testBtn");
 const saveBtn        = $("saveBtn");
 const deleteCodeBtn  = $("deleteCodeBtn");
 
@@ -1033,7 +1043,29 @@ function updateCode(){
 
 /* =====================================================
    8. EDITOR EVENTS
+   (highlight redraw is batched with requestAnimationFrame
+   and paused during IME composition — this is what was
+   causing the lag / disappearing letters while typing,
+   especially with Khmer script)
 ===================================================== */
+
+let isComposing = false;
+let renderScheduled = false;
+
+function scheduleRender(){
+
+  if(renderScheduled){
+    return;
+  }
+
+  renderScheduled = true;
+
+  requestAnimationFrame(function(){
+    renderScheduled = false;
+    updateCode();
+  });
+
+}
 
 if(codeEditor){
 
@@ -1053,16 +1085,32 @@ if(codeEditor){
 
       this.selectionStart = this.selectionEnd = start + 2;
 
-      updateCode();
+      scheduleRender();
       scheduleHistory();
 
     }
 
   });
 
-  codeEditor.addEventListener("input", function(){
-    updateCode();
+  codeEditor.addEventListener("compositionstart", function(){
+    isComposing = true;
+  });
+
+  codeEditor.addEventListener("compositionend", function(){
+    isComposing = false;
+    scheduleRender();
     scheduleHistory();
+  });
+
+  codeEditor.addEventListener("input", function(){
+
+    if(isComposing){
+      return;
+    }
+
+    scheduleRender();
+    scheduleHistory();
+
   });
 
   codeEditor.addEventListener("scroll", syncScroll);
@@ -1176,7 +1224,7 @@ if(copyRangeBtn){
    some browsers/modes can block storage entirely)
 ===================================================== */
 
-function saveProject(){
+function downloadCode(){
 
   if(!codeEditor){
     return;
@@ -1184,15 +1232,74 @@ function saveProject(){
 
   try{
 
-    localStorage.setItem("aiAppBuilderCode", codeEditor.value);
-    localStorage.setItem("aiAppBuilderSavedAt", new Date().toISOString());
+    const blob = new Blob([codeEditor.value], { type:"text/html" });
+    const url = URL.createObjectURL(blob);
 
-    showToast("✓ បានរក្សាទុក Project និងកូដរួចហើយ");
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "project.html";
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    link.remove();
+
+    URL.revokeObjectURL(url);
+
+    return true;
 
   }
   catch(error){
 
-    showToast("✗ មិនអាចរក្សាទុកបានទេ");
+    return false;
+
+  }
+
+}
+
+function saveProject(){
+
+  if(!codeEditor){
+    return;
+  }
+
+  let storedOk = false;
+
+  try{
+
+    localStorage.setItem("aiAppBuilderCode", codeEditor.value);
+    localStorage.setItem("aiAppBuilderSavedAt", new Date().toISOString());
+
+    storedOk = true;
+
+  }
+  catch(error){
+
+    storedOk = false;
+
+  }
+
+  if(storedOk){
+
+    showToast("✓ បានរក្សាទុក Project និងកូដរួចហើយ");
+
+  }
+  else{
+
+    /* localStorage is blocked (common when the file is opened
+       directly from disk) — fall back to a real file download
+       so the project is never lost. */
+
+    const downloaded = downloadCode();
+
+    if(downloaded){
+      showToast("✓ បាន Save ជា File project.html");
+    }
+    else{
+      showToast("✗ មិនអាចរក្សាទុកបានទេ");
+    }
 
   }
 
@@ -1327,15 +1434,6 @@ if(runCodeBtn){
 
 if(testAppBtn){
   testAppBtn.addEventListener("click", runApp);
-}
-
-if(testBtn){
-
-  testBtn.addEventListener("click", function(){
-    runApp();
-    closeSettings();
-  });
-
 }
 
 
