@@ -200,9 +200,15 @@ body{
   border-bottom-left-radius:5px;
 }
 
+
+/* =====================================================
+   CHAT INPUT
+   ធំជាងមុនបន្តិច
+===================================================== */
+
 .chat-input-area{
   flex-shrink:0;
-  padding:8px 10px 12px;
+  padding:9px 10px 13px;
   background:#fff;
   border-top:1px solid #e8e8ea;
 }
@@ -223,11 +229,11 @@ body{
 .attach-btn,
 .voice-btn,
 .send-btn{
-  width:40px;
-  height:40px;
+  width:42px;
+  height:42px;
   flex-shrink:0;
   border:0;
-  border-radius:12px;
+  border-radius:13px;
   background:#f1f1f3;
   color:#111;
   font-size:18px;
@@ -242,18 +248,19 @@ body{
 .chat-input{
   flex:1;
   min-width:0;
-  min-height:40px;
-  max-height:120px;
+  min-height:46px;
+  max-height:105px;
   resize:none;
-  border:1px solid #d8d8dc;
-  border-radius:18px;
+  border:1px solid #d5d5d9;
+  border-radius:20px;
   outline:none;
-  padding:10px 13px;
+  padding:12px 14px;
   background:#fff;
   color:#111;
   font-size:15px;
   line-height:20px;
   font-family:inherit;
+  overflow-y:auto;
 }
 
 .chat-input:focus{
@@ -585,17 +592,16 @@ body{
   background:#fff;
 }
 
-.dynamic-island{
-  position:absolute;
-  z-index:10;
-  top:9px;
-  left:50%;
-  transform:translateX(-50%);
-  width:100px;
-  height:27px;
-  border-radius:20px;
-  background:#000;
-}
+
+/* =====================================================
+   លុប BLACK DYNAMIC ISLAND និង HOME INDICATOR
+===================================================== */
+
+/*
+  មិនមាន Dynamic Island
+  មិនមាន Home Indicator
+  ដូច្នេះ Screen ស្អាត
+*/
 
 .preview-frame{
   display:block;
@@ -603,18 +609,6 @@ body{
   height:100%;
   border:0;
   background:#fff;
-}
-
-.home-indicator{
-  position:absolute;
-  z-index:12;
-  bottom:11px;
-  left:50%;
-  transform:translateX(-50%);
-  width:94px;
-  height:5px;
-  border-radius:10px;
-  background:#000;
 }
 
 
@@ -722,11 +716,6 @@ body{
     type="button"
   >📎 Copy Code</button>
 
-  <button
-    class="setting-item"
-    id="downloadBtn"
-    type="button"
-  >⬇️ Download Code</button>
 
   <button
     class="setting-item"
@@ -734,11 +723,13 @@ body{
     type="button"
   >↶ Undo</button>
 
+
   <button
     class="setting-item"
     id="redoBtn"
     type="button"
   >↷ Redo</button>
+
 
   <button
     class="setting-item"
@@ -746,11 +737,21 @@ body{
     type="button"
   >▶ Test Project</button>
 
+
   <button
     class="setting-item"
     id="saveBtn"
     type="button"
   >💾 Save Project</button>
+
+
+  <!-- ប៊ូតុងថ្មី -->
+  <button
+    class="setting-item"
+    id="deleteCodeBtn"
+    type="button"
+  >🗑️ លុបកូដ</button>
+
 
   <button
     class="setting-item"
@@ -810,6 +811,7 @@ body{
       id="attachmentName"
     ></div>
 
+
     <div class="input-row">
 
       <input
@@ -819,17 +821,20 @@ body{
         accept="image/*,.txt,.html,.css,.js,.json,.pdf"
       >
 
+
       <button
         class="attach-btn"
         id="attachBtn"
         type="button"
       >📎</button>
 
+
       <button
         class="voice-btn"
         id="voiceBtn"
         type="button"
       >🎤</button>
+
 
       <textarea
         class="chat-input"
@@ -838,6 +843,7 @@ body{
         placeholder="សរសេរ ឬនិយាយ..."
         autocomplete="off"
       ></textarea>
+
 
       <button
         class="send-btn"
@@ -899,6 +905,7 @@ body{
       id="lineNumbers"
     >1</div>
 
+
     <div class="editor-container">
 
       <pre
@@ -906,6 +913,7 @@ body{
         id="highlight"
         aria-hidden="true"
       ><code id="highlighted"></code></pre>
+
 
       <textarea
         class="code-editor"
@@ -929,6 +937,7 @@ body{
         Copy:
       </span>
 
+
       <input
         class="range-input"
         id="startLine"
@@ -937,9 +946,11 @@ body{
         value="1"
       >
 
+
       <span class="range-label">
         ដល់
       </span>
+
 
       <input
         class="range-input"
@@ -948,6 +959,7 @@ body{
         min="1"
         value="10"
       >
+
 
       <button
         class="copy-range-btn"
@@ -986,8 +998,6 @@ body{
 
     <div class="phone-screen">
 
-      <div class="dynamic-island"></div>
-
       <iframe
         class="preview-frame"
         id="previewFrame"
@@ -996,8 +1006,6 @@ body{
       ></iframe>
 
     </div>
-
-    <div class="home-indicator"></div>
 
   </div>
 
@@ -1024,6 +1032,7 @@ body{
 
 const defaultCode = `<!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -1074,6 +1083,7 @@ button{
 </button>
 
 </body>
+
 </html>`;
 
 
@@ -1165,9 +1175,6 @@ const settingsPanel =
 const settingsCopy =
   document.getElementById("settingsCopy");
 
-const downloadBtn =
-  document.getElementById("downloadBtn");
-
 const undoBtn =
   document.getElementById("undoBtn");
 
@@ -1179,6 +1186,9 @@ const testBtn =
 
 const saveBtn =
   document.getElementById("saveBtn");
+
+const deleteCodeBtn =
+  document.getElementById("deleteCodeBtn");
 
 const deleteChatBtn =
   document.getElementById("deleteChatBtn");
@@ -1214,6 +1224,7 @@ function showToast(text){
       },
       1800
     );
+
 }
 
 
@@ -1253,6 +1264,7 @@ function addHistory(){
     future = [];
 
   }
+
 }
 
 
@@ -1273,7 +1285,9 @@ function undo(){
 
   if(history.length <= 1){
 
-    showToast("មិនមានអ្វីសម្រាប់ Undo ទេ");
+    showToast(
+      "មិនមានអ្វីសម្រាប់ Undo ទេ"
+    );
 
     return;
   }
@@ -1291,7 +1305,9 @@ function undo(){
 
   updateCode();
 
-  showToast("✓ Undo បានធ្វើរួច");
+  showToast(
+    "✓ Undo បានធ្វើរួច"
+  );
 
 }
 
@@ -1300,7 +1316,9 @@ function redo(){
 
   if(future.length === 0){
 
-    showToast("មិនមានអ្វីសម្រាប់ Redo ទេ");
+    showToast(
+      "មិនមានអ្វីសម្រាប់ Redo ទេ"
+    );
 
     return;
   }
@@ -1319,7 +1337,9 @@ function redo(){
 
   updateCode();
 
-  showToast("✓ Redo បានធ្វើរួច");
+  showToast(
+    "✓ Redo បានធ្វើរួច"
+  );
 
 }
 
@@ -1336,6 +1356,7 @@ function escapeHTML(text){
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#39;");
+
 }
 
 
@@ -1367,6 +1388,7 @@ function highlightHTML(code){
     );
 
   return result;
+
 }
 
 
@@ -1392,6 +1414,7 @@ function highlightCSS(code){
     );
 
   return result;
+
 }
 
 
@@ -1429,6 +1452,7 @@ function highlightJS(code){
     );
 
   return result;
+
 }
 
 
@@ -1460,6 +1484,7 @@ function highlightJSON(code){
     );
 
   return result;
+
 }
 
 
@@ -1480,18 +1505,22 @@ function updateSyntax(){
   if(language === "html"){
     result = highlightHTML(code);
   }
+
   else if(language === "css"){
     result = highlightCSS(code);
   }
+
   else if(language === "javascript"){
     result = highlightJS(code);
   }
+
   else{
     result = highlightJSON(code);
   }
 
   highlighted.innerHTML =
     result || " ";
+
 }
 
 
@@ -1623,6 +1652,7 @@ codeEditor.addEventListener(
   }
 );
 
+
 codeEditor.addEventListener(
   "scroll",
   syncScroll
@@ -1649,9 +1679,12 @@ async function copyText(text){
 
     await navigator.clipboard.writeText(text);
 
-    showToast("✓ បាន Copy កូដរួចហើយ");
+    showToast(
+      "✓ បាន Copy កូដរួចហើយ"
+    );
 
   }
+
   catch(error){
 
     const temp =
@@ -1668,7 +1701,9 @@ async function copyText(text){
 
     temp.remove();
 
-    showToast("✓ បាន Copy កូដរួចហើយ");
+    showToast(
+      "✓ បាន Copy កូដរួចហើយ"
+    );
 
   }
 
@@ -1685,6 +1720,26 @@ copyAllBtn.addEventListener(
 
     copyText(
       codeEditor.value
+    );
+
+  }
+);
+
+
+/* =====================================================
+   SETTINGS COPY
+===================================================== */
+
+settingsCopy.addEventListener(
+  "click",
+  function(){
+
+    copyText(
+      codeEditor.value
+    );
+
+    settingsPanel.classList.remove(
+      "show"
     );
 
   }
@@ -1741,63 +1796,6 @@ copyRangeBtn.addEventListener(
 
 
 /* =====================================================
-   DOWNLOAD CODE
-===================================================== */
-
-function downloadCode(){
-
-  const blob =
-    new Blob(
-      [codeEditor.value],
-      {
-        type:"text/html;charset=utf-8"
-      }
-    );
-
-  const url =
-    URL.createObjectURL(blob);
-
-  const link =
-    document.createElement("a");
-
-  link.href =
-    url;
-
-  link.download =
-    "index.html";
-
-  document.body.appendChild(link);
-
-  link.click();
-
-  link.remove();
-
-  URL.revokeObjectURL(url);
-
-  showToast("✓ បាន Download index.html រួចហើយ");
-
-}
-
-
-/* =====================================================
-   DOWNLOAD BUTTON
-===================================================== */
-
-downloadBtn.addEventListener(
-  "click",
-  function(){
-
-    downloadCode();
-
-    settingsPanel.classList.remove(
-      "show"
-    );
-
-  }
-);
-
-
-/* =====================================================
    SAVE PROJECT
 ===================================================== */
 
@@ -1820,10 +1818,6 @@ function saveProject(){
 }
 
 
-/* =====================================================
-   SAVE BUTTON
-===================================================== */
-
 saveBtn.addEventListener(
   "click",
   function(){
@@ -1839,7 +1833,75 @@ saveBtn.addEventListener(
 
 
 /* =====================================================
-   LOAD
+   DELETE CODE
+===================================================== */
+
+function deleteCode(){
+
+  const confirmed =
+    confirm(
+      "តើអ្នកពិតជាចង់លុបកូដទាំងអស់មែនទេ?"
+    );
+
+  if(!confirmed){
+    return;
+  }
+
+
+  codeEditor.value =
+    "";
+
+
+  localStorage.removeItem(
+    "aiAppBuilderCode"
+  );
+
+  localStorage.removeItem(
+    "aiAppBuilderSavedAt"
+  );
+
+
+  history = [
+    ""
+  ];
+
+  future = [];
+
+
+  updateCode();
+
+
+  previewFrame.srcdoc =
+    "";
+
+
+  showToast(
+    "✓ បានលុបកូដរួចហើយ"
+  );
+
+}
+
+
+/* =====================================================
+   DELETE CODE BUTTON
+===================================================== */
+
+deleteCodeBtn.addEventListener(
+  "click",
+  function(){
+
+    deleteCode();
+
+    settingsPanel.classList.remove(
+      "show"
+    );
+
+  }
+);
+
+
+/* =====================================================
+   LOAD PROJECT
 ===================================================== */
 
 function loadProject(){
@@ -1849,12 +1911,13 @@ function loadProject(){
       "aiAppBuilderCode"
     );
 
-  if(saved){
+  if(saved !== null){
 
     codeEditor.value =
       saved;
 
   }
+
   else{
 
     codeEditor.value =
@@ -1892,11 +1955,20 @@ function runApp(){
 `<!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
 </head>
+
 <body>
+
 ${code}
+
 </body>
 </html>`;
 
@@ -1907,7 +1979,10 @@ ${code}
     code;
 
 
-  showView("preview");
+  showView(
+    "preview"
+  );
+
 
   showToast(
     "✓ App បានសាកល្បងរួចហើយ"
@@ -1925,10 +2000,12 @@ runCodeBtn.addEventListener(
   runApp
 );
 
+
 testAppBtn.addEventListener(
   "click",
   runApp
 );
+
 
 testBtn.addEventListener(
   "click",
@@ -1951,11 +2028,16 @@ testBtn.addEventListener(
 function showView(view){
 
   aiTab.classList.remove("active");
+
   codeTab.classList.remove("active");
+
   appTab.classList.remove("active");
 
+
   chatView.classList.remove("active");
+
   codeView.classList.remove("active");
+
   previewView.classList.remove("active");
 
 
@@ -2003,6 +2085,7 @@ aiTab.addEventListener(
   }
 );
 
+
 codeTab.addEventListener(
   "click",
   function(){
@@ -2011,6 +2094,7 @@ codeTab.addEventListener(
 
   }
 );
+
 
 appTab.addEventListener(
   "click",
@@ -2078,27 +2162,7 @@ document.addEventListener(
 
 
 /* =====================================================
-   SETTINGS COPY
-===================================================== */
-
-settingsCopy.addEventListener(
-  "click",
-  function(){
-
-    copyText(
-      codeEditor.value
-    );
-
-    settingsPanel.classList.remove(
-      "show"
-    );
-
-  }
-);
-
-
-/* =====================================================
-   UNDO / REDO
+   UNDO
 ===================================================== */
 
 undoBtn.addEventListener(
@@ -2114,6 +2178,10 @@ undoBtn.addEventListener(
   }
 );
 
+
+/* =====================================================
+   REDO
+===================================================== */
 
 redoBtn.addEventListener(
   "click",
@@ -2137,7 +2205,19 @@ deleteChatBtn.addEventListener(
   "click",
   function(){
 
-    chatMessages.innerHTML = "";
+    const confirmed =
+      confirm(
+        "តើអ្នកចង់លុប Chat ទាំងអស់មែនទេ?"
+      );
+
+    if(!confirmed){
+      return;
+    }
+
+
+    chatMessages.innerHTML =
+      "";
+
 
     const welcome =
       document.createElement("div");
@@ -2145,24 +2225,32 @@ deleteChatBtn.addEventListener(
     welcome.className =
       "welcome";
 
+
     welcome.innerHTML =
 `
 <div class="welcome-icon">🤖</div>
-<h2>AI App Builder</h2>
+
+<h2>
+  AI App Builder
+</h2>
+
 <p>
-ចាប់ផ្ដើម Chat ថ្មី
-<br>
-ប្រាប់ AI ថាអ្នកចង់បង្កើតអ្វី
+  ចាប់ផ្ដើម Chat ថ្មី
+  <br>
+  ប្រាប់ AI ថាអ្នកចង់បង្កើតអ្វី
 </p>
 `;
+
 
     chatMessages.appendChild(
       welcome
     );
 
+
     showToast(
       "✓ បានលុប Chat រួចហើយ"
     );
+
 
     settingsPanel.classList.remove(
       "show"
@@ -2209,12 +2297,19 @@ function sendMessage(){
     return;
   }
 
+
   addMessage(
     text,
     "user"
   );
 
-  chatInput.value = "";
+
+  chatInput.value =
+    "";
+
+  chatInput.style.height =
+    "46px";
+
 
   setTimeout(
     function(){
@@ -2238,7 +2333,7 @@ sendBtn.addEventListener(
 
 
 /* =====================================================
-   CHAT TEXTAREA
+   CHAT INPUT AUTO SIZE
 ===================================================== */
 
 chatInput.addEventListener(
@@ -2246,17 +2341,21 @@ chatInput.addEventListener(
   function(){
 
     this.style.height =
-      "40px";
+      "46px";
 
     this.style.height =
       Math.min(
         this.scrollHeight,
-        120
+        105
       ) + "px";
 
   }
 );
 
+
+/* =====================================================
+   ENTER
+===================================================== */
 
 chatInput.addEventListener(
   "keydown",
@@ -2302,11 +2401,14 @@ fileInput.addEventListener(
       return;
     }
 
+
     attachmentName.style.display =
       "block";
 
+
     attachmentName.textContent =
       "📎 " + file.name;
+
 
     showToast(
       "✓ បានជ្រើសរើស File"
@@ -2330,11 +2432,14 @@ if(SpeechRecognition){
   const recognition =
     new SpeechRecognition();
 
+
   recognition.lang =
     "km-KH";
 
+
   recognition.continuous =
     false;
+
 
   recognition.interimResults =
     false;
@@ -2353,6 +2458,7 @@ if(SpeechRecognition){
         );
 
       }
+
       catch(error){
 
       }
@@ -2370,6 +2476,7 @@ if(SpeechRecognition){
 
       chatInput.value =
         text;
+
 
       chatInput.dispatchEvent(
         new Event("input")
@@ -2391,6 +2498,7 @@ if(SpeechRecognition){
   );
 
 }
+
 else{
 
   voiceBtn.addEventListener(
