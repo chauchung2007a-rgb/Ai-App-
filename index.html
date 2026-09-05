@@ -945,23 +945,14 @@ body{
       <div class="chat-box">
 
 
-        <!-- PLUS -->
+       <!-- PAPERCLIP -->
 
-        <button
-          class="plus-btn"
-          id="plusBtn"
-          type="button"
-        >+</button>
-
-
-        <!-- PAPERCLIP -->
-
-        <button
-          class="attach-inside-btn"
-          id="attachBtn"
-          type="button"
-          aria-label="Attach"
-        >📎</button>
+<button
+  class="attach-inside-btn"
+  id="attachBtn"
+  type="button"
+  aria-label="Attach"
+>📎</button>
 
 
         <!-- TEXT -->
@@ -1336,8 +1327,6 @@ const voiceBtn =
 const attachBtn =
   document.getElementById("attachBtn");
 
-const plusBtn =
-  document.getElementById("plusBtn");
 
 const fileInput =
   document.getElementById("fileInput");
@@ -2560,22 +2549,6 @@ chatInput.addEventListener(
       sendMessage();
 
     }
-
-  }
-);
-
-
-/* =====================================================
-   PLUS
-===================================================== */
-
-plusBtn.addEventListener(
-  "click",
-  function(){
-
-    showToast(
-      "＋ ប៊ូតុងបន្ថែម"
-    );
 
   }
 );
