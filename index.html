@@ -14,7 +14,7 @@
 <style>
 
 /* =====================================================
-   1. RESET
+   RESET
 ===================================================== */
 
 *{
@@ -30,13 +30,13 @@ body{
   height:100%;
   overflow:hidden;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:#090b10;
-  color:#fff;
+  background:#f5f5f7;
+  color:#111;
 }
 
 
 /* =====================================================
-   2. APP
+   APP
 ===================================================== */
 
 .app{
@@ -44,19 +44,19 @@ body{
   height:100%;
   display:flex;
   flex-direction:column;
-  background:#090b10;
+  background:#fff;
 }
 
 
 /* =====================================================
-   3. HEADER
+   HEADER
 ===================================================== */
 
 .header{
   height:92px;
   flex-shrink:0;
-  border-bottom:1px solid #20242d;
-  background:#0d1016;
+  background:#fff;
+  border-bottom:1px solid #e5e5e7;
 }
 
 .top-row{
@@ -64,7 +64,7 @@ body{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 15px;
+  padding:0 14px;
 }
 
 .home-btn,
@@ -73,9 +73,9 @@ body{
   height:36px;
   border:0;
   border-radius:10px;
-  background:#171b23;
-  color:#fff;
-  font-size:19px;
+  background:#f1f1f3;
+  color:#111;
+  font-size:18px;
   cursor:pointer;
 }
 
@@ -92,25 +92,25 @@ body{
 }
 
 .tab{
-  height:40px;
-  min-width:85px;
+  height:38px;
+  min-width:82px;
   border:0;
   border-radius:10px;
   background:transparent;
-  color:#8f96a3;
+  color:#777;
   font-size:14px;
   font-weight:600;
   cursor:pointer;
 }
 
 .tab.active{
-  background:#1a202b;
+  background:#111;
   color:#fff;
 }
 
 
 /* =====================================================
-   4. MAIN
+   MAIN
 ===================================================== */
 
 .main{
@@ -131,45 +131,55 @@ body{
 
 
 /* =====================================================
-   5. AI CHAT
+   CHAT
 ===================================================== */
 
 .chat-view{
   flex-direction:column;
+  background:#fff;
 }
 
 .chat-messages{
   flex:1;
   overflow-y:auto;
-  padding:18px 14px 20px;
+  padding:20px 14px 22px;
 }
 
 .welcome{
+  max-width:330px;
+  margin:50px auto 0;
   text-align:center;
-  margin-top:35px;
 }
 
 .welcome-icon{
-  font-size:42px;
-  margin-bottom:12px;
+  width:58px;
+  height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 16px;
+  border-radius:18px;
+  background:#111;
+  color:#fff;
+  font-size:28px;
 }
 
 .welcome h2{
-  font-size:21px;
+  font-size:22px;
   margin-bottom:8px;
 }
 
 .welcome p{
-  color:#858c99;
+  color:#777;
   font-size:14px;
   line-height:1.6;
 }
 
 .message{
-  max-width:88%;
-  margin-bottom:14px;
-  padding:11px 13px;
-  border-radius:15px;
+  max-width:86%;
+  margin-bottom:15px;
+  padding:11px 14px;
+  border-radius:18px;
   font-size:14px;
   line-height:1.55;
   white-space:pre-wrap;
@@ -178,33 +188,35 @@ body{
 
 .message.user{
   margin-left:auto;
-  background:#263247;
+  background:#111;
+  color:#fff;
   border-bottom-right-radius:5px;
 }
 
 .message.ai{
   margin-right:auto;
-  background:#171b23;
+  background:#f1f1f3;
+  color:#111;
   border-bottom-left-radius:5px;
 }
 
 .chat-input-area{
   flex-shrink:0;
-  padding:9px 10px 12px;
-  border-top:1px solid #20242d;
-  background:#0d1016;
+  padding:8px 10px 12px;
+  background:#fff;
+  border-top:1px solid #e8e8ea;
 }
 
 .attachment-name{
   display:none;
   padding:5px 8px;
-  color:#9da5b3;
+  color:#666;
   font-size:11px;
 }
 
 .input-row{
   display:flex;
-  align-items:center;
+  align-items:flex-end;
   gap:7px;
 }
 
@@ -215,42 +227,124 @@ body{
   height:40px;
   flex-shrink:0;
   border:0;
-  border-radius:11px;
-  background:#171b23;
-  color:#fff;
+  border-radius:12px;
+  background:#f1f1f3;
+  color:#111;
   font-size:18px;
   cursor:pointer;
 }
 
 .send-btn{
-  background:#27364d;
+  background:#111;
+  color:#fff;
 }
 
 .chat-input{
   flex:1;
   min-width:0;
-  height:40px;
-  border:1px solid #242a35;
-  border-radius:12px;
+  min-height:40px;
+  max-height:120px;
+  resize:none;
+  border:1px solid #d8d8dc;
+  border-radius:18px;
   outline:none;
-  padding:0 12px;
-  background:#12161d;
-  color:#fff;
-  font-size:14px;
+  padding:10px 13px;
+  background:#fff;
+  color:#111;
+  font-size:15px;
+  line-height:20px;
+  font-family:inherit;
+}
+
+.chat-input:focus{
+  border-color:#999;
 }
 
 .chat-input::placeholder{
-  color:#737b89;
+  color:#999;
 }
 
 
 /* =====================================================
-   6. CODE VIEW
+   SETTINGS
+===================================================== */
+
+.settings-panel{
+  position:absolute;
+  z-index:100;
+  top:44px;
+  right:10px;
+  width:240px;
+  padding:7px;
+  display:none;
+  border:1px solid #ddd;
+  border-radius:15px;
+  background:#fff;
+  box-shadow:0 12px 35px rgba(0,0,0,.16);
+}
+
+.settings-panel.show{
+  display:block;
+}
+
+.setting-item{
+  width:100%;
+  min-height:43px;
+  border:0;
+  border-radius:10px;
+  background:#fff;
+  color:#111;
+  text-align:left;
+  padding:9px 11px;
+  font-size:13px;
+  cursor:pointer;
+}
+
+.setting-item:active{
+  background:#f1f1f3;
+}
+
+.setting-item + .setting-item{
+  margin-top:2px;
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast{
+  position:fixed;
+  z-index:9999;
+  left:50%;
+  bottom:78px;
+  transform:translate(-50%,20px);
+  opacity:0;
+  pointer-events:none;
+  min-width:190px;
+  max-width:90%;
+  padding:11px 16px;
+  border-radius:12px;
+  background:#111;
+  color:#fff;
+  text-align:center;
+  font-size:13px;
+  transition:.25s ease;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+
+/* =====================================================
+   CODE
 ===================================================== */
 
 .code-view{
   flex-direction:column;
-  min-height:0;
+  background:#111318;
 }
 
 .code-toolbar{
@@ -258,36 +352,30 @@ body{
   flex-shrink:0;
   display:flex;
   align-items:center;
-  gap:7px;
-  padding:7px 9px;
-  border-bottom:1px solid #20242d;
-  background:#0d1016;
+  gap:6px;
+  padding:7px;
+  background:#181b21;
+  border-bottom:1px solid #292d35;
+}
+
+.language-select,
+.tool-btn{
+  height:36px;
+  border:1px solid #343943;
+  border-radius:9px;
+  background:#20242c;
+  color:#fff;
+  font-size:12px;
 }
 
 .language-select{
-  height:36px;
-  border:1px solid #272d38;
-  border-radius:9px;
-  outline:none;
-  padding:0 8px;
-  background:#151922;
-  color:#fff;
-  font-size:12px;
+  padding:0 7px;
+  max-width:82px;
 }
 
 .tool-btn{
-  height:36px;
-  border:1px solid #272d38;
-  border-radius:9px;
-  padding:0 10px;
-  background:#151922;
-  color:#fff;
-  font-size:12px;
+  padding:0 9px;
   cursor:pointer;
-}
-
-.tool-btn:active{
-  transform:scale(.97);
 }
 
 .code-editor-wrap{
@@ -295,19 +383,19 @@ body{
   min-height:0;
   display:flex;
   overflow:hidden;
-  background:#0b0e13;
+  background:#111318;
 }
 
 .line-numbers{
-  width:43px;
+  width:42px;
   flex-shrink:0;
   overflow:hidden;
   padding-top:13px;
-  border-right:1px solid #20242d;
-  background:#0d1016;
-  color:#596170;
+  padding-right:8px;
+  border-right:1px solid #292d35;
+  background:#181b21;
+  color:#656b77;
   text-align:right;
-  padding-right:9px;
   font-family:monospace;
   font-size:13px;
   line-height:1.55;
@@ -325,18 +413,14 @@ body{
   position:absolute;
   inset:0;
   margin:0;
-  padding:13px 12px;
+  padding:13px;
   overflow:auto;
   pointer-events:none;
   white-space:pre;
   font-family:monospace;
   font-size:13px;
   line-height:1.55;
-  color:#d8dee9;
-}
-
-.highlight code{
-  font-family:inherit;
+  color:#ddd;
 }
 
 .code-editor{
@@ -346,8 +430,8 @@ body{
   height:100%;
   resize:none;
   border:0;
-  outline:none;
-  padding:13px 12px;
+  outline:0;
+  padding:13px;
   overflow:auto;
   white-space:pre;
   font-family:monospace;
@@ -361,52 +445,12 @@ body{
 }
 
 .code-editor::selection{
-  background:rgba(80,120,180,.35);
-}
-
-.copy-range{
-  flex-shrink:0;
-  padding:8px;
-  border-top:1px solid #20242d;
-  background:#0d1016;
-}
-
-.range-row{
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-
-.range-label{
-  color:#858c99;
-  font-size:11px;
-}
-
-.range-input{
-  width:55px;
-  height:34px;
-  border:1px solid #272d38;
-  border-radius:8px;
-  background:#151922;
-  color:#fff;
-  outline:none;
-  text-align:center;
-}
-
-.copy-range-btn{
-  height:34px;
-  border:0;
-  border-radius:8px;
-  padding:0 11px;
-  background:#263247;
-  color:#fff;
-  font-size:11px;
-  cursor:pointer;
+  background:rgba(100,140,200,.4);
 }
 
 
 /* =====================================================
-   7. SYNTAX COLORS
+   CODE COLORS
 ===================================================== */
 
 .c-comment{
@@ -441,58 +485,95 @@ body{
   color:#ce9178;
 }
 
-.c-selector{
-  color:#d7ba7d;
+
+/* =====================================================
+   COPY RANGE
+===================================================== */
+
+.copy-range{
+  flex-shrink:0;
+  padding:8px;
+  background:#181b21;
+  border-top:1px solid #292d35;
+}
+
+.range-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.range-label{
+  color:#a0a5ae;
+  font-size:11px;
+}
+
+.range-input{
+  width:55px;
+  height:34px;
+  border:1px solid #343943;
+  border-radius:8px;
+  outline:none;
+  background:#20242c;
+  color:#fff;
+  text-align:center;
+}
+
+.copy-range-btn{
+  height:34px;
+  border:0;
+  border-radius:8px;
+  padding:0 10px;
+  background:#fff;
+  color:#111;
+  font-size:11px;
+  font-weight:600;
+  cursor:pointer;
 }
 
 
 /* =====================================================
-   8. APP PREVIEW
+   APP PREVIEW
 ===================================================== */
 
 .preview-view{
   flex-direction:column;
   align-items:center;
   overflow:auto;
-  padding:14px 10px 25px;
-  background:#090b10;
+  padding:12px 10px 24px;
+  background:#f2f2f4;
 }
 
 .preview-toolbar{
   width:100%;
   display:flex;
   justify-content:center;
-  margin-bottom:14px;
+  margin-bottom:12px;
 }
 
 .test-app-btn{
-  height:40px;
+  height:42px;
   border:0;
-  border-radius:11px;
-  padding:0 18px;
-  background:#27364d;
+  border-radius:12px;
+  padding:0 20px;
+  background:#111;
   color:#fff;
   font-size:14px;
   font-weight:600;
   cursor:pointer;
 }
 
-.test-app-btn:active{
-  transform:scale(.97);
-}
-
 .phone{
   position:relative;
   width:min(330px,88vw);
-  height:min(675px,calc(100vh - 145px));
+  height:min(675px,calc(100vh - 140px));
   min-height:500px;
   padding:9px;
-  border:2px solid #343943;
-  border-radius:42px;
-  background:#151820;
+  border:2px solid #c7c9ce;
+  border-radius:43px;
+  background:#fafafa;
   box-shadow:
-    0 0 0 3px #080a0e,
-    0 18px 45px rgba(0,0,0,.55);
+    0 15px 40px rgba(0,0,0,.22);
 }
 
 .phone-screen{
@@ -500,7 +581,7 @@ body{
   width:100%;
   height:100%;
   overflow:hidden;
-  border-radius:33px;
+  border-radius:34px;
   background:#fff;
 }
 
@@ -511,12 +592,13 @@ body{
   left:50%;
   transform:translateX(-50%);
   width:100px;
-  height:28px;
+  height:27px;
   border-radius:20px;
   background:#000;
 }
 
 .preview-frame{
+  display:block;
   width:100%;
   height:100%;
   border:0;
@@ -525,82 +607,19 @@ body{
 
 .home-indicator{
   position:absolute;
-  z-index:11;
-  bottom:12px;
+  z-index:12;
+  bottom:11px;
   left:50%;
   transform:translateX(-50%);
-  width:95px;
+  width:94px;
   height:5px;
   border-radius:10px;
-  background:#fff;
-  box-shadow:0 0 2px #000;
+  background:#000;
 }
 
 
 /* =====================================================
-   9. SETTINGS
-===================================================== */
-
-.settings-panel{
-  position:absolute;
-  z-index:50;
-  top:43px;
-  right:10px;
-  width:225px;
-  padding:8px;
-  display:none;
-  border:1px solid #292f3a;
-  border-radius:14px;
-  background:#131720;
-  box-shadow:0 15px 35px rgba(0,0,0,.45);
-}
-
-.settings-panel.show{
-  display:block;
-}
-
-.setting-item{
-  width:100%;
-  height:42px;
-  border:0;
-  border-radius:9px;
-  background:transparent;
-  color:#fff;
-  text-align:left;
-  padding:0 11px;
-  font-size:13px;
-  cursor:pointer;
-}
-
-.setting-item:active{
-  background:#202631;
-}
-
-
-/* =====================================================
-   10. RESPONSIVE
-===================================================== */
-
-@media(max-width:360px){
-
-  .tab{
-    min-width:72px;
-    font-size:12px;
-  }
-
-  .tool-btn{
-    padding:0 7px;
-  }
-
-  .language-select{
-    width:70px;
-  }
-
-}
-
-
-/* =====================================================
-   11. SCROLLBAR
+   SCROLLBAR
 ===================================================== */
 
 ::-webkit-scrollbar{
@@ -609,8 +628,22 @@ body{
 }
 
 ::-webkit-scrollbar-thumb{
-  background:#303642;
+  background:#777;
   border-radius:10px;
+}
+
+
+@media(max-width:360px){
+
+  .tab{
+    min-width:70px;
+    font-size:12px;
+  }
+
+  .tool-btn{
+    padding:0 6px;
+  }
+
 }
 
 </style>
@@ -636,7 +669,9 @@ body{
       type="button"
     >🏠</button>
 
-    <div class="title">AI App Builder</div>
+    <div class="title">
+      AI App Builder
+    </div>
 
     <button
       class="settings-btn"
@@ -689,6 +724,12 @@ body{
 
   <button
     class="setting-item"
+    id="downloadBtn"
+    type="button"
+  >⬇️ Download Code</button>
+
+  <button
+    class="setting-item"
     id="undoBtn"
     type="button"
   >↶ Undo</button>
@@ -728,7 +769,7 @@ body{
 
 
 <!-- =====================================================
-     AI VIEW
+     AI
 ===================================================== -->
 
 <section
@@ -743,14 +784,18 @@ body{
 
     <div class="welcome">
 
-      <div class="welcome-icon">🤖</div>
+      <div class="welcome-icon">
+        🤖
+      </div>
 
-      <h2>AI App Builder</h2>
+      <h2>
+        AI App Builder
+      </h2>
 
       <p>
         ប្រាប់ AI ថាអ្នកចង់បង្កើត App អ្វី
         <br>
-        អ្នកអាចសរសេរ ឬនិយាយជាភាសាខ្មែរ
+        អ្នកអាចសរសេរ ឬនិយាយបាន
       </p>
 
     </div>
@@ -786,13 +831,13 @@ body{
         type="button"
       >🎤</button>
 
-      <input
+      <textarea
         class="chat-input"
         id="chatInput"
-        type="text"
+        rows="1"
         placeholder="សរសេរ ឬនិយាយ..."
         autocomplete="off"
-      >
+      ></textarea>
 
       <button
         class="send-btn"
@@ -808,7 +853,7 @@ body{
 
 
 <!-- =====================================================
-     CODE VIEW
+     CODE
 ===================================================== -->
 
 <section
@@ -825,7 +870,7 @@ body{
 
       <option value="html">HTML</option>
       <option value="css">CSS</option>
-      <option value="javascript">JavaScript</option>
+      <option value="javascript">JS</option>
       <option value="json">JSON</option>
 
     </select>
@@ -849,22 +894,18 @@ body{
 
   <div class="code-editor-wrap">
 
-
     <div
       class="line-numbers"
       id="lineNumbers"
     >1</div>
 
-
     <div class="editor-container">
-
 
       <pre
         class="highlight"
         id="highlight"
         aria-hidden="true"
       ><code id="highlighted"></code></pre>
-
 
       <textarea
         class="code-editor"
@@ -875,7 +916,6 @@ body{
         autocorrect="off"
       ></textarea>
 
-
     </div>
 
   </div>
@@ -885,7 +925,9 @@ body{
 
     <div class="range-row">
 
-      <span class="range-label">Copy:</span>
+      <span class="range-label">
+        Copy:
+      </span>
 
       <input
         class="range-input"
@@ -895,7 +937,9 @@ body{
         value="1"
       >
 
-      <span class="range-label">ដល់</span>
+      <span class="range-label">
+        ដល់
+      </span>
 
       <input
         class="range-input"
@@ -947,8 +991,8 @@ body{
       <iframe
         class="preview-frame"
         id="previewFrame"
-        sandbox="allow-scripts"
         title="App Preview"
+        sandbox="allow-scripts"
       ></iframe>
 
     </div>
@@ -962,41 +1006,59 @@ body{
 
 </main>
 
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
+
 </div>
 
 
 <script>
 
 /* =====================================================
-   1. DEFAULT CODE
+   DEFAULT CODE
 ===================================================== */
 
 const defaultCode = `<!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
 <title>My App</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-  text-align: center;
-  padding: 40px 20px;
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#ffffff;
+  color:#111111;
+  text-align:center;
+  padding:40px 20px;
 }
 
-h1 {
-  margin-bottom: 20px;
+h1{
+  margin-bottom:20px;
 }
 
-button {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
+button{
+  padding:12px 20px;
+  border:0;
+  border-radius:10px;
+  background:#111111;
+  color:white;
+  cursor:pointer;
 }
+
 </style>
 
 </head>
@@ -1016,7 +1078,7 @@ button {
 
 
 /* =====================================================
-   2. ELEMENTS
+   ELEMENTS
 ===================================================== */
 
 const aiTab =
@@ -1100,11 +1162,11 @@ const settingsBtn =
 const settingsPanel =
   document.getElementById("settingsPanel");
 
-const homeBtn =
-  document.getElementById("homeBtn");
-
 const settingsCopy =
   document.getElementById("settingsCopy");
+
+const downloadBtn =
+  document.getElementById("downloadBtn");
 
 const undoBtn =
   document.getElementById("undoBtn");
@@ -1121,9 +1183,42 @@ const saveBtn =
 const deleteChatBtn =
   document.getElementById("deleteChatBtn");
 
+const homeBtn =
+  document.getElementById("homeBtn");
+
+const toast =
+  document.getElementById("toast");
+
 
 /* =====================================================
-   3. CODE HISTORY
+   TOAST
+===================================================== */
+
+let toastTimer = null;
+
+function showToast(text){
+
+  toast.textContent =
+    text;
+
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer =
+    setTimeout(
+      function(){
+
+        toast.classList.remove("show");
+
+      },
+      1800
+    );
+}
+
+
+/* =====================================================
+   HISTORY
 ===================================================== */
 
 let history = [];
@@ -1156,6 +1251,7 @@ function addHistory(){
     }
 
     future = [];
+
   }
 }
 
@@ -1169,21 +1265,24 @@ function scheduleHistory(){
       addHistory,
       500
     );
+
 }
 
 
 function undo(){
 
   if(history.length <= 1){
+
+    showToast("មិនមានអ្វីសម្រាប់ Undo ទេ");
+
     return;
   }
 
   changingHistory = true;
 
-  const current =
-    history.pop();
-
-  future.push(current);
+  future.push(
+    history.pop()
+  );
 
   codeEditor.value =
     history[history.length - 1];
@@ -1191,12 +1290,18 @@ function undo(){
   changingHistory = false;
 
   updateCode();
+
+  showToast("✓ Undo បានធ្វើរួច");
+
 }
 
 
 function redo(){
 
   if(future.length === 0){
+
+    showToast("មិនមានអ្វីសម្រាប់ Redo ទេ");
+
     return;
   }
 
@@ -1213,11 +1318,14 @@ function redo(){
   changingHistory = false;
 
   updateCode();
+
+  showToast("✓ Redo បានធ្វើរួច");
+
 }
 
 
 /* =====================================================
-   4. ESCAPE HTML
+   ESCAPE
 ===================================================== */
 
 function escapeHTML(text){
@@ -1225,12 +1333,14 @@ function escapeHTML(text){
   return text
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;");
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#39;");
 }
 
 
 /* =====================================================
-   5. HTML HIGHLIGHT
+   HTML HIGHLIGHT
 ===================================================== */
 
 function highlightHTML(code){
@@ -1238,13 +1348,11 @@ function highlightHTML(code){
   let result =
     escapeHTML(code);
 
-
   result =
     result.replace(
       /(&lt;!--[\s\S]*?--&gt;)/g,
       '<span class="c-comment">$1</span>'
     );
-
 
   result =
     result.replace(
@@ -1252,20 +1360,18 @@ function highlightHTML(code){
       '$1<span class="c-tag">$2</span>'
     );
 
-
   result =
     result.replace(
       /([\w:-]+)(=)(&quot;.*?&quot;|&#39;.*?&#39;)/g,
       '<span class="c-attr">$1</span>$2<span class="c-string">$3</span>'
     );
 
-
   return result;
 }
 
 
 /* =====================================================
-   6. CSS HIGHLIGHT
+   CSS HIGHLIGHT
 ===================================================== */
 
 function highlightCSS(code){
@@ -1273,13 +1379,11 @@ function highlightCSS(code){
   let result =
     escapeHTML(code);
 
-
   result =
     result.replace(
       /(\/\*[\s\S]*?\*\/)/g,
       '<span class="c-comment">$1</span>'
     );
-
 
   result =
     result.replace(
@@ -1287,20 +1391,12 @@ function highlightCSS(code){
       '<span class="c-property">$1</span>$2'
     );
 
-
-  result =
-    result.replace(
-      /(:\s*)([^;{}]+)/g,
-      '$1<span class="c-value">$2</span>'
-    );
-
-
   return result;
 }
 
 
 /* =====================================================
-   7. JAVASCRIPT HIGHLIGHT
+   JAVASCRIPT HIGHLIGHT
 ===================================================== */
 
 function highlightJS(code){
@@ -1308,13 +1404,11 @@ function highlightJS(code){
   let result =
     escapeHTML(code);
 
-
   result =
     result.replace(
       /(\/\/.*$)/gm,
       '<span class="c-comment">$1</span>'
     );
-
 
   result =
     result.replace(
@@ -1322,13 +1416,11 @@ function highlightJS(code){
       '<span class="c-string">$1</span>'
     );
 
-
   result =
     result.replace(
       /\b(const|let|var|function|return|if|else|for|while|new|class|this|true|false|null|undefined)\b/g,
       '<span class="c-keyword">$1</span>'
     );
-
 
   result =
     result.replace(
@@ -1336,13 +1428,12 @@ function highlightJS(code){
       '<span class="c-number">$1</span>'
     );
 
-
   return result;
 }
 
 
 /* =====================================================
-   8. JSON HIGHLIGHT
+   JSON HIGHLIGHT
 ===================================================== */
 
 function highlightJSON(code){
@@ -1350,20 +1441,11 @@ function highlightJSON(code){
   let result =
     escapeHTML(code);
 
-
   result =
     result.replace(
       /(&quot;.*?&quot;)(\s*:)/g,
       '<span class="c-property">$1</span>$2'
     );
-
-
-  result =
-    result.replace(
-      /(:\s*)(&quot;.*?&quot;)/g,
-      '$1<span class="c-string">$2</span>'
-    );
-
 
   result =
     result.replace(
@@ -1371,20 +1453,18 @@ function highlightJSON(code){
       '<span class="c-keyword">$1</span>'
     );
 
-
   result =
     result.replace(
       /\b\d+(?:\.\d+)?\b/g,
       '<span class="c-number">$1</span>'
     );
 
-
   return result;
 }
 
 
 /* =====================================================
-   9. UPDATE SYNTAX
+   UPDATE SYNTAX
 ===================================================== */
 
 function updateSyntax(){
@@ -1406,76 +1486,60 @@ function updateSyntax(){
   else if(language === "javascript"){
     result = highlightJS(code);
   }
-  else if(language === "json"){
+  else{
     result = highlightJSON(code);
   }
 
-  if(result === ""){
-    result = " ";
-  }
-
   highlighted.innerHTML =
-    result;
+    result || " ";
 }
 
 
 /* =====================================================
-   10. LINE NUMBERS
+   LINE NUMBERS
 ===================================================== */
 
 function updateLineNumbers(){
 
-  const lines =
+  const total =
     codeEditor.value.split("\n").length;
 
   let output = "";
 
   for(
     let i = 1;
-    i <= lines;
+    i <= total;
     i++
   ){
 
     output +=
       i + "<br>";
+
   }
 
   lineNumbers.innerHTML =
     output;
 
+  startLine.max =
+    total;
 
   endLine.max =
-    lines;
-
-  startLine.max =
-    lines;
+    total;
 
   if(
-    Number(endLine.value) > lines
+    Number(endLine.value) > total
   ){
 
     endLine.value =
-      lines;
+      total;
+
   }
+
 }
 
 
 /* =====================================================
-   11. CODE UPDATE
-===================================================== */
-
-function updateCode(){
-
-  updateSyntax();
-
-  updateLineNumbers();
-
-  syncScroll();
-}
-
-
-/* =====================================================
-   12. SCROLL SYNC
+   SCROLL
 ===================================================== */
 
 function syncScroll(){
@@ -1488,11 +1552,27 @@ function syncScroll(){
 
   lineNumbers.scrollTop =
     codeEditor.scrollTop;
+
 }
 
 
 /* =====================================================
-   13. TAB KEY
+   UPDATE CODE
+===================================================== */
+
+function updateCode(){
+
+  updateSyntax();
+
+  updateLineNumbers();
+
+  syncScroll();
+
+}
+
+
+/* =====================================================
+   TAB KEY
 ===================================================== */
 
 codeEditor.addEventListener(
@@ -1509,13 +1589,10 @@ codeEditor.addEventListener(
       const end =
         this.selectionEnd;
 
-      const value =
-        this.value;
-
       this.value =
-        value.substring(0,start)
+        this.value.substring(0,start)
         + "  "
-        + value.substring(end);
+        + this.value.substring(end);
 
       this.selectionStart =
         this.selectionEnd =
@@ -1524,6 +1601,7 @@ codeEditor.addEventListener(
       updateCode();
 
       scheduleHistory();
+
     }
 
   }
@@ -1531,7 +1609,7 @@ codeEditor.addEventListener(
 
 
 /* =====================================================
-   14. CODE INPUT
+   CODE INPUT
 ===================================================== */
 
 codeEditor.addEventListener(
@@ -1545,7 +1623,6 @@ codeEditor.addEventListener(
   }
 );
 
-
 codeEditor.addEventListener(
   "scroll",
   syncScroll
@@ -1553,7 +1630,7 @@ codeEditor.addEventListener(
 
 
 /* =====================================================
-   15. LANGUAGE
+   LANGUAGE
 ===================================================== */
 
 languageSelect.addEventListener(
@@ -1563,20 +1640,19 @@ languageSelect.addEventListener(
 
 
 /* =====================================================
-   16. COPY ALL
+   COPY
 ===================================================== */
 
 async function copyText(text){
 
   try{
 
-    await navigator.clipboard.writeText(
-      text
-    );
+    await navigator.clipboard.writeText(text);
 
-    alert("បាន Copy កូដរួចហើយ");
+    showToast("✓ បាន Copy កូដរួចហើយ");
 
-  }catch(error){
+  }
+  catch(error){
 
     const temp =
       document.createElement("textarea");
@@ -1592,10 +1668,16 @@ async function copyText(text){
 
     temp.remove();
 
-    alert("បាន Copy កូដរួចហើយ");
+    showToast("✓ បាន Copy កូដរួចហើយ");
+
   }
+
 }
 
+
+/* =====================================================
+   COPY ALL
+===================================================== */
 
 copyAllBtn.addEventListener(
   "click",
@@ -1610,7 +1692,7 @@ copyAllBtn.addEventListener(
 
 
 /* =====================================================
-   17. COPY RANGE
+   COPY RANGE
 ===================================================== */
 
 copyRangeBtn.addEventListener(
@@ -1620,33 +1702,28 @@ copyRangeBtn.addEventListener(
     const lines =
       codeEditor.value.split("\n");
 
-    let start =
+    const start =
       Number(startLine.value);
 
-    let end =
+    const end =
       Number(endLine.value);
 
-    if(!Number.isInteger(start)){
-      start = 1;
-    }
-
-    if(!Number.isInteger(end)){
-      end = lines.length;
-    }
-
     if(
+      !Number.isInteger(start) ||
+      !Number.isInteger(end) ||
       start < 1 ||
-      end < 1 ||
-      start > end ||
+      end < start ||
       start > lines.length
     ){
 
-      alert("សូមកំណត់លេខបន្ទាត់ឱ្យត្រឹមត្រូវ");
+      showToast(
+        "សូមដាក់លេខបន្ទាត់ឱ្យត្រឹមត្រូវ"
+      );
 
       return;
     }
 
-    end =
+    const finalEnd =
       Math.min(
         end,
         lines.length
@@ -1654,7 +1731,7 @@ copyRangeBtn.addEventListener(
 
     const selected =
       lines
-        .slice(start - 1,end)
+        .slice(start - 1,finalEnd)
         .join("\n");
 
     copyText(selected);
@@ -1664,7 +1741,132 @@ copyRangeBtn.addEventListener(
 
 
 /* =====================================================
-   18. RUN APP
+   DOWNLOAD CODE
+===================================================== */
+
+function downloadCode(){
+
+  const blob =
+    new Blob(
+      [codeEditor.value],
+      {
+        type:"text/html;charset=utf-8"
+      }
+    );
+
+  const url =
+    URL.createObjectURL(blob);
+
+  const link =
+    document.createElement("a");
+
+  link.href =
+    url;
+
+  link.download =
+    "index.html";
+
+  document.body.appendChild(link);
+
+  link.click();
+
+  link.remove();
+
+  URL.revokeObjectURL(url);
+
+  showToast("✓ បាន Download index.html រួចហើយ");
+
+}
+
+
+/* =====================================================
+   DOWNLOAD BUTTON
+===================================================== */
+
+downloadBtn.addEventListener(
+  "click",
+  function(){
+
+    downloadCode();
+
+    settingsPanel.classList.remove(
+      "show"
+    );
+
+  }
+);
+
+
+/* =====================================================
+   SAVE PROJECT
+===================================================== */
+
+function saveProject(){
+
+  localStorage.setItem(
+    "aiAppBuilderCode",
+    codeEditor.value
+  );
+
+  localStorage.setItem(
+    "aiAppBuilderSavedAt",
+    new Date().toISOString()
+  );
+
+  showToast(
+    "✓ បានរក្សាទុក Project និងកូដរួចហើយ"
+  );
+
+}
+
+
+/* =====================================================
+   SAVE BUTTON
+===================================================== */
+
+saveBtn.addEventListener(
+  "click",
+  function(){
+
+    saveProject();
+
+    settingsPanel.classList.remove(
+      "show"
+    );
+
+  }
+);
+
+
+/* =====================================================
+   LOAD
+===================================================== */
+
+function loadProject(){
+
+  const saved =
+    localStorage.getItem(
+      "aiAppBuilderCode"
+    );
+
+  if(saved){
+
+    codeEditor.value =
+      saved;
+
+  }
+  else{
+
+    codeEditor.value =
+      defaultCode;
+
+  }
+
+}
+
+
+/* =====================================================
+   RUN APP
 ===================================================== */
 
 function runApp(){
@@ -1673,6 +1875,11 @@ function runApp(){
     codeEditor.value.trim();
 
   if(!code){
+
+    showToast(
+      "មិនមាន Code សម្រាប់ Run ទេ"
+    );
+
     return;
   }
 
@@ -1692,6 +1899,7 @@ function runApp(){
 ${code}
 </body>
 </html>`;
+
   }
 
 
@@ -1699,14 +1907,17 @@ ${code}
     code;
 
 
-  showView(
-    "preview"
+  showView("preview");
+
+  showToast(
+    "✓ App បានសាកល្បងរួចហើយ"
   );
+
 }
 
 
 /* =====================================================
-   19. TEST BUTTONS
+   RUN BUTTONS
 ===================================================== */
 
 runCodeBtn.addEventListener(
@@ -1734,7 +1945,7 @@ testBtn.addEventListener(
 
 
 /* =====================================================
-   20. VIEW SWITCH
+   VIEW
 ===================================================== */
 
 function showView(view){
@@ -1751,22 +1962,27 @@ function showView(view){
   if(view === "ai"){
 
     aiTab.classList.add("active");
+
     chatView.classList.add("active");
 
   }
 
+
   if(view === "code"){
 
     codeTab.classList.add("active");
+
     codeView.classList.add("active");
 
     updateCode();
 
   }
 
+
   if(view === "preview"){
 
     appTab.classList.add("active");
+
     previewView.classList.add("active");
 
   }
@@ -1774,24 +1990,40 @@ function showView(view){
 }
 
 
+/* =====================================================
+   TABS
+===================================================== */
+
 aiTab.addEventListener(
   "click",
-  ()=>showView("ai")
+  function(){
+
+    showView("ai");
+
+  }
 );
 
 codeTab.addEventListener(
   "click",
-  ()=>showView("code")
+  function(){
+
+    showView("code");
+
+  }
 );
 
 appTab.addEventListener(
   "click",
-  ()=>showView("preview")
+  function(){
+
+    showView("preview");
+
+  }
 );
 
 
 /* =====================================================
-   21. HOME
+   HOME
 ===================================================== */
 
 homeBtn.addEventListener(
@@ -1809,7 +2041,7 @@ homeBtn.addEventListener(
 
 
 /* =====================================================
-   22. SETTINGS
+   SETTINGS
 ===================================================== */
 
 settingsBtn.addEventListener(
@@ -1846,7 +2078,7 @@ document.addEventListener(
 
 
 /* =====================================================
-   23. SETTINGS COPY
+   SETTINGS COPY
 ===================================================== */
 
 settingsCopy.addEventListener(
@@ -1866,7 +2098,7 @@ settingsCopy.addEventListener(
 
 
 /* =====================================================
-   24. UNDO / REDO
+   UNDO / REDO
 ===================================================== */
 
 undoBtn.addEventListener(
@@ -1898,19 +2130,39 @@ redoBtn.addEventListener(
 
 
 /* =====================================================
-   25. SAVE PROJECT
+   DELETE CHAT
 ===================================================== */
 
-saveBtn.addEventListener(
+deleteChatBtn.addEventListener(
   "click",
   function(){
 
-    localStorage.setItem(
-      "aiAppBuilderCode",
-      codeEditor.value
+    chatMessages.innerHTML = "";
+
+    const welcome =
+      document.createElement("div");
+
+    welcome.className =
+      "welcome";
+
+    welcome.innerHTML =
+`
+<div class="welcome-icon">🤖</div>
+<h2>AI App Builder</h2>
+<p>
+ចាប់ផ្ដើម Chat ថ្មី
+<br>
+ប្រាប់ AI ថាអ្នកចង់បង្កើតអ្វី
+</p>
+`;
+
+    chatMessages.appendChild(
+      welcome
     );
 
-    alert("បាន Save Project រួចហើយ");
+    showToast(
+      "✓ បានលុប Chat រួចហើយ"
+    );
 
     settingsPanel.classList.remove(
       "show"
@@ -1921,33 +2173,7 @@ saveBtn.addEventListener(
 
 
 /* =====================================================
-   26. LOAD PROJECT
-===================================================== */
-
-function loadProject(){
-
-  const saved =
-    localStorage.getItem(
-      "aiAppBuilderCode"
-    );
-
-  if(saved){
-
-    codeEditor.value =
-      saved;
-
-  }else{
-
-    codeEditor.value =
-      defaultCode;
-
-  }
-
-}
-
-
-/* =====================================================
-   27. CHAT MESSAGE
+   CHAT
 ===================================================== */
 
 function addMessage(
@@ -1970,12 +2196,9 @@ function addMessage(
 
   chatMessages.scrollTop =
     chatMessages.scrollHeight;
+
 }
 
-
-/* =====================================================
-   28. SEND CHAT
-===================================================== */
 
 function sendMessage(){
 
@@ -1986,26 +2209,23 @@ function sendMessage(){
     return;
   }
 
-
   addMessage(
     text,
     "user"
   );
 
-
   chatInput.value = "";
-
 
   setTimeout(
     function(){
 
       addMessage(
-        "ខ្ញុំបានទទួលសំណើរបស់អ្នក។ នៅក្នុងជំហានបន្ទាប់ AI នឹងអាចយកសំណើនេះទៅកែ Code និងបង្ហាញលទ្ធផលក្នុង App Preview។",
+        "ខ្ញុំបានទទួលសំណើរបស់អ្នក។ ឥឡូវអ្នកអាចទៅកាន់ </> កូដ ដើម្បីកែ Code និងចុច 📱 App → ▶ សាកល្បង App ដើម្បីមើលលទ្ធផល។",
         "ai"
       );
 
     },
-    500
+    450
   );
 
 }
@@ -2017,12 +2237,34 @@ sendBtn.addEventListener(
 );
 
 
+/* =====================================================
+   CHAT TEXTAREA
+===================================================== */
+
+chatInput.addEventListener(
+  "input",
+  function(){
+
+    this.style.height =
+      "40px";
+
+    this.style.height =
+      Math.min(
+        this.scrollHeight,
+        120
+      ) + "px";
+
+  }
+);
+
+
 chatInput.addEventListener(
   "keydown",
   function(event){
 
     if(
-      event.key === "Enter"
+      event.key === "Enter" &&
+      !event.shiftKey
     ){
 
       event.preventDefault();
@@ -2036,7 +2278,7 @@ chatInput.addEventListener(
 
 
 /* =====================================================
-   29. ATTACHMENT
+   ATTACHMENT
 ===================================================== */
 
 attachBtn.addEventListener(
@@ -2066,12 +2308,16 @@ fileInput.addEventListener(
     attachmentName.textContent =
       "📎 " + file.name;
 
+    showToast(
+      "✓ បានជ្រើសរើស File"
+    );
+
   }
 );
 
 
 /* =====================================================
-   30. VOICE
+   VOICE
 ===================================================== */
 
 const SpeechRecognition =
@@ -2102,7 +2348,12 @@ if(SpeechRecognition){
 
         recognition.start();
 
-      }catch(error){
+        showToast(
+          "🎤 កំពុងស្តាប់..."
+        );
+
+      }
+      catch(error){
 
       }
 
@@ -2120,17 +2371,34 @@ if(SpeechRecognition){
       chatInput.value =
         text;
 
+      chatInput.dispatchEvent(
+        new Event("input")
+      );
+
     }
   );
 
-}else{
+
+  recognition.addEventListener(
+    "end",
+    function(){
+
+      showToast(
+        "✓ បានទទួលសំឡេង"
+      );
+
+    }
+  );
+
+}
+else{
 
   voiceBtn.addEventListener(
     "click",
     function(){
 
-      alert(
-        "Browser នេះមិនទាន់គាំទ្រ Voice Recognition ទេ។"
+      showToast(
+        "Browser នេះមិនទាន់គាំទ្រ Voice"
       );
 
     }
@@ -2140,47 +2408,7 @@ if(SpeechRecognition){
 
 
 /* =====================================================
-   31. DELETE CHAT
-===================================================== */
-
-deleteChatBtn.addEventListener(
-  "click",
-  function(){
-
-    chatMessages.innerHTML = "";
-
-    const welcome =
-      document.createElement("div");
-
-    welcome.className =
-      "welcome";
-
-    welcome.innerHTML =
-`
-<div class="welcome-icon">🤖</div>
-<h2>AI App Builder</h2>
-<p>
-ចាប់ផ្ដើម Chat ថ្មី
-<br>
-ប្រាប់ AI ថាអ្នកចង់បង្កើតអ្វី
-</p>
-`;
-
-    chatMessages.appendChild(
-      welcome
-    );
-
-
-    settingsPanel.classList.remove(
-      "show"
-    );
-
-  }
-);
-
-
-/* =====================================================
-   32. INITIALIZE
+   INITIALIZE
 ===================================================== */
 
 loadProject();
@@ -2192,7 +2420,6 @@ history = [
 ];
 
 runApp();
-
 
 </script>
 
