@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+>
+
+<title>App Builder</title>
+
+<style>
+
+/* =====================================================
+   1. RESET
+===================================================== */
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+  width:100%;
+  height:100vh;
+  height:100dvh;
+  overflow:hidden;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:#f5f5f7;
+  color:#111;
+}
+
+
+/* =====================================================
+   2. APP SHELL
+===================================================== */
+
+.app{
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  background:#fff;
+  padding-top:env(safe-area-inset-top);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+
+
+/* =====================================================
+   3. HEADER
+===================================================== */
+
+.header{
+  height:92px;
+  flex-shrink:0;
+  background:#fff;
+  border-bottom:1px solid #e5e5e7;
+}
+
+.top-row{
+  height:43px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 14px;
+}
+
+.home-btn,
+.settings-btn{
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:10px;
+  background:#f1f1f3;
+  color:#111;
+  font-size:18px;
+  cursor:pointer;
+}
+
+.title{
+  font-size:15px;
+  font-weight:700;
+}
+
+.tabs{
+  height:49px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 10px;
+}
+
+.tabs-middle{
+  flex:1;
+  min-width:12px;
+}
+
+.tab{
+  height:38px;
+  min-width:110px;
+  border:0;
+  border-radius:10px;
+  background:transparent;
+  color:#777;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.tab.active{
+  background:#111;
+  color:#fff;
+}
+
+
+/* =====================================================
+   4. MAIN / VIEW SWITCHING
+===================================================== */
+
+.main{
+  flex:1;
+  min-height:0;
+  position:relative;
+}
+
+.view{
+  position:absolute;
+  inset:0;
+  display:none;
+}
+
+.view.active{
+  display:flex;
+}
+
+
+/* =====================================================
+   5. SETTINGS PANEL
+===================================================== */
+
+.settings-panel{
+  position:absolute;
+  z-index:100;
+  top:44px;
+  right:10px;
+  width:240px;
+  padding:7px;
+  display:none;
+  border:1px solid #ddd;
+  border-radius:15px;
+  background:#fff;
+  box-shadow:0 12px 35px rgba(0,0,0,.16);
+}
+
+.settings-panel.show{
+  display:block;
+}
+
+.setting-item{
+  width:100%;
+  min-height:43px;
+  border:0;
+  border-radius:10px;
+  background:#fff;
+  color:#111;
+  text-align:left;
+  padding:9px 11px;
+  font-size:13px;
+  cursor:pointer;
+}
+
+.setting-item:active{
+  background:#f1f1f3;
+}
+
+.setting-item + .setting-item{
+  margin-top:2px;
+}
+
+
+/* =====================================================
+   6. TOAST
+===================================================== */
+
+.toast{
+  position:fixed;
+  z-index:9999;
+  left:50%;
+  bottom:24px;
+  transform:translate(-50%,20px);
+  opacity:0;
+  pointer-events:none;
+  min-width:190px;
+  max-width:90%;
+  padding:11px 16px;
+  border-radius:12px;
+  background:#111;
+  color:#fff;
+  text-align:center;
+  font-size:13px;
+  transition:.25s ease;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+
+/* =====================================================
+   7. CODE EDITOR VIEW
+===================================================== */
+
+.code-view{
+  flex-direction:column;
+  background:#111318;
+}
+
+.code-toolbar{
+  height:52px;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:7px;
+  background:#181b21;
+  border-bottom:1px solid #292d35;
+}
+
+.language-select,
+.tool-btn{
+  height:36px;
+  border:1px solid #343943;
+  border-radius:9px;
+  background:#20242c;
+  color:#fff;
+  font-size:12px;
+}
+
+.language-select{
+  padding:0 7px;
+  max-width:82px;
+}
+
+.tool-btn{
+  padding:0 9px;
+  cursor:pointer;
+}
+
+.code-editor-wrap{
+  flex:1;
+  min-height:0;
+  display:flex;
+  overflow:hidden;
+  background:#111318;
+  -webkit-overflow-scrolling:touch;
+}
+
+.line-numbers{
+  width:36px;
+  flex-shrink:0;
+  overflow:hidden;
+  padding-top:14px;
+  padding-right:6px;
+  border-right:1px solid #292d35;
+  background:#181b21;
+  color:#656b77;
+  text-align:right;
+  font-family:monospace;
+  font-size:14px;
+  line-height:1.7;
+  user-select:none;
+}
+
+.editor-container{
+  position:relative;
+  flex:1;
+  min-width:0;
+  overflow:hidden;
+}
+
+.highlight{
+  position:absolute;
+  inset:0;
+  margin:0;
+  padding:14px 10px;
+  overflow-y:auto;
+  overflow-x:hidden;
+  pointer-events:none;
+  white-space:pre-wrap;
+  word-break:break-word;
+  overflow-wrap:anywhere;
+  font-family:monospace;
+  font-size:14px;
+  line-height:1.7;
+  color:#ddd;
+}
+
+.code-editor{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  resize:none;
+  border:0;
+  outline:0;
+  padding:14px 10px;
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  white-space:pre-wrap;
+  word-break:break-word;
+  overflow-wrap:anywhere;
+  font-family:monospace;
+  font-size:14px;
+  line-height:1.7;
+  background:transparent;
+  color:transparent;
+  caret-color:#fff;
+  -webkit-text-fill-color:transparent;
+  tab-size:2;
+}
+
+.code-editor::selection{
+  background:rgba(100,140,200,.4);
+}
+
+.c-comment{ color:#6a9955; }
+.c-tag{ color:#569cd6; }
+.c-attr{ color:#9cdcfe; }
+.c-string{ color:#ce9178; }
+.c-keyword{ color:#c586c0; }
+.c-number{ color:#b5cea8; }
+.c-property{ color:#9cdcfe; }
+.c-value{ color:#ce9178; }
+
+.copy-range{
+  flex-shrink:0;
+  padding:8px;
+  background:#181b21;
+  border-top:1px solid #292d35;
+}
+
+.range-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.range-label{
+  color:#a0a5ae;
+  font-size:11px;
+}
+
+.range-input{
+  width:55px;
+  height:34px;
+  border:1px solid #343943;
+  border-radius:8px;
+  outline:none;
+  background:#20242c;
+  color:#fff;
+  text-align:center;
+}
+
+.copy-range-btn{
+  height:34px;
+  border:0;
+  border-radius:8px;
+  padding:0 10px;
+  background:#fff;
+  color:#111;
+  font-size:11px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+
+/* =====================================================
+   8. APP PREVIEW VIEW
+===================================================== */
+
+.preview-view{
+  flex-direction:column;
+  align-items:center;
+  overflow:auto;
+  padding:12px 10px 24px;
+  background:#f2f2f4;
+}
+
+.preview-toolbar{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  margin-bottom:12px;
+}
+
+.test-app-btn{
+  height:42px;
+  border:0;
+  border-radius:12px;
+  padding:0 20px;
+  background:#111;
+  color:#fff;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.phone{
+  position:relative;
+  width:min(330px,88vw);
+  height:min(675px,calc(100vh - 140px));
+  height:min(675px,calc(100dvh - 140px));
+  min-height:500px;
+  padding:9px;
+  border:2px solid #c7c9ce;
+  border-radius:43px;
+  background:#fafafa;
+  box-shadow:0 15px 40px rgba(0,0,0,.22);
+}
+
+.phone-screen{
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  border-radius:34px;
+  background:#fff;
+}
+
+.preview-frame{
+  display:block;
+  width:100%;
+  height:100%;
+  border:0;
+  background:#fff;
+}
+
+
+/* =====================================================
+   9. SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar{
+  width:5px;
+  height:5px;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#777;
+  border-radius:10px;
+}
+
+
+/* =====================================================
+   10. RESPONSIVE
+===================================================== */
+
+@media(max-width:360px){
+
+  .tab{
+    min-width:90px;
+    font-size:12px;
+  }
+
+  .tool-btn{
+    padding:0 6px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+  <div class="top-row">
+
+    <button class="home-btn" id="homeBtn" type="button">🖥️</button>
+
+    <div class="title">App Builder</div>
+
+    <button class="settings-btn" id="settingsBtn" type="button">⚙️</button>
+
+  </div>
+
+
+  <div class="tabs">
+
+    <button class="tab active" id="codeTab" type="button">&lt;/&gt; កូដ</button>
+
+    <div class="tabs-middle" id="tabsMiddle"></div>
+
+    <button class="tab" id="appTab" type="button">📱 App</button>
+
+  </div>
+
+</header>
+
+
+<!-- =====================================================
+     SETTINGS PANEL
+===================================================== -->
+
+<div class="settings-panel" id="settingsPanel">
+
+  <button class="setting-item" id="settingsCopy" type="button">📎 Copy Code</button>
+  <button class="setting-item" id="undoBtn" type="button">↶ Undo</button>
+  <button class="setting-item" id="redoBtn" type="button">↷ Redo</button>
+  <button class="setting-item" id="saveBtn" type="button">💾 Save Project</button>
+  <button class="setting-item" id="deleteCodeBtn" type="button">🗑️ លុបកូដ</button>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+  <!-- CODE EDITOR VIEW -->
+
+  <section class="view code-view active" id="codeView">
+
+    <div class="code-toolbar">
+
+      <select class="language-select" id="languageSelect">
+        <option value="html">HTML</option>
+        <option value="css">CSS</option>
+        <option value="javascript">JS</option>
+        <option value="json">JSON</option>
+      </select>
+
+      <button class="tool-btn" id="copyAllBtn" type="button">📎 Copy All</button>
+      <button class="tool-btn" id="runCodeBtn" type="button">▶ Run</button>
+
+    </div>
+
+
+    <div class="code-editor-wrap">
+
+      <div class="line-numbers" id="lineNumbers">1</div>
+
+      <div class="editor-container">
+
+        <pre class="highlight" id="highlight" aria-hidden="true"><code id="highlighted"></code></pre>
+
+        <textarea
+          class="code-editor"
+          id="codeEditor"
+          spellcheck="false"
+          autocapitalize="off"
+          autocomplete="off"
+          autocorrect="off"
+        ></textarea>
+
+      </div>
+
+    </div>
+
+
+    <div class="copy-range">
+
+      <div class="range-row">
+
+        <span class="range-label">Copy:</span>
+
+        <input class="range-input" id="startLine" type="number" min="1" value="1">
+
+        <span class="range-label">ដល់</span>
+
+        <input class="range-input" id="endLine" type="number" min="1" value="10">
+
+        <button class="copy-range-btn" id="copyRangeBtn" type="button">📎 Copy Range</button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- APP PREVIEW VIEW -->
+
+  <section class="view preview-view" id="previewView">
+
+    <div class="preview-toolbar">
+      <button class="test-app-btn" id="testAppBtn" type="button">▶ សាកល្បង App</button>
+    </div>
+
+    <div class="phone">
+      <div class="phone-screen">
+        <iframe class="preview-frame" id="previewFrame" title="App Preview" sandbox="allow-scripts allow-forms allow-modals allow-popups allow-same-origin allow-popups-to-escape-sandbox"></iframe>
+      </div>
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<div class="toast" id="toast"></div>
+
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   1. DEFAULT CODE
+===================================================== */
+
+const defaultCode = `<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>My App</title>
+
+<style>
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#ffffff;
+  color:#111111;
+  text-align:center;
+  padding:40px 20px;
+}
+
+h1{
+  margin-bottom:20px;
+}
+
+button{
+  padding:12px 20px;
+  border:0;
+  border-radius:10px;
+  background:#111111;
+  color:white;
+  cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>My New App</h1>
+
+<p>Hello from my App!</p>
+
+<button onclick="alert('Hello!')">
+  Test Button
+</button>
+
+</body>
+
+</html>`;
+
+
+/* =====================================================
+   2. DOM ELEMENT REFERENCES
+   (grabbed once, with safe fallbacks so a missing
+   element never throws and breaks the rest of the app)
+===================================================== */
+
+function $(id){
+  return document.getElementById(id);
+}
+
+const codeTab        = $("codeTab");
+const appTab         = $("appTab");
+
+const codeView       = $("codeView");
+const previewView    = $("previewView");
+
+const codeEditor     = $("codeEditor");
+const highlight      = $("highlight");
+const highlighted    = $("highlighted");
+const lineNumbers    = $("lineNumbers");
+const languageSelect = $("languageSelect");
+
+const startLine      = $("startLine");
+const endLine        = $("endLine");
+const copyRangeBtn   = $("copyRangeBtn");
+const copyAllBtn     = $("copyAllBtn");
+const runCodeBtn     = $("runCodeBtn");
+
+const testAppBtn     = $("testAppBtn");
+const previewFrame   = $("previewFrame");
+
+const settingsBtn    = $("settingsBtn");
+const settingsPanel  = $("settingsPanel");
+const settingsCopy   = $("settingsCopy");
+const undoBtn        = $("undoBtn");
+const redoBtn        = $("redoBtn");
+const saveBtn        = $("saveBtn");
+const deleteCodeBtn  = $("deleteCodeBtn");
+
+const homeBtn        = $("homeBtn");
+const toast          = $("toast");
+
+
+/* =====================================================
+   3. TOAST NOTIFICATIONS
+===================================================== */
+
+let toastTimer = null;
+
+function showToast(text){
+
+  if(!toast){
+    return;
+  }
+
+  toast.textContent = text;
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer = setTimeout(function(){
+    toast.classList.remove("show");
+  }, 1800);
+
+}
+
+
+/* =====================================================
+   4. UNDO / REDO HISTORY
+===================================================== */
+
+let history = [];
+let future = [];
+let historyTimer = null;
+let changingHistory = false;
+
+function addHistory(){
+
+  if(changingHistory || !codeEditor){
+    return;
+  }
+
+  const value = codeEditor.value;
+
+  if(history.length === 0 || history[history.length - 1] !== value){
+
+    history.push(value);
+
+    if(history.length > 100){
+      history.shift();
+    }
+
+    future = [];
+
+  }
+
+}
+
+function scheduleHistory(){
+
+  clearTimeout(historyTimer);
+
+  historyTimer = setTimeout(addHistory, 500);
+
+}
+
+function undo(){
+
+  if(history.length <= 1){
+    showToast("មិនមានអ្វីសម្រាប់ Undo ទេ");
+    return;
+  }
+
+  changingHistory = true;
+
+  future.push(history.pop());
+
+  codeEditor.value = history[history.length - 1];
+
+  changingHistory = false;
+
+  updateCode();
+
+  showToast("✓ Undo បានធ្វើរួច");
+
+}
+
+function redo(){
+
+  if(future.length === 0){
+    showToast("មិនមានអ្វីសម្រាប់ Redo ទេ");
+    return;
+  }
+
+  changingHistory = true;
+
+  const value = future.pop();
+
+  history.push(value);
+
+  codeEditor.value = value;
+
+  changingHistory = false;
+
+  updateCode();
+
+  showToast("✓ Redo បានធ្វើរួច");
+
+}
+
+
+/* =====================================================
+   5. SYNTAX HIGHLIGHTING
+===================================================== */
+
+function escapeHTML(text){
+
+  return text
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#39;");
+
+}
+
+function highlightHTML(code){
+
+  let result = escapeHTML(code);
+
+  result = result.replace(
+    /(&lt;!--[\s\S]*?--&gt;)/g,
+    '<span class="c-comment">$1</span>'
+  );
+
+  result = result.replace(
+    /(&lt;\/?)([a-zA-Z][\w-]*)/g,
+    '$1<span class="c-tag">$2</span>'
+  );
+
+  result = result.replace(
+    /([\w:-]+)(=)(&quot;.*?&quot;|&#39;.*?&#39;)/g,
+    '<span class="c-attr">$1</span>$2<span class="c-string">$3</span>'
+  );
+
+  return result;
+
+}
+
+function highlightCSS(code){
+
+  let result = escapeHTML(code);
+
+  result = result.replace(
+    /(\/\*[\s\S]*?\*\/)/g,
+    '<span class="c-comment">$1</span>'
+  );
+
+  result = result.replace(
+    /([a-zA-Z-]+)(\s*:)/g,
+    '<span class="c-property">$1</span>$2'
+  );
+
+  return result;
+
+}
+
+function highlightJS(code){
+
+  let result = escapeHTML(code);
+
+  result = result.replace(
+    /(\/\/.*$)/gm,
+    '<span class="c-comment">$1</span>'
+  );
+
+  result = result.replace(
+    /(&quot;.*?&quot;|&#39;.*?&#39;|`.*?`)/g,
+    '<span class="c-string">$1</span>'
+  );
+
+  result = result.replace(
+    /\b(const|let|var|function|return|if|else|for|while|new|class|this|true|false|null|undefined)\b/g,
+    '<span class="c-keyword">$1</span>'
+  );
+
+  result = result.replace(
+    /\b\d+(?:\.\d+)?\b/g,
+    '<span class="c-number">$1</span>'
+  );
+
+  return result;
+
+}
+
+function highlightJSON(code){
+
+  let result = escapeHTML(code);
+
+  result = result.replace(
+    /(&quot;.*?&quot;)(\s*:)/g,
+    '<span class="c-property">$1</span>$2'
+  );
+
+  result = result.replace(
+    /\b(true|false|null)\b/g,
+    '<span class="c-keyword">$1</span>'
+  );
+
+  result = result.replace(
+    /\b\d+(?:\.\d+)?\b/g,
+    '<span class="c-number">$1</span>'
+  );
+
+  return result;
+
+}
+
+function updateSyntax(){
+
+  if(!codeEditor || !highlighted || !languageSelect){
+    return;
+  }
+
+  const code = codeEditor.value;
+  const language = languageSelect.value;
+
+  let result = "";
+
+  if(language === "html"){
+    result = highlightHTML(code);
+  }
+  else if(language === "css"){
+    result = highlightCSS(code);
+  }
+  else if(language === "javascript"){
+    result = highlightJS(code);
+  }
+  else{
+    result = highlightJSON(code);
+  }
+
+  highlighted.innerHTML = result || " ";
+
+}
+
+
+/* =====================================================
+   6. LINE NUMBERS
+===================================================== */
+
+function updateLineNumbers(){
+
+  if(!codeEditor || !lineNumbers){
+    return;
+  }
+
+  const total = codeEditor.value.split("\n").length;
+
+  let output = "";
+
+  for(let i = 1; i <= total; i++){
+    output += i + "<br>";
+  }
+
+  lineNumbers.innerHTML = output;
+
+  if(startLine){
+    startLine.max = total;
+  }
+
+  if(endLine){
+
+    endLine.max = total;
+
+    if(Number(endLine.value) > total){
+      endLine.value = total;
+    }
+
+  }
+
+}
+
+
+/* =====================================================
+   7. SCROLL SYNC
+===================================================== */
+
+function syncScroll(){
+
+  if(!codeEditor){
+    return;
+  }
+
+  if(highlight){
+    highlight.scrollTop = codeEditor.scrollTop;
+    highlight.scrollLeft = codeEditor.scrollLeft;
+  }
+
+  if(lineNumbers){
+    lineNumbers.scrollTop = codeEditor.scrollTop;
+  }
+
+}
+
+function updateCode(){
+
+  updateSyntax();
+  updateLineNumbers();
+  syncScroll();
+
+}
+
+
+/* =====================================================
+   8. EDITOR EVENTS
+   (highlight redraw is batched with requestAnimationFrame
+   and paused during IME composition — this is what was
+   causing the lag / disappearing letters while typing,
+   especially with Khmer script)
+===================================================== */
+
+let isComposing = false;
+let renderScheduled = false;
+
+function scheduleRender(){
+
+  if(renderScheduled){
+    return;
+  }
+
+  renderScheduled = true;
+
+  requestAnimationFrame(function(){
+    renderScheduled = false;
+    updateCode();
+  });
+
+}
+
+if(codeEditor){
+
+  codeEditor.addEventListener("keydown", function(event){
+
+    if(event.key === "Tab"){
+
+      event.preventDefault();
+
+      const start = this.selectionStart;
+      const end = this.selectionEnd;
+
+      this.value =
+        this.value.substring(0, start) +
+        "  " +
+        this.value.substring(end);
+
+      this.selectionStart = this.selectionEnd = start + 2;
+
+      scheduleRender();
+      scheduleHistory();
+
+    }
+
+  });
+
+  codeEditor.addEventListener("compositionstart", function(){
+    isComposing = true;
+  });
+
+  codeEditor.addEventListener("compositionend", function(){
+    isComposing = false;
+    scheduleRender();
+    scheduleHistory();
+  });
+
+  codeEditor.addEventListener("input", function(){
+
+    if(isComposing){
+      return;
+    }
+
+    scheduleRender();
+    scheduleHistory();
+
+  });
+
+  codeEditor.addEventListener("scroll", syncScroll);
+
+}
+
+if(languageSelect){
+  languageSelect.addEventListener("change", updateSyntax);
+}
+
+
+/* =====================================================
+   9. COPY HELPERS
+===================================================== */
+
+async function copyText(text){
+
+  try{
+
+    await navigator.clipboard.writeText(text);
+    showToast("✓ បាន Copy កូដរួចហើយ");
+
+  }
+  catch(error){
+
+    try{
+
+      const temp = document.createElement("textarea");
+
+      temp.value = text;
+      temp.style.position = "fixed";
+      temp.style.opacity = "0";
+
+      document.body.appendChild(temp);
+
+      temp.select();
+      document.execCommand("copy");
+
+      temp.remove();
+
+      showToast("✓ បាន Copy កូដរួចហើយ");
+
+    }
+    catch(fallbackError){
+
+      showToast("✗ មិនអាច Copy បានទេ");
+
+    }
+
+  }
+
+}
+
+if(copyAllBtn){
+
+  copyAllBtn.addEventListener("click", function(){
+    copyText(codeEditor ? codeEditor.value : "");
+  });
+
+}
+
+if(settingsCopy){
+
+  settingsCopy.addEventListener("click", function(){
+    copyText(codeEditor ? codeEditor.value : "");
+    closeSettings();
+  });
+
+}
+
+if(copyRangeBtn){
+
+  copyRangeBtn.addEventListener("click", function(){
+
+    if(!codeEditor){
+      return;
+    }
+
+    const lines = codeEditor.value.split("\n");
+
+    const start = Number(startLine ? startLine.value : NaN);
+    const end = Number(endLine ? endLine.value : NaN);
+
+    if(
+      !Number.isInteger(start) ||
+      !Number.isInteger(end) ||
+      start < 1 ||
+      end < start ||
+      start > lines.length
+    ){
+
+      showToast("សូមដាក់លេខបន្ទាត់ឱ្យត្រឹមត្រូវ");
+      return;
+
+    }
+
+    const finalEnd = Math.min(end, lines.length);
+
+    const selected = lines.slice(start - 1, finalEnd).join("\n");
+
+    copyText(selected);
+
+  });
+
+}
+
+
+/* =====================================================
+   10. SAVE / LOAD / DELETE PROJECT
+   (localStorage calls are wrapped in try/catch since
+   some browsers/modes can block storage entirely)
+===================================================== */
+
+function downloadCode(){
+
+  if(!codeEditor){
+    return;
+  }
+
+  try{
+
+    const blob = new Blob([codeEditor.value], { type:"text/html" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "project.html";
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    link.remove();
+
+    URL.revokeObjectURL(url);
+
+    return true;
+
+  }
+  catch(error){
+
+    return false;
+
+  }
+
+}
+
+function saveProject(){
+
+  if(!codeEditor){
+    return;
+  }
+
+  let storedOk = false;
+
+  try{
+
+    localStorage.setItem("aiAppBuilderCode", codeEditor.value);
+    localStorage.setItem("aiAppBuilderSavedAt", new Date().toISOString());
+
+    storedOk = true;
+
+  }
+  catch(error){
+
+    storedOk = false;
+
+  }
+
+  if(storedOk){
+
+    showToast("✓ បានរក្សាទុក Project និងកូដរួចហើយ");
+
+  }
+  else{
+
+    /* localStorage is blocked (common when the file is opened
+       directly from disk) — fall back to a real file download
+       so the project is never lost. */
+
+    const downloaded = downloadCode();
+
+    if(downloaded){
+      showToast("✓ បាន Save ជា File project.html");
+    }
+    else{
+      showToast("✗ មិនអាចរក្សាទុកបានទេ");
+    }
+
+  }
+
+}
+
+function loadProject(){
+
+  if(!codeEditor){
+    return;
+  }
+
+  let saved = null;
+
+  try{
+    saved = localStorage.getItem("aiAppBuilderCode");
+  }
+  catch(error){
+    saved = null;
+  }
+
+  codeEditor.value = (saved !== null) ? saved : defaultCode;
+
+}
+
+function deleteCode(){
+
+  if(!codeEditor){
+    return;
+  }
+
+  const confirmed = confirm("តើអ្នកពិតជាចង់លុបកូដទាំងអស់មែនទេ?");
+
+  if(!confirmed){
+    return;
+  }
+
+  codeEditor.value = "";
+
+  try{
+    localStorage.removeItem("aiAppBuilderCode");
+    localStorage.removeItem("aiAppBuilderSavedAt");
+  }
+  catch(error){
+    /* ignore storage errors */
+  }
+
+  history = [""];
+  future = [];
+
+  updateCode();
+
+  if(previewFrame){
+    previewFrame.srcdoc = "";
+  }
+
+  showToast("✓ បានលុបកូដរួចហើយ");
+
+}
+
+if(saveBtn){
+
+  saveBtn.addEventListener("click", function(){
+    saveProject();
+    closeSettings();
+  });
+
+}
+
+if(deleteCodeBtn){
+
+  deleteCodeBtn.addEventListener("click", function(){
+    deleteCode();
+    closeSettings();
+  });
+
+}
+
+
+/* =====================================================
+   11. RUN / PREVIEW APP
+===================================================== */
+
+function runApp(){
+
+  if(!codeEditor || !previewFrame){
+    return;
+  }
+
+  let code = codeEditor.value.trim();
+
+  if(!code){
+    showToast("មិនមាន Code សម្រាប់ Run ទេ");
+    return;
+  }
+
+  if(!/<html[\s>]/i.test(code)){
+
+    code =
+`<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+</head>
+
+<body>
+
+${code}
+
+</body>
+</html>`;
+
+  }
+
+  previewFrame.srcdoc = code;
+
+  showView("preview");
+
+  showToast("✓ App បានសាកល្បងរួចហើយ");
+
+}
+
+if(runCodeBtn){
+  runCodeBtn.addEventListener("click", runApp);
+}
+
+if(testAppBtn){
+  testAppBtn.addEventListener("click", runApp);
+}
+
+
+/* =====================================================
+   12. VIEW / TAB SWITCHING
+===================================================== */
+
+function showView(view){
+
+  if(codeTab)     codeTab.classList.remove("active");
+  if(appTab)      appTab.classList.remove("active");
+  if(codeView)    codeView.classList.remove("active");
+  if(previewView) previewView.classList.remove("active");
+
+  if(view === "code"){
+
+    if(codeTab)  codeTab.classList.add("active");
+    if(codeView) codeView.classList.add("active");
+
+    updateCode();
+
+  }
+
+  if(view === "preview"){
+
+    if(appTab)      appTab.classList.add("active");
+    if(previewView) previewView.classList.add("active");
+
+  }
+
+}
+
+if(codeTab){
+  codeTab.addEventListener("click", function(){ showView("code"); });
+}
+
+if(appTab){
+  appTab.addEventListener("click", function(){ showView("preview"); });
+}
+
+if(homeBtn){
+
+  homeBtn.addEventListener("click", function(){
+    showView("code");
+    closeSettings();
+  });
+
+}
+
+
+/* =====================================================
+   13. SETTINGS PANEL
+===================================================== */
+
+function closeSettings(){
+
+  if(settingsPanel){
+    settingsPanel.classList.remove("show");
+  }
+
+}
+
+if(settingsBtn && settingsPanel){
+
+  settingsBtn.addEventListener("click", function(event){
+    event.stopPropagation();
+    settingsPanel.classList.toggle("show");
+  });
+
+  document.addEventListener("click", function(event){
+
+    if(!settingsPanel.contains(event.target) && event.target !== settingsBtn){
+      closeSettings();
+    }
+
+  });
+
+}
+
+if(undoBtn){
+
+  undoBtn.addEventListener("click", function(){
+    undo();
+    closeSettings();
+  });
+
+}
+
+if(redoBtn){
+
+  redoBtn.addEventListener("click", function(){
+    redo();
+    closeSettings();
+  });
+
+}
+
+
+/* =====================================================
+   14. INITIALIZE
+===================================================== */
+
+loadProject();
+updateCode();
+
+history = [codeEditor ? codeEditor.value : ""];
+
+runApp();
+
+</script>
+
+</body>
+</html>
