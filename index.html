@@ -203,72 +203,204 @@ body{
 
 /* =====================================================
    CHAT INPUT
-   ធំជាងមុនបន្តិច
+   រូបរាងប្រហាក់ប្រហែល ChatGPT
 ===================================================== */
 
 .chat-input-area{
   flex-shrink:0;
-  padding:9px 10px 13px;
+  padding:8px 10px 13px;
   background:#fff;
-  border-top:1px solid #e8e8ea;
+  border-top:1px solid #eeeeef;
 }
 
 .attachment-name{
   display:none;
-  padding:5px 8px;
+  padding:4px 8px;
   color:#666;
   font-size:11px;
 }
 
+
+/* ជួរទាំងមូល */
+
 .input-row{
+  width:100%;
   display:flex;
   align-items:flex-end;
   gap:7px;
 }
 
-.attach-btn,
-.voice-btn,
-.send-btn{
-  width:42px;
-  height:42px;
-  flex-shrink:0;
-  border:0;
-  border-radius:13px;
+
+/* =====================================================
+   CHATGPT STYLE INPUT BOX
+===================================================== */
+
+.chat-box{
+  flex:1;
+  min-width:0;
+  min-height:52px;
+  max-height:120px;
+
+  display:flex;
+  align-items:flex-end;
+
+  padding:6px 7px 6px 8px;
+
   background:#f1f1f3;
+  border:1px solid #e1e1e4;
+  border-radius:27px;
+
+  transition:
+    border-color .2s ease,
+    background .2s ease;
+}
+
+.chat-box:focus-within{
+  border-color:#c9c9cd;
+  background:#eeeeef;
+}
+
+
+/* =====================================================
+   + BUTTON
+===================================================== */
+
+.plus-btn{
+  width:38px;
+  height:38px;
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:0;
+  background:transparent;
+
   color:#111;
-  font-size:18px;
+  font-size:30px;
+  font-weight:300;
+  line-height:1;
+
   cursor:pointer;
 }
 
-.send-btn{
-  background:#111;
-  color:#fff;
-}
+
+/* =====================================================
+   TEXTAREA
+===================================================== */
 
 .chat-input{
   flex:1;
   min-width:0;
-  min-height:46px;
-  max-height:105px;
-  resize:none;
-  border:1px solid #d5d5d9;
-  border-radius:20px;
-  outline:none;
-  padding:12px 14px;
-  background:#fff;
-  color:#111;
-  font-size:15px;
-  line-height:20px;
-  font-family:inherit;
-  overflow-y:auto;
-}
 
-.chat-input:focus{
-  border-color:#999;
+  min-height:38px;
+  max-height:105px;
+
+  resize:none;
+  overflow-y:auto;
+
+  border:0;
+  outline:0;
+
+  padding:9px 6px;
+
+  background:transparent;
+  color:#111;
+
+  font-size:16px;
+  line-height:20px;
+
+  font-family:inherit;
 }
 
 .chat-input::placeholder{
-  color:#999;
+  color:#8b8b8f;
+}
+
+
+/* =====================================================
+   ATTACHMENT BUTTON
+   📎 នៅកន្លែងដែលបានស្នើ
+===================================================== */
+
+.attach-inside-btn{
+  width:38px;
+  height:38px;
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:0;
+  background:transparent;
+
+  color:#111;
+  font-size:21px;
+
+  cursor:pointer;
+}
+
+
+/* =====================================================
+   MICROPHONE
+   រាងមូលដូច ChatGPT
+===================================================== */
+
+.voice-inside-btn{
+  width:39px;
+  height:39px;
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:0;
+  background:transparent;
+
+  color:#111;
+
+  cursor:pointer;
+}
+
+
+/* SVG microphone */
+
+.voice-inside-btn svg{
+  width:25px;
+  height:25px;
+  display:block;
+}
+
+
+/* =====================================================
+   SEND BUTTON
+===================================================== */
+
+.send-btn{
+  width:50px;
+  height:50px;
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:0;
+  border-radius:50%;
+
+  background:#111;
+  color:#fff;
+
+  cursor:pointer;
+}
+
+.send-btn svg{
+  width:23px;
+  height:23px;
+  display:block;
 }
 
 
@@ -455,11 +587,6 @@ body{
   background:rgba(100,140,200,.4);
 }
 
-
-/* =====================================================
-   CODE COLORS
-===================================================== */
-
 .c-comment{
   color:#6a9955;
 }
@@ -491,11 +618,6 @@ body{
 .c-value{
   color:#ce9178;
 }
-
-
-/* =====================================================
-   COPY RANGE
-===================================================== */
 
 .copy-range{
   flex-shrink:0;
@@ -592,17 +714,6 @@ body{
   background:#fff;
 }
 
-
-/* =====================================================
-   លុប BLACK DYNAMIC ISLAND និង HOME INDICATOR
-===================================================== */
-
-/*
-  មិនមាន Dynamic Island
-  មិនមាន Home Indicator
-  ដូច្នេះ Screen ស្អាត
-*/
-
 .preview-frame{
   display:block;
   width:100%;
@@ -636,6 +747,11 @@ body{
 
   .tool-btn{
     padding:0 6px;
+  }
+
+  .send-btn{
+    width:46px;
+    height:46px;
   }
 
 }
@@ -745,7 +861,6 @@ body{
   >💾 Save Project</button>
 
 
-  <!-- ប៊ូតុងថ្មី -->
   <button
     class="setting-item"
     id="deleteCodeBtn"
@@ -770,7 +885,7 @@ body{
 
 
 <!-- =====================================================
-     AI
+     AI CHAT
 ===================================================== -->
 
 <section
@@ -814,6 +929,9 @@ body{
 
     <div class="input-row">
 
+
+      <!-- FILE -->
+
       <input
         type="file"
         id="fileInput"
@@ -822,34 +940,128 @@ body{
       >
 
 
-      <button
-        class="attach-btn"
-        id="attachBtn"
-        type="button"
-      >📎</button>
+      <!-- CHAT BOX -->
+
+      <div class="chat-box">
 
 
-      <button
-        class="voice-btn"
-        id="voiceBtn"
-        type="button"
-      >🎤</button>
+        <!-- PLUS -->
+
+        <button
+          class="plus-btn"
+          id="plusBtn"
+          type="button"
+        >+</button>
 
 
-      <textarea
-        class="chat-input"
-        id="chatInput"
-        rows="1"
-        placeholder="សរសេរ ឬនិយាយ..."
-        autocomplete="off"
-      ></textarea>
+        <!-- PAPERCLIP -->
 
+        <button
+          class="attach-inside-btn"
+          id="attachBtn"
+          type="button"
+          aria-label="Attach"
+        >📎</button>
+
+
+        <!-- TEXT -->
+
+        <textarea
+          class="chat-input"
+          id="chatInput"
+          rows="1"
+          placeholder="Ask Ai"
+          autocomplete="off"
+        ></textarea>
+
+
+        <!-- MICROPHONE -->
+
+        <button
+          class="voice-inside-btn"
+          id="voiceBtn"
+          type="button"
+          aria-label="Voice"
+        >
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+
+            <rect
+              x="8"
+              y="2.5"
+              width="8"
+              height="13"
+              rx="4"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+
+            <path
+              d="M4.5 11.5V12.5C4.5 16.6421 7.85786 20 12 20C16.1421 20 19.5 16.6421 19.5 12.5V11.5"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+
+            <path
+              d="M12 20V22"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+
+            <path
+              d="M8.5 22H15.5"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+
+          </svg>
+
+        </button>
+
+
+      </div>
+
+
+      <!-- SEND -->
 
       <button
         class="send-btn"
         id="sendBtn"
         type="button"
-      >➤</button>
+        aria-label="Send"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+
+          <path
+            d="M5 12H19"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="M13 6L19 12L13 18"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+        </svg>
+
+      </button>
 
     </div>
 
@@ -1124,6 +1336,9 @@ const voiceBtn =
 const attachBtn =
   document.getElementById("attachBtn");
 
+const plusBtn =
+  document.getElementById("plusBtn");
+
 const fileInput =
   document.getElementById("fileInput");
 
@@ -1208,8 +1423,7 @@ let toastTimer = null;
 
 function showToast(text){
 
-  toast.textContent =
-    text;
+  toast.textContent = text;
 
   toast.classList.add("show");
 
@@ -1218,9 +1432,7 @@ function showToast(text){
   toastTimer =
     setTimeout(
       function(){
-
         toast.classList.remove("show");
-
       },
       1800
     );
@@ -1847,10 +2059,8 @@ function deleteCode(){
     return;
   }
 
-
   codeEditor.value =
     "";
-
 
   localStorage.removeItem(
     "aiAppBuilderCode"
@@ -1860,20 +2070,16 @@ function deleteCode(){
     "aiAppBuilderSavedAt"
   );
 
-
   history = [
     ""
   ];
 
   future = [];
 
-
   updateCode();
-
 
   previewFrame.srcdoc =
     "";
-
 
   showToast(
     "✓ បានលុបកូដរួចហើយ"
@@ -1881,10 +2087,6 @@ function deleteCode(){
 
 }
 
-
-/* =====================================================
-   DELETE CODE BUTTON
-===================================================== */
 
 deleteCodeBtn.addEventListener(
   "click",
@@ -1946,7 +2148,6 @@ function runApp(){
     return;
   }
 
-
   if(
     !/<html[\s>]/i.test(code)
   ){
@@ -1974,15 +2175,12 @@ ${code}
 
   }
 
-
   previewFrame.srcdoc =
     code;
-
 
   showView(
     "preview"
   );
-
 
   showToast(
     "✓ App បានសាកល្បងរួចហើយ"
@@ -2032,7 +2230,6 @@ function showView(view){
   codeTab.classList.remove("active");
 
   appTab.classList.remove("active");
-
 
   chatView.classList.remove("active");
 
@@ -2214,17 +2411,14 @@ deleteChatBtn.addEventListener(
       return;
     }
 
-
     chatMessages.innerHTML =
       "";
-
 
     const welcome =
       document.createElement("div");
 
     welcome.className =
       "welcome";
-
 
     welcome.innerHTML =
 `
@@ -2241,16 +2435,13 @@ deleteChatBtn.addEventListener(
 </p>
 `;
 
-
     chatMessages.appendChild(
       welcome
     );
 
-
     showToast(
       "✓ បានលុប Chat រួចហើយ"
     );
-
 
     settingsPanel.classList.remove(
       "show"
@@ -2297,25 +2488,23 @@ function sendMessage(){
     return;
   }
 
-
   addMessage(
     text,
     "user"
   );
 
-
   chatInput.value =
     "";
 
   chatInput.style.height =
-    "46px";
+    "38px";
 
 
   setTimeout(
     function(){
 
       addMessage(
-        "ខ្ញុំបានទទួលសំណើរបស់អ្នក។ ឥឡូវអ្នកអាចទៅកាន់ </> កូដ ដើម្បីកែ Code និងចុច 📱 App → ▶ សាកល្បង App ដើម្បីមើលលទ្ធផល។",
+        "ខ្ញុំបានទទួលសំណើរបស់អ្នក។ អ្នកអាចទៅកាន់ </> កូដ ដើម្បីកែ Code និងចុច 📱 App → ▶ សាកល្បង App ដើម្បីមើលលទ្ធផល។",
         "ai"
       );
 
@@ -2341,7 +2530,7 @@ chatInput.addEventListener(
   function(){
 
     this.style.height =
-      "46px";
+      "38px";
 
     this.style.height =
       Math.min(
@@ -2377,6 +2566,22 @@ chatInput.addEventListener(
 
 
 /* =====================================================
+   PLUS
+===================================================== */
+
+plusBtn.addEventListener(
+  "click",
+  function(){
+
+    showToast(
+      "＋ ប៊ូតុងបន្ថែម"
+    );
+
+  }
+);
+
+
+/* =====================================================
    ATTACHMENT
 ===================================================== */
 
@@ -2401,14 +2606,11 @@ fileInput.addEventListener(
       return;
     }
 
-
     attachmentName.style.display =
       "block";
 
-
     attachmentName.textContent =
       "📎 " + file.name;
-
 
     showToast(
       "✓ បានជ្រើសរើស File"
@@ -2432,14 +2634,11 @@ if(SpeechRecognition){
   const recognition =
     new SpeechRecognition();
 
-
   recognition.lang =
     "km-KH";
 
-
   recognition.continuous =
     false;
-
 
   recognition.interimResults =
     false;
@@ -2476,7 +2675,6 @@ if(SpeechRecognition){
 
       chatInput.value =
         text;
-
 
       chatInput.dispatchEvent(
         new Event("input")
