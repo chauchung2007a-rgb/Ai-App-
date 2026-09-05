@@ -1,644 +1,616 @@
 <!DOCTYPE html>
 <html lang="km">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-<meta name="theme-color" content="#050505">
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
 
 <title>AI App Builder</title>
 
 <style>
 
-/* =========================
-   BASIC
-========================= */
+/* =====================================================
+   1. RESET
+===================================================== */
 
 *{
   box-sizing:border-box;
-}
-
-:root{
-  --bg:#050505;
-  --panel:#101010;
-  --panel2:#171717;
-  --line:#292929;
-
-  --text:#f5f5f5;
-  --muted:#999999;
-
-  --accent:#7c5cff;
-
-  --success:#36d399;
-  --danger:#ff5c68;
+  margin:0;
+  padding:0;
+  -webkit-tap-highlight-color:transparent;
 }
 
 html,
 body{
-  margin:0;
   width:100%;
   height:100%;
-
-  background:var(--bg);
-  color:var(--text);
-
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-}
-
-body{
   overflow:hidden;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:#090b10;
+  color:#fff;
 }
 
 
-/* =========================
-   APP
-========================= */
+/* =====================================================
+   2. APP
+===================================================== */
 
 .app{
   width:100%;
-  height:100dvh;
-
-  max-width:720px;
-  margin:auto;
-
+  height:100%;
   display:flex;
   flex-direction:column;
-
-  background:var(--bg);
+  background:#090b10;
 }
 
 
-/* =========================
-   TOP BAR
-========================= */
+/* =====================================================
+   3. HEADER
+===================================================== */
 
-.top{
-  height:58px;
+.header{
+  height:92px;
+  flex-shrink:0;
+  border-bottom:1px solid #20242d;
+  background:#0d1016;
+}
 
+.top-row{
+  height:43px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-
-  padding:0 16px;
-
-  border-bottom:1px solid var(--line);
-
-  flex-shrink:0;
+  padding:0 15px;
 }
 
-.iconbtn{
-  width:42px;
-  height:42px;
-
+.home-btn,
+.settings-btn{
+  width:36px;
+  height:36px;
   border:0;
-  border-radius:12px;
-
-  background:transparent;
-
-  color:white;
-
-  font-size:22px;
-
+  border-radius:10px;
+  background:#171b23;
+  color:#fff;
+  font-size:19px;
   cursor:pointer;
 }
 
-.iconbtn:active{
-  background:#1d1d1d;
+.title{
+  font-size:15px;
+  font-weight:700;
 }
 
-
-/* =========================
-   NAVIGATION
-========================= */
-
 .tabs{
-  height:56px;
-
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-
-  border-bottom:1px solid var(--line);
-
-  flex-shrink:0;
+  height:49px;
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
 }
 
 .tab{
-  position:relative;
-
+  height:40px;
+  min-width:85px;
   border:0;
-
+  border-radius:10px;
   background:transparent;
-
-  color:var(--muted);
-
+  color:#8f96a3;
   font-size:14px;
-  font-weight:700;
-
+  font-weight:600;
   cursor:pointer;
 }
 
 .tab.active{
-  color:white;
-}
-
-.tab.active::after{
-  content:"";
-
-  position:absolute;
-
-  bottom:0;
-
-  left:24%;
-  right:24%;
-
-  height:2px;
-
-  background:var(--accent);
-
-  border-radius:3px;
+  background:#1a202b;
+  color:#fff;
 }
 
 
-/* =========================
-   MAIN
-========================= */
+/* =====================================================
+   4. MAIN
+===================================================== */
 
 .main{
-  position:relative;
-
   flex:1;
-
   min-height:0;
+  position:relative;
 }
 
 .view{
+  position:absolute;
+  inset:0;
   display:none;
-
-  width:100%;
-  height:100%;
-
-  overflow:auto;
 }
 
 .view.active{
   display:flex;
-  flex-direction:column;
 }
 
 
-/* =========================
-   AI CHAT
-========================= */
+/* =====================================================
+   5. AI CHAT
+===================================================== */
 
-.chat{
-  display:flex;
+.chat-view{
   flex-direction:column;
-
-  gap:12px;
-
-  padding:18px 14px 110px;
 }
 
-
-/* Welcome */
+.chat-messages{
+  flex:1;
+  overflow-y:auto;
+  padding:18px 14px 20px;
+}
 
 .welcome{
-  padding:24px 18px;
-
-  border:1px solid var(--line);
-
-  border-radius:18px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #111111,
-      #090909
-    );
+  text-align:center;
+  margin-top:35px;
 }
 
-.logo{
-  font-size:30px;
-
-  margin-bottom:8px;
+.welcome-icon{
+  font-size:42px;
+  margin-bottom:12px;
 }
 
 .welcome h2{
-  margin:0 0 7px;
-
-  font-size:20px;
+  font-size:21px;
+  margin-bottom:8px;
 }
 
 .welcome p{
-  margin:0;
-
-  color:var(--muted);
-
-  line-height:1.55;
+  color:#858c99;
+  font-size:14px;
+  line-height:1.6;
 }
 
-
-/* Messages */
-
-.msg{
+.message{
   max-width:88%;
-
-  padding:12px 14px;
-
-  border-radius:16px;
-
-  line-height:1.45;
-
+  margin-bottom:14px;
+  padding:11px 13px;
+  border-radius:15px;
+  font-size:14px;
+  line-height:1.55;
   white-space:pre-wrap;
+  word-break:break-word;
 }
 
-.msg.ai{
-  align-self:flex-start;
-
-  background:#151515;
-
-  border:1px solid var(--line);
+.message.user{
+  margin-left:auto;
+  background:#263247;
+  border-bottom-right-radius:5px;
 }
 
-.msg.user{
-  align-self:flex-end;
-
-  background:#2a2055;
+.message.ai{
+  margin-right:auto;
+  background:#171b23;
+  border-bottom-left-radius:5px;
 }
 
+.chat-input-area{
+  flex-shrink:0;
+  padding:9px 10px 12px;
+  border-top:1px solid #20242d;
+  background:#0d1016;
+}
 
-/* =========================
-   MESSAGE INPUT
-========================= */
+.attachment-name{
+  display:none;
+  padding:5px 8px;
+  color:#9da5b3;
+  font-size:11px;
+}
 
-.composer{
-  position:absolute;
-
-  left:0;
-  right:0;
-  bottom:0;
-
-  padding:
-    10px
-    12px
-    calc(10px + env(safe-area-inset-bottom));
-
+.input-row{
   display:flex;
-
-  gap:8px;
-
-  align-items:flex-end;
-
-  background:
-    linear-gradient(
-      transparent,
-      var(--bg) 20%
-    );
-}
-
-.inputwrap{
-  flex:1;
-
-  display:flex;
-
   align-items:center;
-
-  background:var(--panel2);
-
-  border:1px solid var(--line);
-
-  border-radius:18px;
-
-  padding:5px 7px;
-}
-
-#chatInput{
-  flex:1;
-
-  resize:none;
-
-  border:0;
-
-  outline:0;
-
-  background:transparent;
-
-  color:white;
-
-  font-size:15px;
-
-  min-height:38px;
-
-  max-height:110px;
-
-  padding:9px;
-}
-
-#chatInput::placeholder{
-  color:#777;
-}
-
-.smallbtn{
-  width:38px;
-  height:38px;
-
-  border:0;
-
-  border-radius:12px;
-
-  background:transparent;
-
-  color:white;
-
-  font-size:19px;
-
-  cursor:pointer;
-}
-
-.smallbtn:active{
-  background:#252525;
-}
-
-.send{
-  width:44px;
-  height:44px;
-
-  border:0;
-
-  border-radius:14px;
-
-  background:var(--accent);
-
-  color:white;
-
-  font-size:19px;
-
-  cursor:pointer;
-}
-
-.send:active{
-  transform:scale(.95);
-}
-
-
-/* =========================
-   CODE
-========================= */
-
-.codebar{
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  padding:12px 14px;
-
-  border-bottom:1px solid var(--line);
-}
-
-.codebar strong{
-  font-size:15px;
-}
-
-.actions{
-  display:flex;
-
   gap:7px;
 }
 
-.action{
-  border:1px solid var(--line);
-
-  background:var(--panel);
-
-  color:white;
-
-  padding:8px 10px;
-
-  border-radius:10px;
-
+.attach-btn,
+.voice-btn,
+.send-btn{
+  width:40px;
+  height:40px;
+  flex-shrink:0;
+  border:0;
+  border-radius:11px;
+  background:#171b23;
+  color:#fff;
+  font-size:18px;
   cursor:pointer;
 }
 
-.action:active{
-  background:#222;
+.send-btn{
+  background:#27364d;
 }
 
-.editor{
+.chat-input{
   flex:1;
+  min-width:0;
+  height:40px;
+  border:1px solid #242a35;
+  border-radius:12px;
+  outline:none;
+  padding:0 12px;
+  background:#12161d;
+  color:#fff;
+  font-size:14px;
+}
 
-  margin:12px;
-
-  border:1px solid var(--line);
-
-  border-radius:14px;
-
-  background:#090909;
-
-  color:#dddddd;
-
-  padding:14px;
-
-  font:
-    12px/1.6
-    ui-monospace,
-    SFMono-Regular,
-    Menlo,
-    monospace;
-
-  white-space:pre;
-
-  overflow:auto;
+.chat-input::placeholder{
+  color:#737b89;
 }
 
 
-/* =========================
-   APP PREVIEW
-========================= */
+/* =====================================================
+   6. CODE VIEW
+===================================================== */
 
-.previewHead{
-  padding:12px 14px;
-
-  border-bottom:1px solid var(--line);
-
-  font-weight:700;
+.code-view{
+  flex-direction:column;
+  min-height:0;
 }
 
-.previewFrame{
-  margin:14px;
+.code-toolbar{
+  height:52px;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:7px 9px;
+  border-bottom:1px solid #20242d;
+  background:#0d1016;
+}
 
-  border:1px solid var(--line);
+.language-select{
+  height:36px;
+  border:1px solid #272d38;
+  border-radius:9px;
+  outline:none;
+  padding:0 8px;
+  background:#151922;
+  color:#fff;
+  font-size:12px;
+}
 
-  border-radius:18px;
+.tool-btn{
+  height:36px;
+  border:1px solid #272d38;
+  border-radius:9px;
+  padding:0 10px;
+  background:#151922;
+  color:#fff;
+  font-size:12px;
+  cursor:pointer;
+}
 
-  background:white;
+.tool-btn:active{
+  transform:scale(.97);
+}
 
-  color:#111;
+.code-editor-wrap{
+  flex:1;
+  min-height:0;
+  display:flex;
+  overflow:hidden;
+  background:#0b0e13;
+}
 
-  min-height:300px;
+.line-numbers{
+  width:43px;
+  flex-shrink:0;
+  overflow:hidden;
+  padding-top:13px;
+  border-right:1px solid #20242d;
+  background:#0d1016;
+  color:#596170;
+  text-align:right;
+  padding-right:9px;
+  font-family:monospace;
+  font-size:13px;
+  line-height:1.55;
+  user-select:none;
+}
 
+.editor-container{
+  position:relative;
+  flex:1;
+  min-width:0;
   overflow:hidden;
 }
 
-.previewContent{
-  padding:24px;
+.highlight{
+  position:absolute;
+  inset:0;
+  margin:0;
+  padding:13px 12px;
+  overflow:auto;
+  pointer-events:none;
+  white-space:pre;
+  font-family:monospace;
+  font-size:13px;
+  line-height:1.55;
+  color:#d8dee9;
+}
 
+.highlight code{
+  font-family:inherit;
+}
+
+.code-editor{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  resize:none;
+  border:0;
+  outline:none;
+  padding:13px 12px;
+  overflow:auto;
+  white-space:pre;
+  font-family:monospace;
+  font-size:13px;
+  line-height:1.55;
+  background:transparent;
+  color:transparent;
+  caret-color:#fff;
+  -webkit-text-fill-color:transparent;
+  tab-size:2;
+}
+
+.code-editor::selection{
+  background:rgba(80,120,180,.35);
+}
+
+.copy-range{
+  flex-shrink:0;
+  padding:8px;
+  border-top:1px solid #20242d;
+  background:#0d1016;
+}
+
+.range-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.range-label{
+  color:#858c99;
+  font-size:11px;
+}
+
+.range-input{
+  width:55px;
+  height:34px;
+  border:1px solid #272d38;
+  border-radius:8px;
+  background:#151922;
+  color:#fff;
+  outline:none;
   text-align:center;
 }
 
-.previewContent h2{
-  margin-top:0;
-}
-
-.previewButton{
-  padding:10px 16px;
-
+.copy-range-btn{
+  height:34px;
   border:0;
-
-  border-radius:10px;
-
-  background:#111;
-
-  color:white;
-
+  border-radius:8px;
+  padding:0 11px;
+  background:#263247;
+  color:#fff;
+  font-size:11px;
   cursor:pointer;
 }
 
 
-/* =========================
-   SETTINGS MODAL
-========================= */
+/* =====================================================
+   7. SYNTAX COLORS
+===================================================== */
 
-.modal{
-  position:fixed;
-
-  inset:0;
-
-  background:#000b;
-
-  display:none;
-
-  align-items:flex-end;
-
-  z-index:20;
+.c-comment{
+  color:#6a9955;
 }
 
-.modal.show{
+.c-tag{
+  color:#569cd6;
+}
+
+.c-attr{
+  color:#9cdcfe;
+}
+
+.c-string{
+  color:#ce9178;
+}
+
+.c-keyword{
+  color:#c586c0;
+}
+
+.c-number{
+  color:#b5cea8;
+}
+
+.c-property{
+  color:#9cdcfe;
+}
+
+.c-value{
+  color:#ce9178;
+}
+
+.c-selector{
+  color:#d7ba7d;
+}
+
+
+/* =====================================================
+   8. APP PREVIEW
+===================================================== */
+
+.preview-view{
+  flex-direction:column;
+  align-items:center;
+  overflow:auto;
+  padding:14px 10px 25px;
+  background:#090b10;
+}
+
+.preview-toolbar{
+  width:100%;
   display:flex;
+  justify-content:center;
+  margin-bottom:14px;
 }
 
-.sheet{
-  width:100%;
-
-  max-width:720px;
-
-  margin:auto 0 0;
-
-  background:#111;
-
-  border:1px solid var(--line);
-
-  border-radius:
-    22px
-    22px
-    0
-    0;
-
-  padding:18px;
-}
-
-.sheet h3{
-  margin:0 0 14px;
-}
-
-.sheet button{
-  width:100%;
-
-  padding:13px;
-
-  margin-top:8px;
-
-  border:1px solid var(--line);
-
-  background:#191919;
-
-  color:white;
-
-  border-radius:12px;
-
-  text-align:left;
-
+.test-app-btn{
+  height:40px;
+  border:0;
+  border-radius:11px;
+  padding:0 18px;
+  background:#27364d;
+  color:#fff;
   font-size:14px;
-
+  font-weight:600;
   cursor:pointer;
 }
 
-.sheet button:active{
-  background:#252525;
+.test-app-btn:active{
+  transform:scale(.97);
 }
 
+.phone{
+  position:relative;
+  width:min(330px,88vw);
+  height:min(675px,calc(100vh - 145px));
+  min-height:500px;
+  padding:9px;
+  border:2px solid #343943;
+  border-radius:42px;
+  background:#151820;
+  box-shadow:
+    0 0 0 3px #080a0e,
+    0 18px 45px rgba(0,0,0,.55);
+}
 
-/* =========================
-   TOAST
-========================= */
+.phone-screen{
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  border-radius:33px;
+  background:#fff;
+}
 
-.toast{
-  position:fixed;
-
+.dynamic-island{
+  position:absolute;
+  z-index:10;
+  top:9px;
   left:50%;
-
-  bottom:82px;
-
   transform:translateX(-50%);
+  width:100px;
+  height:28px;
+  border-radius:20px;
+  background:#000;
+}
 
-  background:#222;
+.preview-frame{
+  width:100%;
+  height:100%;
+  border:0;
+  background:#fff;
+}
 
-  border:1px solid #333;
-
-  color:white;
-
-  padding:10px 14px;
-
-  border-radius:12px;
-
-  display:none;
-
-  z-index:30;
-
-  font-size:13px;
-
-  white-space:nowrap;
+.home-indicator{
+  position:absolute;
+  z-index:11;
+  bottom:12px;
+  left:50%;
+  transform:translateX(-50%);
+  width:95px;
+  height:5px;
+  border-radius:10px;
+  background:#fff;
+  box-shadow:0 0 2px #000;
 }
 
 
-/* =========================
-   DESKTOP PREVIEW
-========================= */
+/* =====================================================
+   9. SETTINGS
+===================================================== */
 
-@media(min-width:721px){
+.settings-panel{
+  position:absolute;
+  z-index:50;
+  top:43px;
+  right:10px;
+  width:225px;
+  padding:8px;
+  display:none;
+  border:1px solid #292f3a;
+  border-radius:14px;
+  background:#131720;
+  box-shadow:0 15px 35px rgba(0,0,0,.45);
+}
 
-  body{
-    display:flex;
-    align-items:center;
+.settings-panel.show{
+  display:block;
+}
+
+.setting-item{
+  width:100%;
+  height:42px;
+  border:0;
+  border-radius:9px;
+  background:transparent;
+  color:#fff;
+  text-align:left;
+  padding:0 11px;
+  font-size:13px;
+  cursor:pointer;
+}
+
+.setting-item:active{
+  background:#202631;
+}
+
+
+/* =====================================================
+   10. RESPONSIVE
+===================================================== */
+
+@media(max-width:360px){
+
+  .tab{
+    min-width:72px;
+    font-size:12px;
   }
 
-  .app{
-    width:420px;
-    height:860px;
-
-    border:1px solid var(--line);
-
-    border-radius:24px;
-
-    overflow:hidden;
+  .tool-btn{
+    padding:0 7px;
   }
 
+  .language-select{
+    width:70px;
+  }
+
+}
+
+
+/* =====================================================
+   11. SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar{
+  width:5px;
+  height:5px;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#303642;
+  border-radius:10px;
 }
 
 </style>
@@ -650,950 +622,1577 @@ body{
 <div class="app">
 
 
-  <!-- =========================
-       TOP
-  ========================== -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
-  <header class="top">
+<header class="header">
 
-    <button
-      class="iconbtn"
-      onclick="goHome()"
-      aria-label="Home">
-
-      🏠
-
-    </button>
-
+  <div class="top-row">
 
     <button
-      class="iconbtn"
-      onclick="openSettings()"
-      aria-label="Settings">
+      class="home-btn"
+      id="homeBtn"
+      type="button"
+    >🏠</button>
 
-      ⚙️
-
-    </button>
-
-  </header>
-
-
-
-  <!-- =========================
-       NAVIGATION
-  ========================== -->
-
-  <nav class="tabs">
+    <div class="title">AI App Builder</div>
 
     <button
-      class="tab active"
-      data-view="ai"
-      onclick="switchView('ai')">
-
-      🤖 AI
-
-    </button>
-
-
-    <button
-      class="tab"
-      data-view="code"
-      onclick="switchView('code')">
-
-      &lt;/&gt; កូដ
-
-    </button>
-
-
-    <button
-      class="tab"
-      data-view="app"
-      onclick="switchView('app')">
-
-      📱 App
-
-    </button>
-
-  </nav>
-
-
-
-  <!-- =========================
-       MAIN
-  ========================== -->
-
-  <main class="main">
-
-
-    <!-- =====================
-         AI
-    ====================== -->
-
-    <section
-      id="ai"
-      class="view active">
-
-
-      <div
-        id="chat"
-        class="chat">
-
-
-        <!-- Welcome -->
-
-        <div class="welcome">
-
-          <div class="logo">
-            🤖
-          </div>
-
-          <h2>
-            AI App Builder
-          </h2>
-
-          <p>
-            ប្រាប់ខ្ញុំជាភាសាខ្មែរ
-            ឬភាសាផ្សេងៗថា
-            អ្នកចង់បង្កើតអ្វី។
-            <br><br>
-            V1 នេះជាគំរូ UI
-            សម្រាប់ត្រៀមភ្ជាប់ AI ពិត។
-          </p>
-
-        </div>
-
-
-      </div>
-
-
-
-      <!-- =====================
-           INPUT
-      ====================== -->
-
-      <div class="composer">
-
-
-        <div class="inputwrap">
-
-
-          <!-- Attachment -->
-
-          <button
-            class="smallbtn"
-            onclick="attachFile()"
-            title="Attach">
-
-            📎
-
-          </button>
-
-
-          <!-- Text -->
-
-          <textarea
-            id="chatInput"
-            rows="1"
-            placeholder="សរសេរ ឬនិយាយ...">
-          </textarea>
-
-
-          <!-- Voice -->
-
-          <button
-            class="smallbtn"
-            onclick="startVoice()"
-            title="Voice">
-
-            🎤
-
-          </button>
-
-
-        </div>
-
-
-        <!-- Send -->
-
-        <button
-          class="send"
-          onclick="sendMessage()">
-
-          ➤
-
-        </button>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =====================
-         CODE
-    ====================== -->
-
-    <section
-      id="code"
-      class="view">
-
-
-      <div class="codebar">
-
-
-        <strong>
-          💻 Project Code
-        </strong>
-
-
-        <div class="actions">
-
-
-          <button
-            class="action"
-            onclick="copyCode()">
-
-            📎 Copy
-
-          </button>
-
-
-          <button
-            class="action"
-            onclick="saveProject()">
-
-            💾 Save
-
-          </button>
-
-
-        </div>
-
-      </div>
-
-
-      <pre
-        id="editor"
-        class="editor">
-      </pre>
-
-
-    </section>
-
-
-
-    <!-- =====================
-         APP PREVIEW
-    ====================== -->
-
-    <section
-      id="app"
-      class="view">
-
-
-      <div class="previewHead">
-
-        📱 App Preview
-
-      </div>
-
-
-      <div class="previewFrame">
-
-
-        <div
-          id="previewContent"
-          class="previewContent">
-
-
-          <h2>
-            My New App
-          </h2>
-
-
-          <p>
-            នេះជាកន្លែង Preview
-            របស់ App ដែល AI
-            នឹងបង្កើត។
-          </p>
-
-
-          <button
-            class="previewButton"
-            onclick="toast('ប៊ូតុងដំណើរការ!')">
-
-            Test Button
-
-          </button>
-
-
-        </div>
-
-
-      </div>
-
-
-    </section>
-
-
-  </main>
-
-</div>
-
-
-
-<!-- =========================
-     SETTINGS
-========================= -->
-
-<div
-  id="modal"
-  class="modal"
-  onclick="
-    if(event.target===this)
-    closeSettings()
-  ">
-
-
-  <div class="sheet">
-
-
-    <h3>
-      ⚙️ Settings
-    </h3>
-
-
-    <button
-      onclick="
-        copyCode();
-        closeSettings();
-      ">
-
-      📎 Copy Code
-
-    </button>
-
-
-    <button
-      onclick="undo()">
-
-      ↶ Undo
-
-    </button>
-
-
-    <button
-      onclick="redo()">
-
-      ↷ Redo
-
-    </button>
-
-
-    <button
-      onclick="testProject()">
-
-      🧪 Test Project
-
-    </button>
-
-
-    <button
-      onclick="clearChat()">
-
-      🗑️ Delete Chat
-
-    </button>
-
-
-    <button
-      onclick="closeSettings()">
-
-      បិទ
-
-    </button>
-
+      class="settings-btn"
+      id="settingsBtn"
+      type="button"
+    >⚙️</button>
 
   </div>
 
-</div>
+
+  <div class="tabs">
+
+    <button
+      class="tab active"
+      id="aiTab"
+      type="button"
+    >🤖 AI</button>
+
+    <button
+      class="tab"
+      id="codeTab"
+      type="button"
+    >&lt;/&gt; កូដ</button>
+
+    <button
+      class="tab"
+      id="appTab"
+      type="button"
+    >📱 App</button>
+
+  </div>
+
+</header>
 
 
-
-<!-- =========================
-     TOAST
-========================= -->
+<!-- =====================================================
+     SETTINGS
+===================================================== -->
 
 <div
-  id="toast"
-  class="toast">
+  class="settings-panel"
+  id="settingsPanel"
+>
+
+  <button
+    class="setting-item"
+    id="settingsCopy"
+    type="button"
+  >📎 Copy Code</button>
+
+  <button
+    class="setting-item"
+    id="undoBtn"
+    type="button"
+  >↶ Undo</button>
+
+  <button
+    class="setting-item"
+    id="redoBtn"
+    type="button"
+  >↷ Redo</button>
+
+  <button
+    class="setting-item"
+    id="testBtn"
+    type="button"
+  >▶ Test Project</button>
+
+  <button
+    class="setting-item"
+    id="saveBtn"
+    type="button"
+  >💾 Save Project</button>
+
+  <button
+    class="setting-item"
+    id="deleteChatBtn"
+    type="button"
+  >🗑 Delete Chat</button>
+
 </div>
 
 
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
-<!-- =========================
-     FILE INPUT
-========================= -->
+<main class="main">
 
-<input
-  id="fileInput"
-  type="file"
-  hidden
-  accept="
-    image/*,
-    .txt,
-    .html,
-    .css,
-    .js,
-    .json,
-    .pdf
-  ">
 
+<!-- =====================================================
+     AI VIEW
+===================================================== -->
+
+<section
+  class="view chat-view active"
+  id="chatView"
+>
+
+  <div
+    class="chat-messages"
+    id="chatMessages"
+  >
+
+    <div class="welcome">
+
+      <div class="welcome-icon">🤖</div>
+
+      <h2>AI App Builder</h2>
+
+      <p>
+        ប្រាប់ AI ថាអ្នកចង់បង្កើត App អ្វី
+        <br>
+        អ្នកអាចសរសេរ ឬនិយាយជាភាសាខ្មែរ
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="chat-input-area">
+
+    <div
+      class="attachment-name"
+      id="attachmentName"
+    ></div>
+
+    <div class="input-row">
+
+      <input
+        type="file"
+        id="fileInput"
+        hidden
+        accept="image/*,.txt,.html,.css,.js,.json,.pdf"
+      >
+
+      <button
+        class="attach-btn"
+        id="attachBtn"
+        type="button"
+      >📎</button>
+
+      <button
+        class="voice-btn"
+        id="voiceBtn"
+        type="button"
+      >🎤</button>
+
+      <input
+        class="chat-input"
+        id="chatInput"
+        type="text"
+        placeholder="សរសេរ ឬនិយាយ..."
+        autocomplete="off"
+      >
+
+      <button
+        class="send-btn"
+        id="sendBtn"
+        type="button"
+      >➤</button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     CODE VIEW
+===================================================== -->
+
+<section
+  class="view code-view"
+  id="codeView"
+>
+
+  <div class="code-toolbar">
+
+    <select
+      class="language-select"
+      id="languageSelect"
+    >
+
+      <option value="html">HTML</option>
+      <option value="css">CSS</option>
+      <option value="javascript">JavaScript</option>
+      <option value="json">JSON</option>
+
+    </select>
+
+
+    <button
+      class="tool-btn"
+      id="copyAllBtn"
+      type="button"
+    >📎 Copy All</button>
+
+
+    <button
+      class="tool-btn"
+      id="runCodeBtn"
+      type="button"
+    >▶ Run</button>
+
+  </div>
+
+
+  <div class="code-editor-wrap">
+
+
+    <div
+      class="line-numbers"
+      id="lineNumbers"
+    >1</div>
+
+
+    <div class="editor-container">
+
+
+      <pre
+        class="highlight"
+        id="highlight"
+        aria-hidden="true"
+      ><code id="highlighted"></code></pre>
+
+
+      <textarea
+        class="code-editor"
+        id="codeEditor"
+        spellcheck="false"
+        autocapitalize="off"
+        autocomplete="off"
+        autocorrect="off"
+      ></textarea>
+
+
+    </div>
+
+  </div>
+
+
+  <div class="copy-range">
+
+    <div class="range-row">
+
+      <span class="range-label">Copy:</span>
+
+      <input
+        class="range-input"
+        id="startLine"
+        type="number"
+        min="1"
+        value="1"
+      >
+
+      <span class="range-label">ដល់</span>
+
+      <input
+        class="range-input"
+        id="endLine"
+        type="number"
+        min="1"
+        value="10"
+      >
+
+      <button
+        class="copy-range-btn"
+        id="copyRangeBtn"
+        type="button"
+      >📎 Copy Range</button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     APP PREVIEW
+===================================================== -->
+
+<section
+  class="view preview-view"
+  id="previewView"
+>
+
+  <div class="preview-toolbar">
+
+    <button
+      class="test-app-btn"
+      id="testAppBtn"
+      type="button"
+    >▶ សាកល្បង App</button>
+
+  </div>
+
+
+  <div class="phone">
+
+    <div class="phone-screen">
+
+      <div class="dynamic-island"></div>
+
+      <iframe
+        class="preview-frame"
+        id="previewFrame"
+        sandbox="allow-scripts"
+        title="App Preview"
+      ></iframe>
+
+    </div>
+
+    <div class="home-indicator"></div>
+
+  </div>
+
+</section>
+
+
+</main>
+
+</div>
 
 
 <script>
 
 /* =====================================================
-   AI APP BUILDER V1
+   1. DEFAULT CODE
 ===================================================== */
 
+const defaultCode = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My App</title>
 
-/* =========================
-   DEFAULT CODE
-========================= */
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  text-align: center;
+  padding: 40px 20px;
+}
 
-const defaultCode = `<!-- AI App Builder V1 -->
+h1 {
+  margin-bottom: 20px;
+}
 
-<div class="app">
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+</style>
 
-  <h1>
-    My New App
-  </h1>
+</head>
 
-  <p>
-    Built with AI App Builder.
-  </p>
+<body>
 
-</div>`;
+<h1>My New App</h1>
+
+<p>Hello from my App!</p>
+
+<button onclick="alert('Hello!')">
+  Test Button
+</button>
+
+</body>
+</html>`;
 
 
-/* =========================
-   HISTORY
-========================= */
+/* =====================================================
+   2. ELEMENTS
+===================================================== */
+
+const aiTab =
+  document.getElementById("aiTab");
+
+const codeTab =
+  document.getElementById("codeTab");
+
+const appTab =
+  document.getElementById("appTab");
+
+const chatView =
+  document.getElementById("chatView");
+
+const codeView =
+  document.getElementById("codeView");
+
+const previewView =
+  document.getElementById("previewView");
+
+const chatMessages =
+  document.getElementById("chatMessages");
+
+const chatInput =
+  document.getElementById("chatInput");
+
+const sendBtn =
+  document.getElementById("sendBtn");
+
+const voiceBtn =
+  document.getElementById("voiceBtn");
+
+const attachBtn =
+  document.getElementById("attachBtn");
+
+const fileInput =
+  document.getElementById("fileInput");
+
+const attachmentName =
+  document.getElementById("attachmentName");
+
+const codeEditor =
+  document.getElementById("codeEditor");
+
+const highlight =
+  document.getElementById("highlight");
+
+const highlighted =
+  document.getElementById("highlighted");
+
+const lineNumbers =
+  document.getElementById("lineNumbers");
+
+const languageSelect =
+  document.getElementById("languageSelect");
+
+const startLine =
+  document.getElementById("startLine");
+
+const endLine =
+  document.getElementById("endLine");
+
+const copyRangeBtn =
+  document.getElementById("copyRangeBtn");
+
+const copyAllBtn =
+  document.getElementById("copyAllBtn");
+
+const runCodeBtn =
+  document.getElementById("runCodeBtn");
+
+const testAppBtn =
+  document.getElementById("testAppBtn");
+
+const previewFrame =
+  document.getElementById("previewFrame");
+
+const settingsBtn =
+  document.getElementById("settingsBtn");
+
+const settingsPanel =
+  document.getElementById("settingsPanel");
+
+const homeBtn =
+  document.getElementById("homeBtn");
+
+const settingsCopy =
+  document.getElementById("settingsCopy");
+
+const undoBtn =
+  document.getElementById("undoBtn");
+
+const redoBtn =
+  document.getElementById("redoBtn");
+
+const testBtn =
+  document.getElementById("testBtn");
+
+const saveBtn =
+  document.getElementById("saveBtn");
+
+const deleteChatBtn =
+  document.getElementById("deleteChatBtn");
+
+
+/* =====================================================
+   3. CODE HISTORY
+===================================================== */
 
 let history = [];
 
 let future = [];
 
+let historyTimer = null;
 
-/* =========================
-   SWITCH VIEW
-========================= */
+let changingHistory = false;
 
-function switchView(id){
 
-  document
-    .querySelectorAll('.view')
-    .forEach(view => {
+function addHistory(){
 
-      view.classList.toggle(
-        'active',
-        view.id === id
+  if(changingHistory){
+    return;
+  }
+
+  const value =
+    codeEditor.value;
+
+  if(
+    history.length === 0 ||
+    history[history.length - 1] !== value
+  ){
+
+    history.push(value);
+
+    if(history.length > 100){
+      history.shift();
+    }
+
+    future = [];
+  }
+}
+
+
+function scheduleHistory(){
+
+  clearTimeout(historyTimer);
+
+  historyTimer =
+    setTimeout(
+      addHistory,
+      500
+    );
+}
+
+
+function undo(){
+
+  if(history.length <= 1){
+    return;
+  }
+
+  changingHistory = true;
+
+  const current =
+    history.pop();
+
+  future.push(current);
+
+  codeEditor.value =
+    history[history.length - 1];
+
+  changingHistory = false;
+
+  updateCode();
+}
+
+
+function redo(){
+
+  if(future.length === 0){
+    return;
+  }
+
+  changingHistory = true;
+
+  const value =
+    future.pop();
+
+  history.push(value);
+
+  codeEditor.value =
+    value;
+
+  changingHistory = false;
+
+  updateCode();
+}
+
+
+/* =====================================================
+   4. ESCAPE HTML
+===================================================== */
+
+function escapeHTML(text){
+
+  return text
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;");
+}
+
+
+/* =====================================================
+   5. HTML HIGHLIGHT
+===================================================== */
+
+function highlightHTML(code){
+
+  let result =
+    escapeHTML(code);
+
+
+  result =
+    result.replace(
+      /(&lt;!--[\s\S]*?--&gt;)/g,
+      '<span class="c-comment">$1</span>'
+    );
+
+
+  result =
+    result.replace(
+      /(&lt;\/?)([a-zA-Z][\w-]*)/g,
+      '$1<span class="c-tag">$2</span>'
+    );
+
+
+  result =
+    result.replace(
+      /([\w:-]+)(=)(&quot;.*?&quot;|&#39;.*?&#39;)/g,
+      '<span class="c-attr">$1</span>$2<span class="c-string">$3</span>'
+    );
+
+
+  return result;
+}
+
+
+/* =====================================================
+   6. CSS HIGHLIGHT
+===================================================== */
+
+function highlightCSS(code){
+
+  let result =
+    escapeHTML(code);
+
+
+  result =
+    result.replace(
+      /(\/\*[\s\S]*?\*\/)/g,
+      '<span class="c-comment">$1</span>'
+    );
+
+
+  result =
+    result.replace(
+      /([a-zA-Z-]+)(\s*:)/g,
+      '<span class="c-property">$1</span>$2'
+    );
+
+
+  result =
+    result.replace(
+      /(:\s*)([^;{}]+)/g,
+      '$1<span class="c-value">$2</span>'
+    );
+
+
+  return result;
+}
+
+
+/* =====================================================
+   7. JAVASCRIPT HIGHLIGHT
+===================================================== */
+
+function highlightJS(code){
+
+  let result =
+    escapeHTML(code);
+
+
+  result =
+    result.replace(
+      /(\/\/.*$)/gm,
+      '<span class="c-comment">$1</span>'
+    );
+
+
+  result =
+    result.replace(
+      /(&quot;.*?&quot;|&#39;.*?&#39;|`.*?`)/g,
+      '<span class="c-string">$1</span>'
+    );
+
+
+  result =
+    result.replace(
+      /\b(const|let|var|function|return|if|else|for|while|new|class|this|true|false|null|undefined)\b/g,
+      '<span class="c-keyword">$1</span>'
+    );
+
+
+  result =
+    result.replace(
+      /\b\d+(?:\.\d+)?\b/g,
+      '<span class="c-number">$1</span>'
+    );
+
+
+  return result;
+}
+
+
+/* =====================================================
+   8. JSON HIGHLIGHT
+===================================================== */
+
+function highlightJSON(code){
+
+  let result =
+    escapeHTML(code);
+
+
+  result =
+    result.replace(
+      /(&quot;.*?&quot;)(\s*:)/g,
+      '<span class="c-property">$1</span>$2'
+    );
+
+
+  result =
+    result.replace(
+      /(:\s*)(&quot;.*?&quot;)/g,
+      '$1<span class="c-string">$2</span>'
+    );
+
+
+  result =
+    result.replace(
+      /\b(true|false|null)\b/g,
+      '<span class="c-keyword">$1</span>'
+    );
+
+
+  result =
+    result.replace(
+      /\b\d+(?:\.\d+)?\b/g,
+      '<span class="c-number">$1</span>'
+    );
+
+
+  return result;
+}
+
+
+/* =====================================================
+   9. UPDATE SYNTAX
+===================================================== */
+
+function updateSyntax(){
+
+  const code =
+    codeEditor.value;
+
+  const language =
+    languageSelect.value;
+
+  let result = "";
+
+  if(language === "html"){
+    result = highlightHTML(code);
+  }
+  else if(language === "css"){
+    result = highlightCSS(code);
+  }
+  else if(language === "javascript"){
+    result = highlightJS(code);
+  }
+  else if(language === "json"){
+    result = highlightJSON(code);
+  }
+
+  if(result === ""){
+    result = " ";
+  }
+
+  highlighted.innerHTML =
+    result;
+}
+
+
+/* =====================================================
+   10. LINE NUMBERS
+===================================================== */
+
+function updateLineNumbers(){
+
+  const lines =
+    codeEditor.value.split("\n").length;
+
+  let output = "";
+
+  for(
+    let i = 1;
+    i <= lines;
+    i++
+  ){
+
+    output +=
+      i + "<br>";
+  }
+
+  lineNumbers.innerHTML =
+    output;
+
+
+  endLine.max =
+    lines;
+
+  startLine.max =
+    lines;
+
+  if(
+    Number(endLine.value) > lines
+  ){
+
+    endLine.value =
+      lines;
+  }
+}
+
+
+/* =====================================================
+   11. CODE UPDATE
+===================================================== */
+
+function updateCode(){
+
+  updateSyntax();
+
+  updateLineNumbers();
+
+  syncScroll();
+}
+
+
+/* =====================================================
+   12. SCROLL SYNC
+===================================================== */
+
+function syncScroll(){
+
+  highlight.scrollTop =
+    codeEditor.scrollTop;
+
+  highlight.scrollLeft =
+    codeEditor.scrollLeft;
+
+  lineNumbers.scrollTop =
+    codeEditor.scrollTop;
+}
+
+
+/* =====================================================
+   13. TAB KEY
+===================================================== */
+
+codeEditor.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Tab"){
+
+      event.preventDefault();
+
+      const start =
+        this.selectionStart;
+
+      const end =
+        this.selectionEnd;
+
+      const value =
+        this.value;
+
+      this.value =
+        value.substring(0,start)
+        + "  "
+        + value.substring(end);
+
+      this.selectionStart =
+        this.selectionEnd =
+        start + 2;
+
+      updateCode();
+
+      scheduleHistory();
+    }
+
+  }
+);
+
+
+/* =====================================================
+   14. CODE INPUT
+===================================================== */
+
+codeEditor.addEventListener(
+  "input",
+  function(){
+
+    updateCode();
+
+    scheduleHistory();
+
+  }
+);
+
+
+codeEditor.addEventListener(
+  "scroll",
+  syncScroll
+);
+
+
+/* =====================================================
+   15. LANGUAGE
+===================================================== */
+
+languageSelect.addEventListener(
+  "change",
+  updateSyntax
+);
+
+
+/* =====================================================
+   16. COPY ALL
+===================================================== */
+
+async function copyText(text){
+
+  try{
+
+    await navigator.clipboard.writeText(
+      text
+    );
+
+    alert("បាន Copy កូដរួចហើយ");
+
+  }catch(error){
+
+    const temp =
+      document.createElement("textarea");
+
+    temp.value =
+      text;
+
+    document.body.appendChild(temp);
+
+    temp.select();
+
+    document.execCommand("copy");
+
+    temp.remove();
+
+    alert("បាន Copy កូដរួចហើយ");
+  }
+}
+
+
+copyAllBtn.addEventListener(
+  "click",
+  function(){
+
+    copyText(
+      codeEditor.value
+    );
+
+  }
+);
+
+
+/* =====================================================
+   17. COPY RANGE
+===================================================== */
+
+copyRangeBtn.addEventListener(
+  "click",
+  function(){
+
+    const lines =
+      codeEditor.value.split("\n");
+
+    let start =
+      Number(startLine.value);
+
+    let end =
+      Number(endLine.value);
+
+    if(!Number.isInteger(start)){
+      start = 1;
+    }
+
+    if(!Number.isInteger(end)){
+      end = lines.length;
+    }
+
+    if(
+      start < 1 ||
+      end < 1 ||
+      start > end ||
+      start > lines.length
+    ){
+
+      alert("សូមកំណត់លេខបន្ទាត់ឱ្យត្រឹមត្រូវ");
+
+      return;
+    }
+
+    end =
+      Math.min(
+        end,
+        lines.length
       );
 
-    });
+    const selected =
+      lines
+        .slice(start - 1,end)
+        .join("\n");
+
+    copyText(selected);
+
+  }
+);
 
 
-  document
-    .querySelectorAll('.tab')
-    .forEach(tab => {
+/* =====================================================
+   18. RUN APP
+===================================================== */
 
-      tab.classList.toggle(
-        'active',
-        tab.dataset.view === id
+function runApp(){
+
+  let code =
+    codeEditor.value.trim();
+
+  if(!code){
+    return;
+  }
+
+
+  if(
+    !/<html[\s>]/i.test(code)
+  ){
+
+    code =
+`<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+${code}
+</body>
+</html>`;
+  }
+
+
+  previewFrame.srcdoc =
+    code;
+
+
+  showView(
+    "preview"
+  );
+}
+
+
+/* =====================================================
+   19. TEST BUTTONS
+===================================================== */
+
+runCodeBtn.addEventListener(
+  "click",
+  runApp
+);
+
+testAppBtn.addEventListener(
+  "click",
+  runApp
+);
+
+testBtn.addEventListener(
+  "click",
+  function(){
+
+    runApp();
+
+    settingsPanel.classList.remove(
+      "show"
+    );
+
+  }
+);
+
+
+/* =====================================================
+   20. VIEW SWITCH
+===================================================== */
+
+function showView(view){
+
+  aiTab.classList.remove("active");
+  codeTab.classList.remove("active");
+  appTab.classList.remove("active");
+
+  chatView.classList.remove("active");
+  codeView.classList.remove("active");
+  previewView.classList.remove("active");
+
+
+  if(view === "ai"){
+
+    aiTab.classList.add("active");
+    chatView.classList.add("active");
+
+  }
+
+  if(view === "code"){
+
+    codeTab.classList.add("active");
+    codeView.classList.add("active");
+
+    updateCode();
+
+  }
+
+  if(view === "preview"){
+
+    appTab.classList.add("active");
+    previewView.classList.add("active");
+
+  }
+
+}
+
+
+aiTab.addEventListener(
+  "click",
+  ()=>showView("ai")
+);
+
+codeTab.addEventListener(
+  "click",
+  ()=>showView("code")
+);
+
+appTab.addEventListener(
+  "click",
+  ()=>showView("preview")
+);
+
+
+/* =====================================================
+   21. HOME
+===================================================== */
+
+homeBtn.addEventListener(
+  "click",
+  function(){
+
+    showView("ai");
+
+    settingsPanel.classList.remove(
+      "show"
+    );
+
+  }
+);
+
+
+/* =====================================================
+   22. SETTINGS
+===================================================== */
+
+settingsBtn.addEventListener(
+  "click",
+  function(event){
+
+    event.stopPropagation();
+
+    settingsPanel.classList.toggle(
+      "show"
+    );
+
+  }
+);
+
+
+document.addEventListener(
+  "click",
+  function(event){
+
+    if(
+      !settingsPanel.contains(event.target) &&
+      event.target !== settingsBtn
+    ){
+
+      settingsPanel.classList.remove(
+        "show"
       );
 
-    });
+    }
+
+  }
+);
+
+
+/* =====================================================
+   23. SETTINGS COPY
+===================================================== */
+
+settingsCopy.addEventListener(
+  "click",
+  function(){
+
+    copyText(
+      codeEditor.value
+    );
+
+    settingsPanel.classList.remove(
+      "show"
+    );
+
+  }
+);
+
+
+/* =====================================================
+   24. UNDO / REDO
+===================================================== */
+
+undoBtn.addEventListener(
+  "click",
+  function(){
+
+    undo();
+
+    settingsPanel.classList.remove(
+      "show"
+    );
+
+  }
+);
+
+
+redoBtn.addEventListener(
+  "click",
+  function(){
+
+    redo();
+
+    settingsPanel.classList.remove(
+      "show"
+    );
+
+  }
+);
+
+
+/* =====================================================
+   25. SAVE PROJECT
+===================================================== */
+
+saveBtn.addEventListener(
+  "click",
+  function(){
+
+    localStorage.setItem(
+      "aiAppBuilderCode",
+      codeEditor.value
+    );
+
+    alert("បាន Save Project រួចហើយ");
+
+    settingsPanel.classList.remove(
+      "show"
+    );
+
+  }
+);
+
+
+/* =====================================================
+   26. LOAD PROJECT
+===================================================== */
+
+function loadProject(){
+
+  const saved =
+    localStorage.getItem(
+      "aiAppBuilderCode"
+    );
+
+  if(saved){
+
+    codeEditor.value =
+      saved;
+
+  }else{
+
+    codeEditor.value =
+      defaultCode;
+
+  }
 
 }
 
 
-/* =========================
-   HOME
-========================= */
+/* =====================================================
+   27. CHAT MESSAGE
+===================================================== */
 
-function goHome(){
-
-  switchView('ai');
-
-  toast('🏠 Home');
-
-}
-
-
-/* =========================
-   SETTINGS
-========================= */
-
-function openSettings(){
-
-  document
-    .getElementById('modal')
-    .classList.add('show');
-
-}
-
-
-function closeSettings(){
-
-  document
-    .getElementById('modal')
-    .classList.remove('show');
-
-}
-
-
-/* =========================
-   ADD MESSAGE
-========================= */
-
-function addMessage(text,type){
+function addMessage(
+  text,
+  type
+){
 
   const message =
-    document.createElement('div');
-
+    document.createElement("div");
 
   message.className =
-    'msg ' + type;
-
+    "message " + type;
 
   message.textContent =
     text;
 
+  chatMessages.appendChild(
+    message
+  );
 
-  document
-    .getElementById('chat')
-    .appendChild(message);
-
-
-  const chat =
-    document.getElementById('chat');
-
-
-  chat.scrollTop =
-    chat.scrollHeight;
-
+  chatMessages.scrollTop =
+    chatMessages.scrollHeight;
 }
 
 
-/* =========================
-   SEND MESSAGE
-========================= */
+/* =====================================================
+   28. SEND CHAT
+===================================================== */
 
 function sendMessage(){
 
-  const input =
-    document.getElementById('chatInput');
-
-
   const text =
-    input.value.trim();
-
+    chatInput.value.trim();
 
   if(!text){
-
     return;
-
   }
 
-
-  /* User message */
 
   addMessage(
     text,
-    'user'
+    "user"
   );
 
 
-  input.value = '';
+  chatInput.value = "";
 
 
-  /* Temporary AI response */
-
-  setTimeout(() => {
-
-    addMessage(
-`ខ្ញុំទទួលបានសំណើរបស់អ្នក។
-
-នៅជំហានបន្ទាប់
-យើងនឹងភ្ជាប់ AI ពិត
-ដើម្បីឱ្យ AI អាច៖
-
-• អាន Project
-• បង្កើត Code
-• កែ Code
-• លុបតែផ្នែកដែលអ្នកបញ្ជា
-• Test Code
-• រក Error
-• Fix Error
-• Update App Preview
-
-ឧទាហរណ៍៖
-"បង្កើត Login Page មួយ"
-ឬ
-"ប្តូរប៊ូតុងនេះទៅពណ៌ក្រហម"`,
-      'ai'
-    );
-
-  },450);
-
-}
-
-
-/* =========================
-   ENTER TO SEND
-========================= */
-
-document
-  .getElementById('chatInput')
-  .addEventListener(
-    'keydown',
-    function(e){
-
-      if(
-        e.key === 'Enter' &&
-        !e.shiftKey
-      ){
-
-        e.preventDefault();
-
-        sendMessage();
-
-      }
-
-    }
-  );
-
-
-/* =========================
-   ATTACH FILE
-========================= */
-
-function attachFile(){
-
-  document
-    .getElementById('fileInput')
-    .click();
-
-}
-
-
-document
-  .getElementById('fileInput')
-  .addEventListener(
-    'change',
-    function(e){
-
-      const file =
-        e.target.files[0];
-
-
-      if(!file){
-
-        return;
-
-      }
-
+  setTimeout(
+    function(){
 
       addMessage(
-        '📎 បានភ្ជាប់៖ ' +
-        file.name,
-        'user'
+        "ខ្ញុំបានទទួលសំណើរបស់អ្នក។ នៅក្នុងជំហានបន្ទាប់ AI នឹងអាចយកសំណើនេះទៅកែ Code និងបង្ហាញលទ្ធផលក្នុង App Preview។",
+        "ai"
       );
 
-
-      toast(
-        '📎 File attached'
-      );
-
-    }
+    },
+    500
   );
 
-
-/* =========================
-   VOICE
-========================= */
-
-function startVoice(){
-
-  const SpeechRecognition =
-    window.SpeechRecognition ||
-    window.webkitSpeechRecognition;
+}
 
 
-  if(!SpeechRecognition){
+sendBtn.addEventListener(
+  "click",
+  sendMessage
+);
 
-    toast(
-      'Browser នេះមិនទាន់គាំទ្រ Voice Recognition'
-    );
 
-    return;
+chatInput.addEventListener(
+  "keydown",
+  function(event){
+
+    if(
+      event.key === "Enter"
+    ){
+
+      event.preventDefault();
+
+      sendMessage();
+
+    }
 
   }
+);
 
+
+/* =====================================================
+   29. ATTACHMENT
+===================================================== */
+
+attachBtn.addEventListener(
+  "click",
+  function(){
+
+    fileInput.click();
+
+  }
+);
+
+
+fileInput.addEventListener(
+  "change",
+  function(){
+
+    const file =
+      this.files[0];
+
+    if(!file){
+      return;
+    }
+
+    attachmentName.style.display =
+      "block";
+
+    attachmentName.textContent =
+      "📎 " + file.name;
+
+  }
+);
+
+
+/* =====================================================
+   30. VOICE
+===================================================== */
+
+const SpeechRecognition =
+  window.SpeechRecognition ||
+  window.webkitSpeechRecognition;
+
+
+if(SpeechRecognition){
 
   const recognition =
     new SpeechRecognition();
 
-
   recognition.lang =
-    'km-KH';
+    "km-KH";
 
+  recognition.continuous =
+    false;
 
   recognition.interimResults =
     false;
 
 
-  recognition.onstart =
+  voiceBtn.addEventListener(
+    "click",
     function(){
 
-      toast(
-        '🎤 កំពុងស្តាប់...'
-      );
+      try{
 
-    };
+        recognition.start();
+
+      }catch(error){
+
+      }
+
+    }
+  );
 
 
-  recognition.onresult =
+  recognition.addEventListener(
+    "result",
     function(event){
 
       const text =
-        event
-          .results[0][0]
-          .transcript;
+        event.results[0][0].transcript;
 
+      chatInput.value =
+        text;
 
-      document
-        .getElementById('chatInput')
-        .value = text;
+    }
+  );
 
-    };
+}else{
 
-
-  recognition.onerror =
+  voiceBtn.addEventListener(
+    "click",
     function(){
 
-      toast(
-        'មិនអាចចាប់សំឡេងបាន'
+      alert(
+        "Browser នេះមិនទាន់គាំទ្រ Voice Recognition ទេ។"
       );
 
-    };
-
-
-  recognition.start();
-
-}
-
-
-/* =========================
-   GET CODE
-========================= */
-
-function getCode(){
-
-  return document
-    .getElementById('editor')
-    .textContent;
-
-}
-
-
-/* =========================
-   COPY CODE
-========================= */
-
-async function copyCode(){
-
-  try{
-
-    await navigator.clipboard
-      .writeText(
-        getCode()
-      );
-
-
-    toast(
-      '📎 Code បាន Copy'
-    );
-
-  }
-  catch(error){
-
-    toast(
-      'Copy មិនបាន'
-    );
-
-  }
-
-}
-
-
-/* =========================
-   SAVE PROJECT
-========================= */
-
-function saveProject(){
-
-  localStorage.setItem(
-    'ai_builder_code',
-    getCode()
-  );
-
-
-  toast(
-    '💾 Project បានរក្សាទុក'
+    }
   );
 
 }
-
-
-/* =========================
-   TEST
-========================= */
-
-function testProject(){
-
-  switchView('app');
-
-  toast(
-    '🧪 Test Preview'
-  );
-
-}
-
-
-/* =========================
-   UNDO
-========================= */
-
-function undo(){
-
-  toast(
-    '↶ Undo — នឹងភ្ជាប់ Code History ក្នុង V2'
-  );
-
-}
-
-
-/* =========================
-   REDO
-========================= */
-
-function redo(){
-
-  toast(
-    '↷ Redo — នឹងភ្ជាប់ Code History ក្នុង V2'
-  );
-
-}
-
-
-/* =========================
-   DELETE CHAT
-========================= */
-
-function clearChat(){
-
-  document
-    .getElementById('chat')
-    .innerHTML = `
-
-      <div class="welcome">
-
-        <div class="logo">
-          🤖
-        </div>
-
-        <h2>
-          AI App Builder
-        </h2>
-
-        <p>
-          Chat ថ្មីបានចាប់ផ្ដើម។
-        </p>
-
-      </div>
-
-  `;
-
-
-  closeSettings();
-
-
-  toast(
-    '🗑️ Chat ត្រូវបានលុប'
-  );
-
-}
-
-
-/* =========================
-   TOAST
-========================= */
-
-function toast(text){
-
-  const element =
-    document.getElementById('toast');
-
-
-  element.textContent =
-    text;
-
-
-  element.style.display =
-    'block';
-
-
-  clearTimeout(
-    window.toastTimer
-  );
-
-
-  window.toastTimer =
-    setTimeout(
-      function(){
-
-        element.style.display =
-          'none';
-
-      },
-      1800
-    );
-
-}
-
-
-/* =========================
-   LOAD SAVED CODE
-========================= */
-
-const savedCode =
-  localStorage.getItem(
-    'ai_builder_code'
-  );
-
-
-document
-  .getElementById('editor')
-  .textContent =
-    savedCode ||
-    defaultCode;
 
 
 /* =====================================================
-   END
+   31. DELETE CHAT
 ===================================================== */
+
+deleteChatBtn.addEventListener(
+  "click",
+  function(){
+
+    chatMessages.innerHTML = "";
+
+    const welcome =
+      document.createElement("div");
+
+    welcome.className =
+      "welcome";
+
+    welcome.innerHTML =
+`
+<div class="welcome-icon">🤖</div>
+<h2>AI App Builder</h2>
+<p>
+ចាប់ផ្ដើម Chat ថ្មី
+<br>
+ប្រាប់ AI ថាអ្នកចង់បង្កើតអ្វី
+</p>
+`;
+
+    chatMessages.appendChild(
+      welcome
+    );
+
+
+    settingsPanel.classList.remove(
+      "show"
+    );
+
+  }
+);
+
+
+/* =====================================================
+   32. INITIALIZE
+===================================================== */
+
+loadProject();
+
+updateCode();
+
+history = [
+  codeEditor.value
+];
+
+runApp();
+
 
 </script>
 
