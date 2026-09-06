@@ -2732,9 +2732,21 @@ function handleSubmit(){
 
   hideError();
 
-  const name = nameInput ? nameInput.value.trim() : "";
-  const password = passwordInput ? passwordInput.value : "";
-  const confirmPassword = confirmPasswordInput ? confirmPasswordInput.value : "";
+  let name = "";
+  let password = "";
+  let confirmPassword = "";
+
+  if(nameInput){
+    name = nameInput.value.trim();
+  }
+
+  if(passwordInput){
+    password = passwordInput.value.trim();
+  }
+
+  if(confirmPasswordInput){
+    confirmPassword = confirmPasswordInput.value.trim();
+  }
 
   if(!isValidName(name)){
 
@@ -2756,9 +2768,21 @@ function handleSubmit(){
 
     loadAccounts();
 
-    const accountKey = name + "_" + hash;
+    // ស្វែងរកគណនីដោយផ្គូផ្គងឈ្មោះ និងពាក្យសម្ងាត់
+    let accountKey = null;
 
-    if(!allAccounts[accountKey]){
+    for(const key in allAccounts){
+
+      if(allAccounts[key].name === name && allAccounts[key].passwordHash === hash){
+
+        accountKey = key;
+        break;
+
+      }
+
+    }
+
+    if(!accountKey){
 
       showError("Invalid name or password");
       return;
@@ -2775,7 +2799,7 @@ function handleSubmit(){
       /* ignore */
     }
 
-    if(allAccounts[accountKey] && allAccounts[accountKey].code){
+    if(allAccounts[accountKey].code){
       codeEditor.value = allAccounts[accountKey].code;
     }
     else{
@@ -2834,14 +2858,28 @@ function handleSubmit(){
 
     loadAccounts();
 
-    const accountKey = name + "_" + hash;
+    // ស្វែងរកថាតើគណនីនេះមានរួចហើយឬអត់
+    let accountExists = false;
 
-    if(allAccounts[accountKey]){
+    for(const key in allAccounts){
+
+      if(allAccounts[key].name === name && allAccounts[key].passwordHash === hash){
+
+        accountExists = true;
+        break;
+
+      }
+
+    }
+
+    if(accountExists){
 
       showError("This account already exists");
       return;
 
     }
+
+    const accountKey = name + "_" + hash;
 
     allAccounts[accountKey] = {
       name: name,
