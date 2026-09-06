@@ -93,7 +93,7 @@ body{
   position:absolute;
   top:40px;
   left:0;
-  width:200px;
+  width:220px;
   padding:7px;
   display:none;
   border:1px solid #ddd;
@@ -105,6 +105,30 @@ body{
 
 .logo-menu.show{
   display:block;
+}
+
+.account-info{
+  padding:10px 8px;
+  margin-bottom:4px;
+}
+
+.account-info-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:13px;
+  margin-bottom:4px;
+}
+
+.account-info-label{
+  font-weight:600;
+  color:#333;
+  flex-shrink:0;
+}
+
+.account-info-value{
+  color:#666;
+  word-break:break-all;
 }
 
 .search-wrapper{
@@ -933,6 +957,19 @@ body{
 
 <div class="logo-menu" id="logoMenu">
 
+  <div class="account-info">
+    <div class="account-info-row">
+      <span class="account-info-label">👤 Name:</span>
+      <span class="account-info-value" id="logoMenuName">-</span>
+    </div>
+    <div class="account-info-row">
+      <span class="account-info-label">🔑 Password:</span>
+      <span class="account-info-value" id="logoMenuPassword">-</span>
+    </div>
+  </div>
+
+  <div class="settings-divider"></div>
+
   <button class="setting-item" id="changeNameBtn" type="button">✏️ Change Name</button>
   <button class="setting-item" id="changePasswordBtn" type="button">🔑 Change Password</button>
 
@@ -1053,7 +1090,6 @@ body{
     <h2 class="registration-title" id="regTitle">Sign Up</h2>
     <p class="registration-subtitle" id="regSubtitle">Enter your name and password</p>
 
-    <!-- Registration / Login Form -->
     <div class="registration-step active" id="stepGmail">
 
       <div class="input-with-icon">
@@ -1124,7 +1160,6 @@ body{
 
     </div>
 
-    <!-- Face Scan Placeholder (For Future) -->
     <div class="registration-step" id="stepFaceScan">
       <p style="text-align:center; color:#666; margin-bottom:16px;">
         Face scan will be added later
@@ -1247,6 +1282,8 @@ const logoutBtn      = $("logoutBtn");
 
 const homeBtn        = $("homeBtn");
 const logoMenu       = $("logoMenu");
+const logoMenuName   = $("logoMenuName");
+const logoMenuPassword = $("logoMenuPassword");
 const changeNameBtn  = $("changeNameBtn");
 const changePasswordBtn = $("changePasswordBtn");
 const logoutBtnLogo  = $("logoutBtnLogo");
@@ -2294,6 +2331,26 @@ if(homeBtn && logoMenu){
 
   homeBtn.addEventListener("click", function(event){
     event.stopPropagation();
+
+    if(logoMenuName){
+      logoMenuName.textContent = registeredName || "-";
+    }
+
+    if(logoMenuPassword){
+
+      loadAccounts();
+
+      const currentUser = localStorage.getItem("condwriteCurrentUser") || "";
+
+      if(currentUser && allAccounts[currentUser] && allAccounts[currentUser].passwordPlain){
+        logoMenuPassword.textContent = allAccounts[currentUser].passwordPlain;
+      }
+      else{
+        logoMenuPassword.textContent = "-";
+      }
+
+    }
+
     logoMenu.classList.toggle("show");
     closeSettings();
   });
@@ -2821,6 +2878,7 @@ function handleSubmit(){
     allAccounts[accountKey] = {
       name: name,
       passwordHash: hash,
+      passwordPlain: password,
       code: defaultCode,
       createdAt: new Date().toISOString()
     };
@@ -3085,6 +3143,7 @@ function showChangeNameForm(){
   allAccounts[newKey] = {
     name: trimmedName,
     passwordHash: oldHash,
+    passwordPlain: allAccounts[currentUser].passwordPlain || "",
     code: allAccounts[currentUser].code || defaultCode,
     createdAt: allAccounts[currentUser].createdAt || new Date().toISOString()
   };
@@ -3177,6 +3236,7 @@ function showChangePasswordForm(){
   allAccounts[newKey] = {
     name: registeredName,
     passwordHash: newHash,
+    passwordPlain: newPassword,
     code: allAccounts[currentUser].code || defaultCode,
     createdAt: allAccounts[currentUser].createdAt || new Date().toISOString()
   };
