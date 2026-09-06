@@ -2006,6 +2006,13 @@ function saveProject(){
     localStorage.setItem("aiAppBuilderCode", codeEditor.value);
     localStorage.setItem("aiAppBuilderSavedAt", new Date().toISOString());
 
+    loadAccounts();
+
+    if(registeredName && allAccounts[registeredName]){
+      allAccounts[registeredName].code = codeEditor.value;
+      saveAccounts();
+    }
+
     storedOk = true;
 
   }
@@ -2041,13 +2048,26 @@ function loadProject(){
     return;
   }
 
+  loadAccounts();
+
+  const currentUser = localStorage.getItem("condwriteCurrentUser") || "";
+
   let saved = null;
 
-  try{
-    saved = localStorage.getItem("aiAppBuilderCode");
+  if(currentUser && allAccounts[currentUser] && allAccounts[currentUser].code){
+
+    saved = allAccounts[currentUser].code;
+
   }
-  catch(error){
-    saved = null;
+  else{
+
+    try{
+      saved = localStorage.getItem("aiAppBuilderCode");
+    }
+    catch(error){
+      saved = null;
+    }
+
   }
 
   if(saved !== null && saved !== ""){
@@ -2076,6 +2096,14 @@ function deleteCode(){
   try{
     localStorage.removeItem("aiAppBuilderCode");
     localStorage.removeItem("aiAppBuilderSavedAt");
+
+    loadAccounts();
+
+    if(registeredName && allAccounts[registeredName]){
+      allAccounts[registeredName].code = "";
+      saveAccounts();
+    }
+
   }
   catch(error){
     /* ignore storage errors */
@@ -2264,12 +2292,43 @@ if(redoBtn){
 
 
 /* =====================================================
-   15. REGISTRATION SYSTEM
+   15. ACCOUNT SYSTEM (Multi-User)
 ===================================================== */
 
+let allAccounts = {};
 let registeredName = "";
 let registeredPasswordHash = "";
 let isLoginMode = false;
+
+function loadAccounts(){
+
+  try{
+    const stored = localStorage.getItem("condwriteAllAccounts");
+
+    if(stored){
+      allAccounts = JSON.parse(stored);
+    }
+    else{
+      allAccounts = {};
+    }
+
+  }
+  catch(error){
+    allAccounts = {};
+  }
+
+}
+
+function saveAccounts(){
+
+  try{
+    localStorage.setItem("condwriteAllAccounts", JSON.stringify(allAccounts));
+  }
+  catch(error){
+    /* ignore storage errors */
+  }
+
+}
 
 function simpleHash(str){
 
@@ -2294,20 +2353,34 @@ function simpleHash(str){
 
 function checkRegistered(){
 
+  loadAccounts();
+
+  const currentUser = "";
+
   try{
-    registeredName = localStorage.getItem("condwriteRegisteredName") || "";
-    registeredPasswordHash = localStorage.getItem("condwritePasswordHash") || "";
+    currentUser = localStorage.getItem("condwriteCurrentUser") || "";
   }
   catch(error){
-    registeredName = "";
-    registeredPasswordHash = "";
+    /* ignore */
   }
 
-  if(registeredName && registeredPasswordHash){
+  if(currentUser && allAccounts[currentUser]){
+
+    registeredName = currentUser;
+    registeredPasswordHash = allAccounts[currentUser].passwordHash || "";
+
     showToast("✓ បានចូលជាមួយ " + registeredName);
+
   }
-  else if(registrationOverlay){
-    registrationOverlay.classList.add("show");
+  else{
+
+    registeredName = "";
+    registeredPasswordHash = "";
+
+    if(registrationOverlay){
+      registrationOverlay.classList.add("show");
+    }
+
   }
 
 }
@@ -2568,32 +2641,49 @@ function handleSubmit(){
 
     const hash = simpleHash(password);
 
-    if(!registeredName || !registeredPasswordHash){
+    loadAccounts();
 
-      showError("មិនមានគណនីទេ សូមចុះឈ្មោះថ្មី");
+    if(!allAccounts[name]){
+
+      showError("មិនមានគណនីនេះទេ សូមចុះឈ្មោះថ្មី");
       return;
 
     }
 
-    if(name !== registeredName){
+    if(hash !== allAccounts[name].passwordHash){
 
-      showError("ឈ្មោះមិនត្រឹមត្រូវ មិនអាចចូលគណនីចាស់បានទេ សូមចុះឈ្មោះថ្មី");
+      showError("ពាក្យសម្ងាត់មិនត្រឹមត្រូវ មិនអាចចូលគណនីបានទេ");
       return;
 
     }
 
-    if(hash !== registeredPasswordHash){
+    registeredName = name;
+    registeredPasswordHash = hash;
 
-      showError("ពាក្យសម្ងាត់មិនត្រឹមត្រូវ មិនអាចចូលគណនីចាស់បានទេ សូមចុះឈ្មោះថ្មី");
-      return;
-
+    try{
+      localStorage.setItem("condwriteCurrentUser", name);
     }
+    catch(error){
+      /* ignore storage errors */
+    }
+
+    if(allAccounts[name].code){
+      codeEditor.value = allAccounts[name].code;
+    }
+    else{
+      codeEditor.value = defaultCode;
+    }
+
+    history = [codeEditor.value];
+    future = [];
+
+    updateCode();
 
     if(registrationOverlay){
       registrationOverlay.classList.remove("show");
     }
 
-    showToast("✓ បានចូលប្រើដោយជោគជ័យ");
+    showToast("✓ បានចូលប្រើជា " + name + " ដោយជោគជ័យ");
 
   }
   else{
@@ -2634,21 +2724,39 @@ function handleSubmit(){
 
     const hash = simpleHash(password);
 
-    try{
+    loadAccounts();
 
-      localStorage.setItem("condwriteRegisteredName", name);
-      localStorage.setItem("condwritePasswordHash", hash);
+    if(allAccounts[name]){
 
-    }
-    catch(error){
-
-      showError("មិនអាចរក្សាទុកទិន្នន័យបាន");
+      showError("ឈ្មោះនេះមានគណនីរួចហើយ សូមចូលប្រើ ឬប្រើឈ្មោះផ្សេងទៀត");
       return;
 
     }
 
+    allAccounts[name] = {
+      passwordHash: hash,
+      code: defaultCode,
+      createdAt: new Date().toISOString()
+    };
+
+    saveAccounts();
+
+    try{
+      localStorage.setItem("condwriteCurrentUser", name);
+    }
+    catch(error){
+      /* ignore storage errors */
+    }
+
     registeredName = name;
     registeredPasswordHash = hash;
+
+    codeEditor.value = defaultCode;
+
+    history = [codeEditor.value];
+    future = [];
+
+    updateCode();
 
     if(registrationOverlay){
       registrationOverlay.classList.remove("show");
@@ -2662,9 +2770,10 @@ function handleSubmit(){
 
 function logout(){
 
+  saveProject();
+
   try{
-    localStorage.removeItem("condwriteRegisteredName");
-    localStorage.removeItem("condwritePasswordHash");
+    localStorage.removeItem("condwriteCurrentUser");
   }
   catch(error){
     /* ignore storage errors */
@@ -2742,9 +2851,108 @@ function logout(){
 
 }
 
+function clearAccount(){
+
+  loadAccounts();
+
+  if(registeredName && allAccounts[registeredName]){
+
+    delete allAccounts[registeredName];
+
+    saveAccounts();
+
+  }
+
+  try{
+    localStorage.removeItem("condwriteCurrentUser");
+    localStorage.removeItem("aiAppBuilderCode");
+    localStorage.removeItem("aiAppBuilderSavedAt");
+  }
+  catch(error){
+    /* ignore storage errors */
+  }
+
+  registeredName = "";
+  registeredPasswordHash = "";
+
+}
+
 function switchAccount(){
 
-  logout();
+  clearAccount();
+
+  isLoginMode = false;
+
+  if(regTitle){
+    regTitle.textContent = "ចុះឈ្មោះ";
+  }
+
+  if(regSubtitle){
+    regSubtitle.textContent = "បំពេញឈ្មោះ និងពាក្យសម្ងាត់របស់អ្នក";
+  }
+
+  if(submitBtn){
+    submitBtn.textContent = "ចុះឈ្មោះ";
+  }
+
+  if(switchModeLink){
+    switchModeLink.textContent = "មានគណនីរួចហើយ? ចូលប្រើ";
+  }
+
+  if(confirmPasswordWrapper){
+    confirmPasswordWrapper.style.display = "block";
+  }
+
+  if(nameInput){
+    nameInput.value = "";
+  }
+
+  if(passwordInput){
+    passwordInput.value = "";
+  }
+
+  if(confirmPasswordInput){
+    confirmPasswordInput.value = "";
+  }
+
+  if(passwordStrengthBar){
+    passwordStrengthBar.style.width = "0%";
+  }
+
+  if(passwordStrengthText){
+    passwordStrengthText.textContent = "";
+  }
+
+  if(passwordRequirementsContent){
+    passwordRequirementsContent.classList.remove("show");
+  }
+
+  if(passwordRequirementsIcon){
+    passwordRequirementsIcon.classList.remove("open");
+  }
+
+  if(passwordRequirements){
+    passwordRequirements.classList.remove("open");
+  }
+
+  if(passwordRequirementsToggle){
+    passwordRequirementsToggle.style.borderRadius = "50px";
+  }
+
+  codeEditor.value = defaultCode;
+
+  history = [codeEditor.value];
+  future = [];
+
+  updateCode();
+
+  hideError();
+
+  showStep("gmail");
+
+  if(registrationOverlay){
+    registrationOverlay.classList.add("show");
+  }
 
   showToast("✓ អាចចុះឈ្មោះជាមួយគណនីថ្មីបាន");
 
