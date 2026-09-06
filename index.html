@@ -1633,6 +1633,7 @@ function updateCode(){
 
 let searchResults = [];
 let currentSearchIndex = -1;
+let searchTimer = null;
 
 function performSearch(){
 
@@ -1689,10 +1690,6 @@ function performSearch(){
   if(searchResults.length > 0){
 
     showToast("Found " + searchResults.length + " places");
-
-    currentSearchIndex = 0;
-
-    scrollToSearchResult(currentSearchIndex);
 
     highlightSearchResults();
 
@@ -1771,28 +1768,6 @@ function highlightSearchResults(){
       '<span class="search-highlight">$1</span>'
     );
 
-    if(currentSearchIndex >= 0 && currentSearchIndex < searchResults.length){
-
-      const currentResult = searchResults[currentSearchIndex];
-
-      const lines = highlighted.innerHTML.split("\n");
-
-      if(lines[currentResult.line]){
-
-        const lineHTML = lines[currentResult.line];
-
-        const beforeText = lineHTML.substring(0, currentResult.column);
-        const matchText = lineHTML.substring(currentResult.column, currentResult.column + currentResult.length);
-        const afterText = lineHTML.substring(currentResult.column + currentResult.length);
-
-        lines[currentResult.line] = beforeText + '<span class="search-highlight-current">' + matchText + '</span>' + afterText;
-
-        highlighted.innerHTML = lines.join("\n");
-
-      }
-
-    }
-
   }
   catch(error){
     /* Invalid regex - ignore */
@@ -1803,7 +1778,13 @@ function highlightSearchResults(){
 if(searchInput){
 
   searchInput.addEventListener("input", function(){
-    performSearch();
+
+    clearTimeout(searchTimer);
+
+    searchTimer = setTimeout(function(){
+      performSearch();
+    }, 500);
+
   });
 
   searchInput.addEventListener("keydown", function(event){
@@ -2775,27 +2756,14 @@ function handleSubmit(){
 
     loadAccounts();
 
-    let accountFound = false;
+    const accountKey = name + "_" + hash;
 
-    for(const accountKey in allAccounts){
-
-      if(allAccounts[accountKey].name === name && allAccounts[accountKey].passwordHash === hash){
-
-        accountFound = true;
-        break;
-
-      }
-
-    }
-
-    if(!accountFound){
+    if(!allAccounts[accountKey]){
 
       showError("Invalid name or password");
       return;
 
     }
-
-    const accountKey = name + "_" + hash;
 
     registeredName = name;
     registeredPasswordHash = hash;
