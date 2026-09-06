@@ -900,6 +900,341 @@ body{
 
 }
 
+
+/* =====================================================
+   12. GLASS COLOR / GLASS EFFECT
+   ONLY VISUAL STYLE — NO JS / NO FUNCTIONS CHANGED
+===================================================== */
+
+html,
+body{
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(225,238,247,.55),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 85% 75%,
+      rgba(105,130,150,.35),
+      transparent 42%
+    ),
+    linear-gradient(
+      145deg,
+      #aebdc9,
+      #738696 48%,
+      #9eacb8
+    );
+}
+
+.app{
+  background:rgba(190,205,216,.48);
+  backdrop-filter:blur(28px) saturate(120%);
+  -webkit-backdrop-filter:blur(28px) saturate(120%);
+}
+
+
+/* HEADER */
+
+.header{
+  background:rgba(205,218,227,.58);
+  border-bottom:1px solid rgba(255,255,255,.38);
+  backdrop-filter:blur(24px) saturate(125%);
+  -webkit-backdrop-filter:blur(24px) saturate(125%);
+}
+
+.home-btn,
+.settings-btn{
+  background:rgba(235,242,247,.48);
+  color:#17212a;
+  border:1px solid rgba(255,255,255,.38);
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.45),
+    0 3px 12px rgba(30,50,65,.10);
+}
+
+.search-input{
+  background:rgba(235,242,247,.42);
+  border-color:rgba(255,255,255,.48);
+  color:#17212a;
+  backdrop-filter:blur(15px);
+  -webkit-backdrop-filter:blur(15px);
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.40);
+}
+
+.search-input::placeholder{
+  color:rgba(35,50,62,.60);
+}
+
+.search-input:focus{
+  border-color:rgba(255,255,255,.72);
+}
+
+.search-clear-btn{
+  background:rgba(225,235,242,.60);
+  color:#17212a;
+}
+
+.tab{
+  color:rgba(30,45,58,.70);
+}
+
+.tab.active{
+  background:rgba(30,45,58,.78);
+  color:#fff;
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.16),
+    0 4px 14px rgba(20,35,48,.16);
+}
+
+
+/* LOGO MENU */
+
+.logo-menu{
+  background:rgba(210,222,231,.72);
+  border-color:rgba(255,255,255,.48);
+  backdrop-filter:blur(25px) saturate(125%);
+  -webkit-backdrop-filter:blur(25px) saturate(125%);
+  box-shadow:
+    0 12px 35px rgba(25,45,60,.20),
+    inset 0 1px 1px rgba(255,255,255,.45);
+}
+
+.account-info-label{
+  color:#24333e;
+}
+
+.account-info-value{
+  color:#536570;
+}
+
+
+/* SETTINGS */
+
+.settings-panel{
+  background:rgba(210,222,231,.72);
+  border-color:rgba(255,255,255,.48);
+  backdrop-filter:blur(25px) saturate(125%);
+  -webkit-backdrop-filter:blur(25px) saturate(125%);
+  box-shadow:
+    0 12px 35px rgba(25,45,60,.20),
+    inset 0 1px 1px rgba(255,255,255,.45);
+}
+
+.setting-item{
+  background:rgba(235,242,247,.30);
+  color:#17212a;
+}
+
+.setting-item:active{
+  background:rgba(255,255,255,.40);
+}
+
+.settings-divider{
+  border-top-color:rgba(255,255,255,.42);
+}
+
+
+/* TOAST */
+
+.toast{
+  background:rgba(25,40,52,.82);
+  backdrop-filter:blur(15px);
+  -webkit-backdrop-filter:blur(15px);
+}
+
+
+/* =====================================================
+   CODE EDITOR GLASS
+===================================================== */
+
+.code-view{
+  background:
+    radial-gradient(
+      circle at 15% 8%,
+      rgba(190,215,230,.18),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(105,135,155,.22),
+      transparent 42%
+    ),
+    linear-gradient(
+      145deg,
+      #263642,
+      #526879 48%,
+      #354956
+    );
+}
+
+.code-toolbar{
+  background:rgba(40,55,66,.62);
+  border-bottom-color:rgba(255,255,255,.16);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+}
+
+.language-select,
+.tool-btn,
+.range-input-top{
+  background:rgba(25,38,48,.55);
+  border-color:rgba(255,255,255,.20);
+  color:#fff;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+
+.copy-range-btn-top{
+  background:rgba(240,247,251,.78);
+  color:#17212a;
+  border-color:rgba(255,255,255,.65);
+}
+
+.range-label-top{
+  color:#c0cbd3;
+}
+
+.code-editor-wrap{
+  background:
+    radial-gradient(
+      circle at 25% 15%,
+      rgba(190,215,230,.13),
+      transparent 35%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(25,38,48,.86),
+      rgba(65,83,96,.72)
+    );
+}
+
+.line-numbers{
+  background:rgba(35,49,60,.55);
+  border-right-color:rgba(255,255,255,.13);
+  color:#aab7c2;
+}
+
+.editor-container{
+  background:transparent;
+}
+
+
+/* =====================================================
+   APP PREVIEW GLASS
+===================================================== */
+
+.preview-view{
+  background:
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(225,237,244,.65),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 75%,
+      rgba(115,140,158,.38),
+      transparent 42%
+    ),
+    linear-gradient(
+      145deg,
+      #aebdc9,
+      #718495 48%,
+      #9aaab7
+    );
+}
+
+.test-app-btn{
+  background:rgba(25,40,52,.78);
+  color:#fff;
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.15),
+    0 8px 20px rgba(25,45,60,.18);
+}
+
+.phone{
+  background:rgba(225,232,237,.58);
+  border-color:rgba(255,255,255,.60);
+  box-shadow:
+    0 15px 40px rgba(25,45,60,.28),
+    inset 0 1px 2px rgba(255,255,255,.65);
+}
+
+.phone-screen{
+  background:rgba(185,202,214,.35);
+  box-shadow:
+    inset 0 1px 8px rgba(255,255,255,.25);
+}
+
+.preview-frame{
+  background:transparent;
+}
+
+
+/* =====================================================
+   REGISTRATION GLASS
+===================================================== */
+
+.registration-overlay{
+  background:rgba(25,40,52,.42);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+
+.registration-modal{
+  background:rgba(215,226,234,.78);
+  border:1px solid rgba(255,255,255,.52);
+  backdrop-filter:blur(28px) saturate(125%);
+  -webkit-backdrop-filter:blur(28px) saturate(125%);
+  box-shadow:
+    0 25px 70px rgba(20,40,55,.28),
+    inset 0 1px 2px rgba(255,255,255,.55);
+}
+
+.registration-logo{
+  background:rgba(25,40,52,.82);
+}
+
+.registration-title{
+  color:#17212a;
+}
+
+.registration-subtitle{
+  color:#536570;
+}
+
+.registration-input,
+.input-with-icon .registration-input{
+  background:rgba(245,249,251,.48);
+  border-color:rgba(255,255,255,.55);
+  color:#17212a;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+
+.registration-input:focus,
+.input-with-icon .registration-input:focus{
+  background:rgba(250,253,255,.62);
+  border-color:rgba(255,255,255,.82);
+}
+
+.password-toggle{
+  background:rgba(235,242,247,.50);
+}
+
+.password-requirements,
+.password-requirements-toggle{
+  background:rgba(235,242,247,.38);
+}
+
+.registration-btn{
+  background:rgba(25,40,52,.82);
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.14),
+    0 6px 16px rgba(20,40,55,.16);
+}
+
 </style>
 </head>
 
@@ -958,24 +1293,34 @@ body{
 <div class="logo-menu" id="logoMenu">
 
   <div class="account-info">
+
     <div class="account-info-row">
       <span class="account-info-label">👤 Name:</span>
       <span class="account-info-value" id="logoMenuName">-</span>
     </div>
+
     <div class="account-info-row">
       <span class="account-info-label">🔑 Password:</span>
       <span class="account-info-value" id="logoMenuPassword">-</span>
     </div>
+
   </div>
 
   <div class="settings-divider"></div>
 
-  <button class="setting-item" id="changeNameBtn" type="button">✏️ Change Name</button>
-  <button class="setting-item" id="changePasswordBtn" type="button">🔑 Change Password</button>
+  <button class="setting-item" id="changeNameBtn" type="button">
+    ✏️ Change Name
+  </button>
+
+  <button class="setting-item" id="changePasswordBtn" type="button">
+    🔑 Change Password
+  </button>
 
   <div class="settings-divider"></div>
 
-  <button class="setting-item" id="logoutBtnLogo" type="button">🚪 Logout</button>
+  <button class="setting-item" id="logoutBtnLogo" type="button">
+    🚪 Logout
+  </button>
 
 </div>
 
@@ -986,16 +1331,35 @@ body{
 
 <div class="settings-panel" id="settingsPanel">
 
-  <button class="setting-item" id="settingsCopy" type="button">📎 Copy Code</button>
-  <button class="setting-item" id="undoBtn" type="button">↶ Undo</button>
-  <button class="setting-item" id="redoBtn" type="button">↷ Redo</button>
-  <button class="setting-item" id="saveBtn" type="button">💾 Save Code</button>
-  <button class="setting-item" id="deleteCodeBtn" type="button">🗑️ Delete Code</button>
+  <button class="setting-item" id="settingsCopy" type="button">
+    📎 Copy Code
+  </button>
+
+  <button class="setting-item" id="undoBtn" type="button">
+    ↶ Undo
+  </button>
+
+  <button class="setting-item" id="redoBtn" type="button">
+    ↷ Redo
+  </button>
+
+  <button class="setting-item" id="saveBtn" type="button">
+    💾 Save Code
+  </button>
+
+  <button class="setting-item" id="deleteCodeBtn" type="button">
+    🗑️ Delete Code
+  </button>
 
   <div class="settings-divider"></div>
 
-  <button class="setting-item" id="switchAccountBtn" type="button">🔄 Switch Account</button>
-  <button class="setting-item" id="logoutBtn" type="button">🚪 Logout</button>
+  <button class="setting-item" id="switchAccountBtn" type="button">
+    🔄 Switch Account
+  </button>
+
+  <button class="setting-item" id="logoutBtn" type="button">
+    🚪 Logout
+  </button>
 
 </div>
 
@@ -1022,13 +1386,31 @@ body{
 
       <span class="range-label-top">Copy:</span>
 
-      <input class="range-input-top" id="startLineTop" type="number" min="1" value="1">
+      <input
+        class="range-input-top"
+        id="startLineTop"
+        type="number"
+        min="1"
+        value="1"
+      >
 
       <span class="range-label-top">to</span>
 
-      <input class="range-input-top" id="endLineTop" type="number" min="1" value="10">
+      <input
+        class="range-input-top"
+        id="endLineTop"
+        type="number"
+        min="1"
+        value="10"
+      >
 
-      <button class="tool-btn copy-range-btn-top" id="copyRangeBtnTop" type="button">📎 Copy Range</button>
+      <button
+        class="tool-btn copy-range-btn-top"
+        id="copyRangeBtnTop"
+        type="button"
+      >
+        📎 Copy Range
+      </button>
 
     </div>
 
@@ -1039,7 +1421,11 @@ body{
 
       <div class="editor-container">
 
-        <pre class="highlight" id="highlight" aria-hidden="true"><code id="highlighted"></code></pre>
+        <pre
+          class="highlight"
+          id="highlight"
+          aria-hidden="true"
+        ><code id="highlighted"></code></pre>
 
         <textarea
           class="code-editor"
@@ -1062,13 +1448,30 @@ body{
   <section class="view preview-view" id="previewView">
 
     <div class="preview-toolbar">
-      <button class="test-app-btn" id="testAppBtn" type="button">▶ Test App</button>
+
+      <button
+        class="test-app-btn"
+        id="testAppBtn"
+        type="button"
+      >
+        ▶ Test App
+      </button>
+
     </div>
 
     <div class="phone">
+
       <div class="phone-screen">
-        <iframe class="preview-frame" id="previewFrame" title="App Preview" sandbox="allow-scripts allow-forms allow-modals allow-popups allow-same-origin allow-popups-to-escape-sandbox"></iframe>
+
+        <iframe
+          class="preview-frame"
+          id="previewFrame"
+          title="App Preview"
+          sandbox="allow-scripts allow-forms allow-modals allow-popups allow-same-origin allow-popups-to-escape-sandbox"
+        ></iframe>
+
       </div>
+
     </div>
 
   </section>
@@ -1081,18 +1484,39 @@ body{
      REGISTRATION MODAL
 ===================================================== -->
 
-<div class="registration-overlay" id="registrationOverlay">
+<div
+  class="registration-overlay"
+  id="registrationOverlay"
+>
 
   <div class="registration-modal">
 
-    <div class="registration-logo">🖥️</div>
+    <div class="registration-logo">
+      🖥️
+    </div>
 
-    <h2 class="registration-title" id="regTitle">Sign Up</h2>
-    <p class="registration-subtitle" id="regSubtitle">Enter your name and password</p>
+    <h2
+      class="registration-title"
+      id="regTitle"
+    >
+      Sign Up
+    </h2>
 
-    <div class="registration-step active" id="stepGmail">
+    <p
+      class="registration-subtitle"
+      id="regSubtitle"
+    >
+      Enter your name and password
+    </p>
+
+
+    <div
+      class="registration-step active"
+      id="stepGmail"
+    >
 
       <div class="input-with-icon">
+
         <input
           type="text"
           class="registration-input"
@@ -1100,10 +1524,16 @@ body{
           placeholder="Your name"
           autocomplete="name"
         >
-        <span class="input-icon">👤</span>
+
+        <span class="input-icon">
+          👤
+        </span>
+
       </div>
 
+
       <div class="input-with-icon password-wrapper">
+
         <input
           type="password"
           class="registration-input"
@@ -1111,32 +1541,116 @@ body{
           placeholder="Password"
           autocomplete="new-password"
         >
-        <span class="input-icon">🔑</span>
-        <button class="password-toggle" id="passwordToggle" type="button">👁️</button>
+
+        <span class="input-icon">
+          🔑
+        </span>
+
+        <button
+          class="password-toggle"
+          id="passwordToggle"
+          type="button"
+        >
+          👁️
+        </button>
+
       </div>
+
 
       <div class="password-strength">
-        <div class="password-strength-bar" id="passwordStrengthBar"></div>
+
+        <div
+          class="password-strength-bar"
+          id="passwordStrengthBar"
+        ></div>
+
       </div>
 
-      <div class="password-strength-text" id="passwordStrengthText"></div>
 
-      <div class="password-requirements" id="passwordRequirements">
-        <button class="password-requirements-toggle" id="passwordRequirementsToggle" type="button">
+      <div
+        class="password-strength-text"
+        id="passwordStrengthText"
+      ></div>
+
+
+      <div
+        class="password-requirements"
+        id="passwordRequirements"
+      >
+
+        <button
+          class="password-requirements-toggle"
+          id="passwordRequirementsToggle"
+          type="button"
+        >
+
           <span>Password requirements</span>
-          <span class="password-requirements-toggle-icon" id="passwordRequirementsIcon">▼</span>
+
+          <span
+            class="password-requirements-toggle-icon"
+            id="passwordRequirementsIcon"
+          >
+            ▼
+          </span>
+
         </button>
-        <div class="password-requirements-content" id="passwordRequirementsContent">
-          <div class="password-requirements-title">Password requirements:</div>
-          <div class="password-requirement" id="reqLength">✗ At least 8 characters</div>
-          <div class="password-requirement" id="reqUpper">✗ Uppercase letter (A-Z)</div>
-          <div class="password-requirement" id="reqLower">✗ Lowercase letter (a-z)</div>
-          <div class="password-requirement" id="reqNumber">✗ Number (0-9)</div>
-          <div class="password-requirement" id="reqSpecial">✗ Special character ( -/:;()៛&@". ,?!' )</div>
+
+
+        <div
+          class="password-requirements-content"
+          id="passwordRequirementsContent"
+        >
+
+          <div class="password-requirements-title">
+            Password requirements:
+          </div>
+
+          <div
+            class="password-requirement"
+            id="reqLength"
+          >
+            ✗ At least 8 characters
+          </div>
+
+          <div
+            class="password-requirement"
+            id="reqUpper"
+          >
+            ✗ Uppercase letter (A-Z)
+          </div>
+
+          <div
+            class="password-requirement"
+            id="reqLower"
+          >
+            ✗ Lowercase letter (a-z)
+          </div>
+
+          <div
+            class="password-requirement"
+            id="reqNumber"
+          >
+            ✗ Number (0-9)
+          </div>
+
+          <div
+            class="password-requirement"
+            id="reqSpecial"
+          >
+            ✗ Special character ( -/:;()៛&@". ,?!' )
+          </div>
+
         </div>
+
       </div>
 
-      <div class="input-with-icon password-wrapper" id="confirmPasswordWrapper" style="display:block;">
+
+      <div
+        class="input-with-icon password-wrapper"
+        id="confirmPasswordWrapper"
+        style="display:block;"
+      >
+
         <input
           type="password"
           class="registration-input"
@@ -1144,29 +1658,66 @@ body{
           placeholder="Confirm password"
           autocomplete="new-password"
         >
-        <span class="input-icon">🔑</span>
-        <button class="password-toggle" id="confirmPasswordToggle" type="button">👁️</button>
+
+        <span class="input-icon">
+          🔑
+        </span>
+
+        <button
+          class="password-toggle"
+          id="confirmPasswordToggle"
+          type="button"
+        >
+          👁️
+        </button>
+
       </div>
 
-      <div class="error-message" id="formError"></div>
 
-      <button class="registration-btn" id="submitBtn" type="button">
+      <div
+        class="error-message"
+        id="formError"
+      ></div>
+
+
+      <button
+        class="registration-btn"
+        id="submitBtn"
+        type="button"
+      >
         Sign Up
       </button>
 
-      <span class="switch-mode-link" id="switchModeLink">
+
+      <span
+        class="switch-mode-link"
+        id="switchModeLink"
+      >
         Already have an account? Sign In
       </span>
 
     </div>
 
-    <div class="registration-step" id="stepFaceScan">
-      <p style="text-align:center; color:#666; margin-bottom:16px;">
+
+    <div
+      class="registration-step"
+      id="stepFaceScan"
+    >
+
+      <p
+        style="text-align:center; color:#666; margin-bottom:16px;"
+      >
         Face scan will be added later
       </p>
-      <button class="registration-btn" id="faceScanSkipBtn" type="button">
+
+      <button
+        class="registration-btn"
+        id="faceScanSkipBtn"
+        type="button"
+      >
         Skip
       </button>
+
     </div>
 
   </div>
@@ -1174,7 +1725,10 @@ body{
 </div>
 
 
-<div class="toast" id="toast"></div>
+<div
+  class="toast"
+  id="toast"
+></div>
 
 
 </div>
@@ -1251,64 +1805,64 @@ function $(id){
   return document.getElementById(id);
 }
 
-const codeTab        = $("codeTab");
-const appTab         = $("appTab");
+const codeTab = $("codeTab");
+const appTab = $("appTab");
 
-const codeView       = $("codeView");
-const previewView    = $("previewView");
+const codeView = $("codeView");
+const previewView = $("previewView");
 
-const codeEditor     = $("codeEditor");
-const highlight      = $("highlight");
-const highlighted    = $("highlighted");
-const lineNumbers    = $("lineNumbers");
+const codeEditor = $("codeEditor");
+const highlight = $("highlight");
+const highlighted = $("highlighted");
+const lineNumbers = $("lineNumbers");
 const languageSelect = $("languageSelect");
 
-const startLineTop   = $("startLineTop");
-const endLineTop     = $("endLineTop");
+const startLineTop = $("startLineTop");
+const endLineTop = $("endLineTop");
 const copyRangeBtnTop = $("copyRangeBtnTop");
 
-const testAppBtn     = $("testAppBtn");
-const previewFrame   = $("previewFrame");
+const testAppBtn = $("testAppBtn");
+const previewFrame = $("previewFrame");
 
-const settingsBtn    = $("settingsBtn");
-const settingsPanel  = $("settingsPanel");
-const settingsCopy   = $("settingsCopy");
-const undoBtn        = $("undoBtn");
-const redoBtn        = $("redoBtn");
-const saveBtn        = $("saveBtn");
-const deleteCodeBtn  = $("deleteCodeBtn");
+const settingsBtn = $("settingsBtn");
+const settingsPanel = $("settingsPanel");
+const settingsCopy = $("settingsCopy");
+const undoBtn = $("undoBtn");
+const redoBtn = $("redoBtn");
+const saveBtn = $("saveBtn");
+const deleteCodeBtn = $("deleteCodeBtn");
 const switchAccountBtn = $("switchAccountBtn");
-const logoutBtn      = $("logoutBtn");
+const logoutBtn = $("logoutBtn");
 
-const homeBtn        = $("homeBtn");
-const logoMenu       = $("logoMenu");
-const logoMenuName   = $("logoMenuName");
+const homeBtn = $("homeBtn");
+const logoMenu = $("logoMenu");
+const logoMenuName = $("logoMenuName");
 const logoMenuPassword = $("logoMenuPassword");
-const changeNameBtn  = $("changeNameBtn");
+const changeNameBtn = $("changeNameBtn");
 const changePasswordBtn = $("changePasswordBtn");
-const logoutBtnLogo  = $("logoutBtnLogo");
+const logoutBtnLogo = $("logoutBtnLogo");
 
-const toast          = $("toast");
+const toast = $("toast");
 
-const searchInput    = $("searchInput");
+const searchInput = $("searchInput");
 const searchClearBtn = $("searchClearBtn");
 
 const registrationOverlay = $("registrationOverlay");
-const stepGmail      = $("stepGmail");
-const stepFaceScan   = $("stepFaceScan");
-const nameInput      = $("nameInput");
-const passwordInput  = $("passwordInput");
+const stepGmail = $("stepGmail");
+const stepFaceScan = $("stepFaceScan");
+const nameInput = $("nameInput");
+const passwordInput = $("passwordInput");
 const confirmPasswordInput = $("confirmPasswordInput");
 const passwordToggle = $("passwordToggle");
 const confirmPasswordToggle = $("confirmPasswordToggle");
-const submitBtn      = $("submitBtn");
+const submitBtn = $("submitBtn");
 const switchModeLink = $("switchModeLink");
 const faceScanSkipBtn = $("faceScanSkipBtn");
 const passwordStrengthBar = $("passwordStrengthBar");
 const passwordStrengthText = $("passwordStrengthText");
-const formError      = $("formError");
-const regTitle       = $("regTitle");
-const regSubtitle    = $("regSubtitle");
+const formError = $("formError");
+const regTitle = $("regTitle");
+const regSubtitle = $("regSubtitle");
 const confirmPasswordWrapper = $("confirmPasswordWrapper");
 const passwordRequirementsToggle = $("passwordRequirementsToggle");
 const passwordRequirementsIcon = $("passwordRequirementsIcon");
@@ -1335,7 +1889,7 @@ function showToast(text){
 
   toastTimer = setTimeout(function(){
     toast.classList.remove("show");
-  }, 1800);
+  },1800);
 
 }
 
@@ -1357,7 +1911,10 @@ function addHistory(){
 
   const value = codeEditor.value;
 
-  if(history.length === 0 || history[history.length - 1] !== value){
+  if(
+    history.length === 0 ||
+    history[history.length - 1] !== value
+  ){
 
     history.push(value);
 
@@ -1375,7 +1932,7 @@ function scheduleHistory(){
 
   clearTimeout(historyTimer);
 
-  historyTimer = setTimeout(addHistory, 500);
+  historyTimer = setTimeout(addHistory,500);
 
 }
 
@@ -1390,7 +1947,8 @@ function undo(){
 
   future.push(history.pop());
 
-  codeEditor.value = history[history.length - 1];
+  codeEditor.value =
+    history[history.length - 1];
 
   changingHistory = false;
 
@@ -1533,7 +2091,11 @@ function highlightJSON(code){
 
 function updateSyntax(){
 
-  if(!codeEditor || !highlighted || !languageSelect){
+  if(
+    !codeEditor ||
+    !highlighted ||
+    !languageSelect
+  ){
     return;
   }
 
@@ -1570,7 +2132,8 @@ function updateLineNumbers(){
     return;
   }
 
-  const total = codeEditor.value.split("\n").length;
+  const total =
+    codeEditor.value.split("\n").length;
 
   let output = "";
 
@@ -1608,12 +2171,16 @@ function syncScroll(){
   }
 
   if(highlight){
-    highlight.scrollTop = codeEditor.scrollTop;
-    highlight.scrollLeft = codeEditor.scrollLeft;
+    highlight.scrollTop =
+      codeEditor.scrollTop;
+
+    highlight.scrollLeft =
+      codeEditor.scrollLeft;
   }
 
   if(lineNumbers){
-    lineNumbers.scrollTop = codeEditor.scrollTop;
+    lineNumbers.scrollTop =
+      codeEditor.scrollTop;
   }
 
 }
@@ -1641,7 +2208,8 @@ function performSearch(){
     return;
   }
 
-  const searchTerm = searchInput.value.trim().toLowerCase();
+  const searchTerm =
+    searchInput.value.trim().toLowerCase();
 
   if(searchTerm.length === 0){
 
@@ -1653,8 +2221,8 @@ function performSearch(){
     }
 
     updateSyntax();
-    return;
 
+    return;
   }
 
   if(searchClearBtn){
@@ -1668,18 +2236,25 @@ function performSearch(){
 
   for(let i = 0; i < lines.length; i++){
 
-    const lineText = lines[i].toLowerCase();
-    let index = lineText.indexOf(searchTerm);
+    const lineText =
+      lines[i].toLowerCase();
+
+    let index =
+      lineText.indexOf(searchTerm);
 
     while(index !== -1){
 
       searchResults.push({
-        line: i,
-        column: index,
-        length: searchTerm.length
+        line:i,
+        column:index,
+        length:searchTerm.length
       });
 
-      index = lineText.indexOf(searchTerm, index + searchTerm.length);
+      index =
+        lineText.indexOf(
+          searchTerm,
+          index + searchTerm.length
+        );
 
     }
 
@@ -1689,14 +2264,22 @@ function performSearch(){
 
   if(searchResults.length > 0){
 
-    showToast("Found " + searchResults.length + " places");
+    showToast(
+      "Found " +
+      searchResults.length +
+      " places"
+    );
 
     highlightSearchResults();
 
   }
   else{
 
-    showToast("Not found: \"" + searchTerm + "\"");
+    showToast(
+      'Not found: "' +
+      searchTerm +
+      '"'
+    );
 
     updateSyntax();
 
@@ -1706,29 +2289,45 @@ function performSearch(){
 
 function scrollToSearchResult(index){
 
-  if(!codeEditor || index < 0 || index >= searchResults.length){
+  if(
+    !codeEditor ||
+    index < 0 ||
+    index >= searchResults.length
+  ){
     return;
   }
 
-  const result = searchResults[index];
+  const result =
+    searchResults[index];
 
-  const lines = codeEditor.value.split("\n");
+  const lines =
+    codeEditor.value.split("\n");
 
   let charCount = 0;
 
   for(let i = 0; i < result.line; i++){
-    charCount += lines[i].length + 1;
+    charCount +=
+      lines[i].length + 1;
   }
 
   charCount += result.column;
 
   codeEditor.focus();
-  codeEditor.setSelectionRange(charCount, charCount + result.length);
 
-  const lineHeight = 1.7 * 14;
-  const scrollTop = result.line * lineHeight - (codeEditor.clientHeight / 2);
+  codeEditor.setSelectionRange(
+    charCount,
+    charCount + result.length
+  );
 
-  codeEditor.scrollTop = Math.max(0, scrollTop);
+  const lineHeight =
+    1.7 * 14;
+
+  const scrollTop =
+    result.line * lineHeight -
+    (codeEditor.clientHeight / 2);
+
+  codeEditor.scrollTop =
+    Math.max(0,scrollTop);
 
   syncScroll();
 
@@ -1742,31 +2341,47 @@ function highlightSearchResults(){
 
   updateSyntax();
 
-  const searchTerm = searchInput.value.trim();
+  const searchTerm =
+    searchInput.value.trim();
 
-  if(searchTerm.length === 0 || searchResults.length === 0){
+  if(
+    searchTerm.length === 0 ||
+    searchResults.length === 0
+  ){
     return;
   }
 
   try{
 
-    const escapedTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const regex = new RegExp("(" + escapedTerm + ")", "gi");
+    const escapedTerm =
+      searchTerm.replace(
+        /[.*+?^${}()|[\]\\]/g,
+        "\\$&"
+      );
 
-    highlighted.innerHTML = highlighted.innerHTML.replace(
-      /<span class="search-highlight-current">(.*?)<\/span>/gi,
-      "$1"
-    );
+    const regex =
+      new RegExp(
+        "(" + escapedTerm + ")",
+        "gi"
+      );
 
-    highlighted.innerHTML = highlighted.innerHTML.replace(
-      /<span class="search-highlight">(.*?)<\/span>/gi,
-      "$1"
-    );
+    highlighted.innerHTML =
+      highlighted.innerHTML.replace(
+        /<span class="search-highlight-current">(.*?)<\/span>/gi,
+        "$1"
+      );
 
-    highlighted.innerHTML = highlighted.innerHTML.replace(
-      regex,
-      '<span class="search-highlight">$1</span>'
-    );
+    highlighted.innerHTML =
+      highlighted.innerHTML.replace(
+        /<span class="search-highlight">(.*?)<\/span>/gi,
+        "$1"
+      );
+
+    highlighted.innerHTML =
+      highlighted.innerHTML.replace(
+        regex,
+        '<span class="search-highlight">$1</span>'
+      );
 
   }
   catch(error){
@@ -1777,76 +2392,95 @@ function highlightSearchResults(){
 
 if(searchInput){
 
-  searchInput.addEventListener("input", function(){
+  searchInput.addEventListener(
+    "input",
+    function(){
 
-    clearTimeout(searchTimer);
+      clearTimeout(searchTimer);
 
-    searchTimer = setTimeout(function(){
-      performSearch();
-    }, 500);
-
-  });
-
-  searchInput.addEventListener("keydown", function(event){
-
-    if(event.key === "Enter"){
-
-      event.preventDefault();
-
-      if(searchResults.length === 0){
-        performSearch();
-        return;
-      }
-
-      if(currentSearchIndex < searchResults.length - 1){
-        currentSearchIndex++;
-      }
-      else{
-        currentSearchIndex = 0;
-      }
-
-      scrollToSearchResult(currentSearchIndex);
-      highlightSearchResults();
+      searchTimer =
+        setTimeout(
+          function(){
+            performSearch();
+          },
+          500
+        );
 
     }
+  );
 
-    if(event.key === "Escape"){
+  searchInput.addEventListener(
+    "keydown",
+    function(event){
 
-      this.value = "";
+      if(event.key === "Enter"){
 
-      searchResults = [];
-      currentSearchIndex = -1;
+        event.preventDefault();
 
-      if(searchClearBtn){
-        searchClearBtn.classList.remove("show");
+        if(searchResults.length === 0){
+          performSearch();
+          return;
+        }
+
+        if(
+          currentSearchIndex <
+          searchResults.length - 1
+        ){
+          currentSearchIndex++;
+        }
+        else{
+          currentSearchIndex = 0;
+        }
+
+        scrollToSearchResult(
+          currentSearchIndex
+        );
+
+        highlightSearchResults();
+
       }
 
-      updateSyntax();
-      this.blur();
+      if(event.key === "Escape"){
+
+        this.value = "";
+
+        searchResults = [];
+        currentSearchIndex = -1;
+
+        if(searchClearBtn){
+          searchClearBtn.classList.remove("show");
+        }
+
+        updateSyntax();
+        this.blur();
+
+      }
 
     }
-
-  });
+  );
 
 }
 
 if(searchClearBtn){
 
-  searchClearBtn.addEventListener("click", function(){
+  searchClearBtn.addEventListener(
+    "click",
+    function(){
 
-    if(searchInput){
-      searchInput.value = "";
-      searchInput.focus();
+      if(searchInput){
+        searchInput.value = "";
+        searchInput.focus();
+      }
+
+      searchResults = [];
+      currentSearchIndex = -1;
+
+      this.classList.remove("show");
+
+      updateSyntax();
+
     }
-
-    searchResults = [];
-    currentSearchIndex = -1;
-
-    this.classList.remove("show");
-
-    updateSyntax();
-
-  });
+  );
 
 }
 
@@ -1867,64 +2501,95 @@ function scheduleRender(){
   renderScheduled = true;
 
   requestAnimationFrame(function(){
+
     renderScheduled = false;
+
     updateCode();
+
   });
 
 }
 
 if(codeEditor){
 
-  codeEditor.addEventListener("keydown", function(event){
+  codeEditor.addEventListener(
+    "keydown",
+    function(event){
 
-    if(event.key === "Tab"){
+      if(event.key === "Tab"){
 
-      event.preventDefault();
+        event.preventDefault();
 
-      const start = this.selectionStart;
-      const end = this.selectionEnd;
+        const start =
+          this.selectionStart;
 
-      this.value =
-        this.value.substring(0, start) +
-        "  " +
-        this.value.substring(end);
+        const end =
+          this.selectionEnd;
 
-      this.selectionStart = this.selectionEnd = start + 2;
+        this.value =
+          this.value.substring(0,start) +
+          "  " +
+          this.value.substring(end);
+
+        this.selectionStart =
+          this.selectionEnd =
+          start + 2;
+
+        scheduleRender();
+        scheduleHistory();
+
+      }
+
+    }
+  );
+
+  codeEditor.addEventListener(
+    "compositionstart",
+    function(){
+      isComposing = true;
+    }
+  );
+
+  codeEditor.addEventListener(
+    "compositionend",
+    function(){
+
+      isComposing = false;
 
       scheduleRender();
       scheduleHistory();
 
     }
+  );
 
-  });
+  codeEditor.addEventListener(
+    "input",
+    function(){
 
-  codeEditor.addEventListener("compositionstart", function(){
-    isComposing = true;
-  });
+      if(isComposing){
+        return;
+      }
 
-  codeEditor.addEventListener("compositionend", function(){
-    isComposing = false;
-    scheduleRender();
-    scheduleHistory();
-  });
+      scheduleRender();
+      scheduleHistory();
 
-  codeEditor.addEventListener("input", function(){
-
-    if(isComposing){
-      return;
     }
+  );
 
-    scheduleRender();
-    scheduleHistory();
-
-  });
-
-  codeEditor.addEventListener("scroll", syncScroll);
+  codeEditor.addEventListener(
+    "scroll",
+    syncScroll
+  );
 
 }
 
 if(languageSelect){
-  languageSelect.addEventListener("change", updateSyntax);
+
+  languageSelect.addEventListener(
+    "change",
+    updateSyntax
+  );
+
 }
 
 
@@ -1937,27 +2602,35 @@ async function copyText(text){
   try{
 
     await navigator.clipboard.writeText(text);
-    showToast("✓ Code copied successfully");
+
+    showToast(
+      "✓ Code copied successfully"
+    );
 
   }
   catch(error){
 
     try{
 
-      const temp = document.createElement("textarea");
+      const temp =
+        document.createElement("textarea");
 
       temp.value = text;
+
       temp.style.position = "fixed";
       temp.style.opacity = "0";
 
       document.body.appendChild(temp);
 
       temp.select();
+
       document.execCommand("copy");
 
       temp.remove();
 
-      showToast("✓ Code copied successfully");
+      showToast(
+        "✓ Code copied successfully"
+      );
 
     }
     catch(fallbackError){
@@ -1976,10 +2649,22 @@ function copySelectedRange(){
     return;
   }
 
-  const lines = codeEditor.value.split("\n");
+  const lines =
+    codeEditor.value.split("\n");
 
-  const start = Number(startLineTop ? startLineTop.value : NaN);
-  const end = Number(endLineTop ? endLineTop.value : NaN);
+  const start =
+    Number(
+      startLineTop
+        ? startLineTop.value
+        : NaN
+    );
+
+  const end =
+    Number(
+      endLineTop
+        ? endLineTop.value
+        : NaN
+    );
 
   if(
     !Number.isInteger(start) ||
@@ -1989,14 +2674,20 @@ function copySelectedRange(){
     start > lines.length
   ){
 
-    showToast("Please enter valid line numbers");
-    return;
+    showToast(
+      "Please enter valid line numbers"
+    );
 
+    return;
   }
 
-  const finalEnd = Math.min(end, lines.length);
+  const finalEnd =
+    Math.min(end,lines.length);
 
-  const selected = lines.slice(start - 1, finalEnd).join("\n");
+  const selected =
+    lines
+      .slice(start - 1,finalEnd)
+      .join("\n");
 
   copyText(selected);
 
@@ -2004,22 +2695,35 @@ function copySelectedRange(){
 
 if(settingsCopy){
 
-  settingsCopy.addEventListener("click", function(){
-    copyText(codeEditor ? codeEditor.value : "");
-    closeSettings();
-  });
+  settingsCopy.addEventListener(
+    "click",
+    function(){
+
+      copyText(
+        codeEditor
+          ? codeEditor.value
+          : ""
+      );
+
+      closeSettings();
+
+    }
+  );
 
 }
 
 if(copyRangeBtnTop){
 
-  copyRangeBtnTop.addEventListener("click", copySelectedRange);
+  copyRangeBtnTop.addEventListener(
+    "click",
+    copySelectedRange
+  );
 
 }
 
 
 /* =====================================================
-   11. SAVE / LOAD / DELETE CODE (In App Storage)
+   11. SAVE / LOAD / DELETE CODE
 ===================================================== */
 
 function saveProject(){
@@ -2030,21 +2734,38 @@ function saveProject(){
 
   try{
 
-    // រក្សាទុកកូដទៅក្នុង localStorage របស់ App
-    localStorage.setItem("appWriteCode_CurrentCode", codeEditor.value);
-    localStorage.setItem("appWriteCode_SavedAt", new Date().toISOString());
+    localStorage.setItem(
+      "appWriteCode_CurrentCode",
+      codeEditor.value
+    );
 
-    // រក្សាទុកកូដភ្ជាប់ជាមួយគណនីអ្នកប្រើ
+    localStorage.setItem(
+      "appWriteCode_SavedAt",
+      new Date().toISOString()
+    );
+
     loadAccounts();
 
-    const currentUser = localStorage.getItem("condwriteCurrentUser") || "";
+    const currentUser =
+      localStorage.getItem(
+        "condwriteCurrentUser"
+      ) || "";
 
-    if(currentUser && allAccounts[currentUser]){
-      allAccounts[currentUser].code = codeEditor.value;
+    if(
+      currentUser &&
+      allAccounts[currentUser]
+    ){
+
+      allAccounts[currentUser].code =
+        codeEditor.value;
+
       saveAccounts();
+
     }
 
-    showToast("✓ Code saved in App Write Code");
+    showToast(
+      "✓ Code saved in App Write Code"
+    );
 
   }
   catch(error){
@@ -2066,28 +2787,45 @@ function loadProject(){
   let currentUser = "";
 
   try{
-    currentUser = localStorage.getItem("condwriteCurrentUser") || "";
+
+    currentUser =
+      localStorage.getItem(
+        "condwriteCurrentUser"
+      ) || "";
+
   }
   catch(error){
+
     currentUser = "";
+
   }
 
   let saved = null;
 
-  // ផ្ទុកកូដពីគណនីអ្នកប្រើបច្ចុប្បន្ន
-  if(currentUser && allAccounts[currentUser] && allAccounts[currentUser].code){
+  if(
+    currentUser &&
+    allAccounts[currentUser] &&
+    allAccounts[currentUser].code
+  ){
 
-    saved = allAccounts[currentUser].code;
+    saved =
+      allAccounts[currentUser].code;
 
   }
   else{
 
-    // បើគ្មានគណនី ផ្ទុកពីទំហំផ្ទុកទូទៅ
     try{
-      saved = localStorage.getItem("appWriteCode_CurrentCode");
+
+      saved =
+        localStorage.getItem(
+          "appWriteCode_CurrentCode"
+        );
+
     }
     catch(error){
+
       saved = null;
+
     }
 
   }
@@ -2107,7 +2845,10 @@ function deleteCode(){
     return;
   }
 
-  const confirmed = confirm("Are you sure you want to delete all code?");
+  const confirmed =
+    confirm(
+      "Are you sure you want to delete all code?"
+    );
 
   if(!confirmed){
     return;
@@ -2116,16 +2857,31 @@ function deleteCode(){
   codeEditor.value = "";
 
   try{
-    localStorage.removeItem("appWriteCode_CurrentCode");
-    localStorage.removeItem("appWriteCode_SavedAt");
+
+    localStorage.removeItem(
+      "appWriteCode_CurrentCode"
+    );
+
+    localStorage.removeItem(
+      "appWriteCode_SavedAt"
+    );
 
     loadAccounts();
 
-    const currentUser = localStorage.getItem("condwriteCurrentUser") || "";
+    const currentUser =
+      localStorage.getItem(
+        "condwriteCurrentUser"
+      ) || "";
 
-    if(currentUser && allAccounts[currentUser]){
+    if(
+      currentUser &&
+      allAccounts[currentUser]
+    ){
+
       allAccounts[currentUser].code = "";
+
       saveAccounts();
+
     }
 
   }
@@ -2142,25 +2898,37 @@ function deleteCode(){
     previewFrame.srcdoc = "";
   }
 
-  showToast("✓ Code deleted from App Write Code");
+  showToast(
+    "✓ Code deleted from App Write Code"
+  );
 
 }
 
 if(saveBtn){
 
-  saveBtn.addEventListener("click", function(){
-    saveProject();
-    closeSettings();
-  });
+  saveBtn.addEventListener(
+    "click",
+    function(){
+
+      saveProject();
+      closeSettings();
+
+    }
+  );
 
 }
 
 if(deleteCodeBtn){
 
-  deleteCodeBtn.addEventListener("click", function(){
-    deleteCode();
-    closeSettings();
-  });
+  deleteCodeBtn.addEventListener(
+    "click",
+    function(){
+
+      deleteCode();
+      closeSettings();
+
+    }
+  );
 
 }
 
@@ -2175,10 +2943,13 @@ function runApp(){
     return;
   }
 
-  let code = codeEditor.value.trim();
+  let code =
+    codeEditor.value.trim();
 
   if(!code){
+
     showToast("No code to run");
+
     return;
   }
 
@@ -2211,12 +2982,19 @@ ${code}
 
   showView("preview");
 
-  showToast("✓ App tested successfully");
+  showToast(
+    "✓ App tested successfully"
+  );
 
 }
 
 if(testAppBtn){
-  testAppBtn.addEventListener("click", runApp);
+
+  testAppBtn.addEventListener(
+    "click",
+    runApp
+  );
+
 }
 
 
@@ -2226,15 +3004,31 @@ if(testAppBtn){
 
 function showView(view){
 
-  if(codeTab)     codeTab.classList.remove("active");
-  if(appTab)      appTab.classList.remove("active");
-  if(codeView)    codeView.classList.remove("active");
-  if(previewView) previewView.classList.remove("active");
+  if(codeTab){
+    codeTab.classList.remove("active");
+  }
+
+  if(appTab){
+    appTab.classList.remove("active");
+  }
+
+  if(codeView){
+    codeView.classList.remove("active");
+  }
+
+  if(previewView){
+    previewView.classList.remove("active");
+  }
 
   if(view === "code"){
 
-    if(codeTab)  codeTab.classList.add("active");
-    if(codeView) codeView.classList.add("active");
+    if(codeTab){
+      codeTab.classList.add("active");
+    }
+
+    if(codeView){
+      codeView.classList.add("active");
+    }
 
     updateCode();
 
@@ -2242,56 +3036,102 @@ function showView(view){
 
   if(view === "preview"){
 
-    if(appTab)      appTab.classList.add("active");
-    if(previewView) previewView.classList.add("active");
+    if(appTab){
+      appTab.classList.add("active");
+    }
+
+    if(previewView){
+      previewView.classList.add("active");
+    }
 
   }
 
 }
 
 if(codeTab){
-  codeTab.addEventListener("click", function(){ showView("code"); });
+
+  codeTab.addEventListener(
+    "click",
+    function(){
+      showView("code");
+    }
+  );
+
 }
 
 if(appTab){
-  appTab.addEventListener("click", function(){ showView("preview"); });
+
+  appTab.addEventListener(
+    "click",
+    function(){
+      showView("preview");
+    }
+  );
+
 }
 
 if(homeBtn && logoMenu){
 
-  homeBtn.addEventListener("click", function(event){
-    event.stopPropagation();
+  homeBtn.addEventListener(
+    "click",
+    function(event){
 
-    if(logoMenuName){
-      logoMenuName.textContent = registeredName || "-";
-    }
+      event.stopPropagation();
 
-    if(logoMenuPassword){
-
-      loadAccounts();
-
-      const currentUser = localStorage.getItem("condwriteCurrentUser") || "";
-
-      if(currentUser && allAccounts[currentUser] && allAccounts[currentUser].passwordPlain){
-        logoMenuPassword.textContent = allAccounts[currentUser].passwordPlain;
-      }
-      else{
-        logoMenuPassword.textContent = "-";
+      if(logoMenuName){
+        logoMenuName.textContent =
+          registeredName || "-";
       }
 
+      if(logoMenuPassword){
+
+        loadAccounts();
+
+        const currentUser =
+          localStorage.getItem(
+            "condwriteCurrentUser"
+          ) || "";
+
+        if(
+          currentUser &&
+          allAccounts[currentUser] &&
+          allAccounts[currentUser].passwordPlain
+        ){
+
+          logoMenuPassword.textContent =
+            allAccounts[currentUser].passwordPlain;
+
+        }
+        else{
+
+          logoMenuPassword.textContent = "-";
+
+        }
+
+      }
+
+      logoMenu.classList.toggle("show");
+
+      closeSettings();
+
     }
+  );
 
-    logoMenu.classList.toggle("show");
-    closeSettings();
-  });
+  document.addEventListener(
+    "click",
+    function(event){
 
-  document.addEventListener("click", function(event){
+      if(
+        !logoMenu.contains(event.target) &&
+        event.target !== homeBtn
+      ){
 
-    if(!logoMenu.contains(event.target) && event.target !== homeBtn){
-      logoMenu.classList.remove("show");
+        logoMenu.classList.remove("show");
+
+      }
+
     }
-
-  });
+  );
 
 }
 
@@ -2318,43 +3158,70 @@ function closeLogoMenu(){
 
 if(settingsBtn && settingsPanel){
 
-  settingsBtn.addEventListener("click", function(event){
-    event.stopPropagation();
-    settingsPanel.classList.toggle("show");
-    closeLogoMenu();
-  });
+  settingsBtn.addEventListener(
+    "click",
+    function(event){
 
-  document.addEventListener("click", function(event){
+      event.stopPropagation();
 
-    if(!settingsPanel.contains(event.target) && event.target !== settingsBtn){
-      closeSettings();
+      settingsPanel.classList.toggle(
+        "show"
+      );
+
+      closeLogoMenu();
+
     }
+  );
 
-  });
+  document.addEventListener(
+    "click",
+    function(event){
+
+      if(
+        !settingsPanel.contains(event.target) &&
+        event.target !== settingsBtn
+      ){
+
+        closeSettings();
+
+      }
+
+    }
+  );
 
 }
 
 if(undoBtn){
 
-  undoBtn.addEventListener("click", function(){
-    undo();
-    closeSettings();
-  });
+  undoBtn.addEventListener(
+    "click",
+    function(){
+
+      undo();
+      closeSettings();
+
+    }
+  );
 
 }
 
 if(redoBtn){
 
-  redoBtn.addEventListener("click", function(){
-    redo();
-    closeSettings();
-  });
+  redoBtn.addEventListener(
+    "click",
+    function(){
+
+      redo();
+      closeSettings();
+
+    }
+  );
 
 }
 
 
 /* =====================================================
-   15. ACCOUNT SYSTEM (Multi-User)
+   15. ACCOUNT SYSTEM
 ===================================================== */
 
 let allAccounts = {};
@@ -2365,10 +3232,15 @@ let isLoginMode = false;
 function loadAccounts(){
 
   try{
-    const stored = localStorage.getItem("condwriteAllAccounts");
+
+    const stored =
+      localStorage.getItem(
+        "condwriteAllAccounts"
+      );
 
     if(stored){
-      allAccounts = JSON.parse(stored);
+      allAccounts =
+        JSON.parse(stored);
     }
     else{
       allAccounts = {};
@@ -2376,7 +3248,9 @@ function loadAccounts(){
 
   }
   catch(error){
+
     allAccounts = {};
+
   }
 
 }
@@ -2384,7 +3258,12 @@ function loadAccounts(){
 function saveAccounts(){
 
   try{
-    localStorage.setItem("condwriteAllAccounts", JSON.stringify(allAccounts));
+
+    localStorage.setItem(
+      "condwriteAllAccounts",
+      JSON.stringify(allAccounts)
+    );
+
   }
   catch(error){
     /* ignore storage errors */
@@ -2402,14 +3281,18 @@ function simpleHash(str){
 
   for(let i = 0; i < str.length; i++){
 
-    const char = str.charCodeAt(i);
+    const char =
+      str.charCodeAt(i);
 
-    hash = ((hash << 5) - hash) + char;
+    hash =
+      ((hash << 5) - hash) + char;
+
     hash = hash & hash;
 
   }
 
-  return "h_" + Math.abs(hash).toString(16);
+  return "h_" +
+    Math.abs(hash).toString(16);
 
 }
 
@@ -2420,18 +3303,32 @@ function checkRegistered(){
   let currentUser = "";
 
   try{
-    currentUser = localStorage.getItem("condwriteCurrentUser") || "";
+
+    currentUser =
+      localStorage.getItem(
+        "condwriteCurrentUser"
+      ) || "";
+
   }
   catch(error){
     /* ignore */
   }
 
-  if(currentUser && allAccounts[currentUser]){
+  if(
+    currentUser &&
+    allAccounts[currentUser]
+  ){
 
-    registeredName = allAccounts[currentUser].name || "";
-    registeredPasswordHash = allAccounts[currentUser].passwordHash || "";
+    registeredName =
+      allAccounts[currentUser].name || "";
 
-    showToast("✓ Signed in as " + registeredName);
+    registeredPasswordHash =
+      allAccounts[currentUser].passwordHash || "";
+
+    showToast(
+      "✓ Signed in as " +
+      registeredName
+    );
 
   }
   else{
@@ -2462,27 +3359,48 @@ function isValidName(name){
 function checkPasswordRequirements(password){
 
   return {
-    length: password.length >= 8,
-    upper: /[A-Z]/.test(password),
-    lower: /[a-z]/.test(password),
-    number: /[0-9]/.test(password),
-    special: /[\[\]{}#%\^*+=_\\|~<>$€£·.,?!'\-/:;()៛&@"]/.test(password)
+
+    length:
+      password.length >= 8,
+
+    upper:
+      /[A-Z]/.test(password),
+
+    lower:
+      /[a-z]/.test(password),
+
+    number:
+      /[0-9]/.test(password),
+
+    special:
+      /[\[\]{}#%\^*+=_\\|~<>$€£·.,?!'\-/:;()៛&@"]/.test(password)
+
   };
 
 }
 
 function updatePasswordStrength(password){
 
-  const requirements = checkPasswordRequirements(password);
+  const requirements =
+    checkPasswordRequirements(
+      password
+    );
 
   if(password.length > 0){
 
-    if(passwordRequirementsContent && !passwordRequirementsContent.classList.contains("show")){
+    if(
+      passwordRequirementsContent &&
+      !passwordRequirementsContent.classList.contains("show")
+    ){
 
       passwordRequirementsContent.classList.add("show");
+
       passwordRequirementsIcon.classList.add("open");
+
       passwordRequirements.classList.add("open");
-      passwordRequirementsToggle.style.borderRadius = "16px 16px 0 0";
+
+      passwordRequirementsToggle.style.borderRadius =
+        "16px 16px 0 0";
 
     }
 
@@ -2490,54 +3408,87 @@ function updatePasswordStrength(password){
 
   let metCount = 0;
 
-  Object.keys(requirements).forEach(function(key){
-    if(requirements[key]){
-      metCount++;
-    }
-  });
+  Object.keys(requirements)
+    .forEach(function(key){
+
+      if(requirements[key]){
+        metCount++;
+      }
+
+    });
 
   let strength = 0;
   let text = "";
   let cssClass = "";
 
   if(password.length === 0){
+
     strength = 0;
     text = "";
     cssClass = "";
+
   }
   else if(metCount <= 2){
+
     strength = 33;
     text = "Weak";
     cssClass = "weak";
+
   }
-  else if(metCount === 3 || metCount === 4){
+  else if(
+    metCount === 3 ||
+    metCount === 4
+  ){
+
     strength = 66;
     text = "Medium";
     cssClass = "medium";
+
   }
   else{
+
     strength = 100;
     text = "Strong";
     cssClass = "strong";
+
   }
 
   if(passwordStrengthBar){
-    passwordStrengthBar.style.width = strength + "%";
-    passwordStrengthBar.style.background = strength <= 33 ? "#d32f2f" : strength <= 66 ? "#f57c00" : "#388e3c";
+
+    passwordStrengthBar.style.width =
+      strength + "%";
+
+    passwordStrengthBar.style.background =
+      strength <= 33
+        ? "#d32f2f"
+        : strength <= 66
+          ? "#f57c00"
+          : "#388e3c";
+
   }
 
   if(passwordStrengthText){
-    passwordStrengthText.textContent = text;
-    passwordStrengthText.className = "password-strength-text " + cssClass;
+
+    passwordStrengthText.textContent =
+      text;
+
+    passwordStrengthText.className =
+      "password-strength-text " +
+      cssClass;
+
   }
 
-  updatePasswordRequirementUI(requirements);
+  updatePasswordRequirementUI(
+    requirements
+  );
 
   return requirements;
 
 }
 
-function updatePasswordRequirementUI(requirements){
+function updatePasswordRequirementUI(
+  requirements
+){
 
   const reqLength = $("reqLength");
   const reqUpper = $("reqUpper");
@@ -2546,28 +3497,103 @@ function updatePasswordRequirementUI(requirements){
   const reqSpecial = $("reqSpecial");
 
   if(reqLength){
-    reqLength.textContent = (requirements.length ? "✓" : "✗") + " At least 8 characters";
-    reqLength.className = "password-requirement " + (requirements.length ? "met" : "unmet");
+
+    reqLength.textContent =
+      (
+        requirements.length
+          ? "✓"
+          : "✗"
+      ) +
+      " At least 8 characters";
+
+    reqLength.className =
+      "password-requirement " +
+      (
+        requirements.length
+          ? "met"
+          : "unmet"
+      );
+
   }
 
   if(reqUpper){
-    reqUpper.textContent = (requirements.upper ? "✓" : "✗") + " Uppercase letter (A-Z)";
-    reqUpper.className = "password-requirement " + (requirements.upper ? "met" : "unmet");
+
+    reqUpper.textContent =
+      (
+        requirements.upper
+          ? "✓"
+          : "✗"
+      ) +
+      " Uppercase letter (A-Z)";
+
+    reqUpper.className =
+      "password-requirement " +
+      (
+        requirements.upper
+          ? "met"
+          : "unmet"
+      );
+
   }
 
   if(reqLower){
-    reqLower.textContent = (requirements.lower ? "✓" : "✗") + " Lowercase letter (a-z)";
-    reqLower.className = "password-requirement " + (requirements.lower ? "met" : "unmet");
+
+    reqLower.textContent =
+      (
+        requirements.lower
+          ? "✓"
+          : "✗"
+      ) +
+      " Lowercase letter (a-z)";
+
+    reqLower.className =
+      "password-requirement " +
+      (
+        requirements.lower
+          ? "met"
+          : "unmet"
+      );
+
   }
 
   if(reqNumber){
-    reqNumber.textContent = (requirements.number ? "✓" : "✗") + " Number (0-9)";
-    reqNumber.className = "password-requirement " + (requirements.number ? "met" : "unmet");
+
+    reqNumber.textContent =
+      (
+        requirements.number
+          ? "✓"
+          : "✗"
+      ) +
+      " Number (0-9)";
+
+    reqNumber.className =
+      "password-requirement " +
+      (
+        requirements.number
+          ? "met"
+          : "unmet"
+      );
+
   }
 
   if(reqSpecial){
-    reqSpecial.textContent = (requirements.special ? "✓" : "✗") + " Special character ( -/:;()៛&@\".,?!' )";
-    reqSpecial.className = "password-requirement " + (requirements.special ? "met" : "unmet");
+
+    reqSpecial.textContent =
+      (
+        requirements.special
+          ? "✓"
+          : "✗"
+      ) +
+      ' Special character ( -/:;()៛&@".,?!\' )';
+
+    reqSpecial.className =
+      "password-requirement " +
+      (
+        requirements.special
+          ? "met"
+          : "unmet"
+      );
+
   }
 
 }
@@ -2575,8 +3601,12 @@ function updatePasswordRequirementUI(requirements){
 function showError(message){
 
   if(formError){
-    formError.textContent = message;
+
+    formError.textContent =
+      message;
+
     formError.classList.add("show");
+
   }
 
 }
@@ -2589,7 +3619,10 @@ function hideError(){
 
 }
 
-function togglePasswordVisibility(inputId, buttonId){
+function togglePasswordVisibility(
+  inputId,
+  buttonId
+){
 
   const input = $(inputId);
   const button = $(buttonId);
@@ -2599,12 +3632,16 @@ function togglePasswordVisibility(inputId, buttonId){
   }
 
   if(input.type === "password"){
+
     input.type = "text";
     button.textContent = "🙈";
+
   }
   else{
+
     input.type = "password";
     button.textContent = "👁️";
+
   }
 
 }
@@ -2634,31 +3671,56 @@ function switchMode(){
   isLoginMode = !isLoginMode;
 
   if(regTitle){
-    regTitle.textContent = isLoginMode ? "Sign In" : "Sign Up";
+
+    regTitle.textContent =
+      isLoginMode
+        ? "Sign In"
+        : "Sign Up";
+
   }
 
   if(regSubtitle){
-    regSubtitle.textContent = "Enter your name and password";
+
+    regSubtitle.textContent =
+      "Enter your name and password";
+
   }
 
   if(submitBtn){
-    submitBtn.textContent = isLoginMode ? "Sign In" : "Sign Up";
+
+    submitBtn.textContent =
+      isLoginMode
+        ? "Sign In"
+        : "Sign Up";
+
   }
 
   if(switchModeLink){
-    switchModeLink.textContent = isLoginMode ? "Don't have an account? Sign Up" : "Already have an account? Sign In";
+
+    switchModeLink.textContent =
+      isLoginMode
+        ? "Don't have an account? Sign Up"
+        : "Already have an account? Sign In";
+
   }
 
   if(confirmPasswordWrapper){
-    confirmPasswordWrapper.style.display = isLoginMode ? "none" : "block";
+
+    confirmPasswordWrapper.style.display =
+      isLoginMode
+        ? "none"
+        : "block";
+
   }
 
   if(passwordStrengthBar){
-    passwordStrengthBar.style.width = "0%";
+    passwordStrengthBar.style.width =
+      "0%";
   }
 
   if(passwordStrengthText){
-    passwordStrengthText.textContent = "";
+    passwordStrengthText.textContent =
+      "";
   }
 
   if(passwordInput){
@@ -2686,43 +3748,55 @@ function handleSubmit(){
   let confirmPassword = "";
 
   if(nameInput){
-    name = nameInput.value.trim();
+    name =
+      nameInput.value.trim();
   }
 
   if(passwordInput){
-    password = passwordInput.value.trim();
+    password =
+      passwordInput.value.trim();
   }
 
   if(confirmPasswordInput){
-    confirmPassword = confirmPasswordInput.value.trim();
+    confirmPassword =
+      confirmPasswordInput.value.trim();
   }
 
   if(!isValidName(name)){
 
-    showError("Please enter your name (at least 2 characters)");
+    showError(
+      "Please enter your name (at least 2 characters)"
+    );
+
     return;
 
   }
 
   if(password.length === 0){
 
-    showError("Please enter password");
+    showError(
+      "Please enter password"
+    );
+
     return;
 
   }
 
   if(isLoginMode){
 
-    const hash = simpleHash(password);
+    const hash =
+      simpleHash(password);
 
     loadAccounts();
 
-    // ស្វែងរកគណនីដោយផ្គូផ្គងឈ្មោះ និងពាក្យសម្ងាត់
     let accountKey = null;
 
     for(const key in allAccounts){
 
-      if(allAccounts[key].name === name && allAccounts[key].passwordHash === hash){
+      if(
+        allAccounts[key].name === name &&
+        allAccounts[key].passwordHash === hash
+      ){
 
         accountKey = key;
         break;
@@ -2733,7 +3807,10 @@ function handleSubmit(){
 
     if(!accountKey){
 
-      showError("Invalid name or password");
+      showError(
+        "Invalid name or password"
+      );
+
       return;
 
     }
@@ -2742,77 +3819,133 @@ function handleSubmit(){
     registeredPasswordHash = hash;
 
     try{
-      localStorage.setItem("condwriteCurrentUser", accountKey);
+
+      localStorage.setItem(
+        "condwriteCurrentUser",
+        accountKey
+      );
+
     }
     catch(error){
       /* ignore */
     }
 
     if(allAccounts[accountKey].code){
-      codeEditor.value = allAccounts[accountKey].code;
+
+      codeEditor.value =
+        allAccounts[accountKey].code;
+
     }
     else{
-      codeEditor.value = defaultCode;
+
+      codeEditor.value =
+        defaultCode;
+
     }
 
-    history = [codeEditor.value];
+    history = [
+      codeEditor.value
+    ];
+
     future = [];
 
     updateCode();
 
     if(registrationOverlay){
-      registrationOverlay.classList.remove("show");
+
+      registrationOverlay.classList.remove(
+        "show"
+      );
+
     }
 
-    showToast("✓ Signed in as " + name + " successfully");
+    showToast(
+      "✓ Signed in as " +
+      name +
+      " successfully"
+    );
 
   }
   else{
 
-    const requirements = checkPasswordRequirements(password);
+    const requirements =
+      checkPasswordRequirements(
+        password
+      );
 
     if(!requirements.length){
-      showError("Password must be at least 8 characters");
+
+      showError(
+        "Password must be at least 8 characters"
+      );
+
       return;
+
     }
 
     if(!requirements.upper){
-      showError("Password must contain uppercase letter (A-Z)");
+
+      showError(
+        "Password must contain uppercase letter (A-Z)"
+      );
+
       return;
+
     }
 
     if(!requirements.lower){
-      showError("Password must contain lowercase letter (a-z)");
+
+      showError(
+        "Password must contain lowercase letter (a-z)"
+      );
+
       return;
+
     }
 
     if(!requirements.number){
-      showError("Password must contain number (0-9)");
+
+      showError(
+        "Password must contain number (0-9)"
+      );
+
       return;
+
     }
 
     if(!requirements.special){
-      showError("Password must contain special character ( -/:;()៛&@\".,?!' )");
+
+      showError(
+        'Password must contain special character ( -/:;()៛&@".,?!\' )'
+      );
+
       return;
+
     }
 
     if(password !== confirmPassword){
 
-      showError("Passwords do not match");
+      showError(
+        "Passwords do not match"
+      );
+
       return;
 
     }
 
-    const hash = simpleHash(password);
+    const hash =
+      simpleHash(password);
 
     loadAccounts();
 
-    // ស្វែងរកថាតើគណនីនេះមានរួចហើយឬអត់
     let accountExists = false;
 
     for(const key in allAccounts){
 
-      if(allAccounts[key].name === name && allAccounts[key].passwordHash === hash){
+      if(
+        allAccounts[key].name === name &&
+        allAccounts[key].passwordHash === hash
+      ){
 
         accountExists = true;
         break;
@@ -2823,25 +3956,41 @@ function handleSubmit(){
 
     if(accountExists){
 
-      showError("This account already exists");
+      showError(
+        "This account already exists"
+      );
+
       return;
 
     }
 
-    const accountKey = name + "_" + hash;
+    const accountKey =
+      name + "_" + hash;
 
     allAccounts[accountKey] = {
-      name: name,
-      passwordHash: hash,
-      passwordPlain: password,
-      code: defaultCode,
-      createdAt: new Date().toISOString()
+
+      name:name,
+
+      passwordHash:hash,
+
+      passwordPlain:password,
+
+      code:defaultCode,
+
+      createdAt:
+        new Date().toISOString()
+
     };
 
     saveAccounts();
 
     try{
-      localStorage.setItem("condwriteCurrentUser", accountKey);
+
+      localStorage.setItem(
+        "condwriteCurrentUser",
+        accountKey
+      );
+
     }
     catch(error){
       /* ignore */
@@ -2850,18 +3999,28 @@ function handleSubmit(){
     registeredName = name;
     registeredPasswordHash = hash;
 
-    codeEditor.value = defaultCode;
+    codeEditor.value =
+      defaultCode;
 
-    history = [codeEditor.value];
+    history = [
+      codeEditor.value
+    ];
+
     future = [];
 
     updateCode();
 
     if(registrationOverlay){
-      registrationOverlay.classList.remove("show");
+
+      registrationOverlay.classList.remove(
+        "show"
+      );
+
     }
 
-    showToast("✓ Registered successfully");
+    showToast(
+      "✓ Registered successfully"
+    );
 
   }
 
@@ -2872,7 +4031,11 @@ function logout(){
   saveProject();
 
   try{
-    localStorage.removeItem("condwriteCurrentUser");
+
+    localStorage.removeItem(
+      "condwriteCurrentUser"
+    );
+
   }
   catch(error){
     /* ignore */
@@ -2883,23 +4046,32 @@ function logout(){
   isLoginMode = false;
 
   if(regTitle){
-    regTitle.textContent = "Sign Up";
+    regTitle.textContent =
+      "Sign Up";
   }
 
   if(regSubtitle){
-    regSubtitle.textContent = "Enter your name and password";
+    regSubtitle.textContent =
+      "Enter your name and password";
   }
 
   if(submitBtn){
-    submitBtn.textContent = "Sign Up";
+    submitBtn.textContent =
+      "Sign Up";
   }
 
   if(switchModeLink){
-    switchModeLink.textContent = "Already have an account? Sign In";
+
+    switchModeLink.textContent =
+      "Already have an account? Sign In";
+
   }
 
   if(confirmPasswordWrapper){
-    confirmPasswordWrapper.style.display = "block";
+
+    confirmPasswordWrapper.style.display =
+      "block";
+
   }
 
   if(nameInput){
@@ -2915,27 +4087,44 @@ function logout(){
   }
 
   if(passwordStrengthBar){
-    passwordStrengthBar.style.width = "0%";
+    passwordStrengthBar.style.width =
+      "0%";
   }
 
   if(passwordStrengthText){
-    passwordStrengthText.textContent = "";
+    passwordStrengthText.textContent =
+      "";
   }
 
   if(passwordRequirementsContent){
-    passwordRequirementsContent.classList.remove("show");
+
+    passwordRequirementsContent.classList.remove(
+      "show"
+    );
+
   }
 
   if(passwordRequirementsIcon){
-    passwordRequirementsIcon.classList.remove("open");
+
+    passwordRequirementsIcon.classList.remove(
+      "open"
+    );
+
   }
 
   if(passwordRequirements){
-    passwordRequirements.classList.remove("open");
+
+    passwordRequirements.classList.remove(
+      "open"
+    );
+
   }
 
   if(passwordRequirementsToggle){
-    passwordRequirementsToggle.style.borderRadius = "50px";
+
+    passwordRequirementsToggle.style.borderRadius =
+      "50px";
+
   }
 
   hideError();
@@ -2943,10 +4132,16 @@ function logout(){
   showStep("gmail");
 
   if(registrationOverlay){
-    registrationOverlay.classList.add("show");
+
+    registrationOverlay.classList.add(
+      "show"
+    );
+
   }
 
-  showToast("✓ Logged out successfully");
+  showToast(
+    "✓ Logged out successfully"
+  );
 
 }
 
@@ -2957,13 +4152,21 @@ function clearAccount(){
   let currentUser = "";
 
   try{
-    currentUser = localStorage.getItem("condwriteCurrentUser") || "";
+
+    currentUser =
+      localStorage.getItem(
+        "condwriteCurrentUser"
+      ) || "";
+
   }
   catch(error){
     /* ignore */
   }
 
-  if(currentUser && allAccounts[currentUser]){
+  if(
+    currentUser &&
+    allAccounts[currentUser]
+  ){
 
     delete allAccounts[currentUser];
 
@@ -2972,9 +4175,19 @@ function clearAccount(){
   }
 
   try{
-    localStorage.removeItem("condwriteCurrentUser");
-    localStorage.removeItem("appWriteCode_CurrentCode");
-    localStorage.removeItem("appWriteCode_SavedAt");
+
+    localStorage.removeItem(
+      "condwriteCurrentUser"
+    );
+
+    localStorage.removeItem(
+      "appWriteCode_CurrentCode"
+    );
+
+    localStorage.removeItem(
+      "appWriteCode_SavedAt"
+    );
+
   }
   catch(error){
     /* ignore */
@@ -2992,23 +4205,32 @@ function switchAccount(){
   isLoginMode = false;
 
   if(regTitle){
-    regTitle.textContent = "Sign Up";
+    regTitle.textContent =
+      "Sign Up";
   }
 
   if(regSubtitle){
-    regSubtitle.textContent = "Enter your name and password";
+    regSubtitle.textContent =
+      "Enter your name and password";
   }
 
   if(submitBtn){
-    submitBtn.textContent = "Sign Up";
+    submitBtn.textContent =
+      "Sign Up";
   }
 
   if(switchModeLink){
-    switchModeLink.textContent = "Already have an account? Sign In";
+
+    switchModeLink.textContent =
+      "Already have an account? Sign In";
+
   }
 
   if(confirmPasswordWrapper){
-    confirmPasswordWrapper.style.display = "block";
+
+    confirmPasswordWrapper.style.display =
+      "block";
+
   }
 
   if(nameInput){
@@ -3024,32 +4246,57 @@ function switchAccount(){
   }
 
   if(passwordStrengthBar){
-    passwordStrengthBar.style.width = "0%";
+
+    passwordStrengthBar.style.width =
+      "0%";
+
   }
 
   if(passwordStrengthText){
-    passwordStrengthText.textContent = "";
+
+    passwordStrengthText.textContent =
+      "";
+
   }
 
   if(passwordRequirementsContent){
-    passwordRequirementsContent.classList.remove("show");
+
+    passwordRequirementsContent.classList.remove(
+      "show"
+    );
+
   }
 
   if(passwordRequirementsIcon){
-    passwordRequirementsIcon.classList.remove("open");
+
+    passwordRequirementsIcon.classList.remove(
+      "open"
+    );
+
   }
 
   if(passwordRequirements){
-    passwordRequirements.classList.remove("open");
+
+    passwordRequirements.classList.remove(
+      "open"
+    );
+
   }
 
   if(passwordRequirementsToggle){
-    passwordRequirementsToggle.style.borderRadius = "50px";
+
+    passwordRequirementsToggle.style.borderRadius =
+      "50px";
+
   }
 
-  codeEditor.value = defaultCode;
+  codeEditor.value =
+    defaultCode;
 
-  history = [codeEditor.value];
+  history = [
+    codeEditor.value
+  ];
+
   future = [];
 
   updateCode();
@@ -3059,301 +4306,576 @@ function switchAccount(){
   showStep("gmail");
 
   if(registrationOverlay){
-    registrationOverlay.classList.add("show");
+
+    registrationOverlay.classList.add(
+      "show"
+    );
+
   }
 
-  showToast("✓ You can register a new account");
+  showToast(
+    "✓ You can register a new account"
+  );
 
 }
 
 function showChangeNameForm(){
 
-  const newName = prompt("Enter new name:", registeredName);
+  const newName =
+    prompt(
+      "Enter new name:",
+      registeredName
+    );
 
-  if(!newName || newName.trim().length < 2){
-    showToast("Name must be at least 2 characters");
+  if(
+    !newName ||
+    newName.trim().length < 2
+  ){
+
+    showToast(
+      "Name must be at least 2 characters"
+    );
+
     return;
+
   }
 
-  const trimmedName = newName.trim();
+  const trimmedName =
+    newName.trim();
 
   loadAccounts();
 
-  const currentUser = localStorage.getItem("condwriteCurrentUser") || "";
+  const currentUser =
+    localStorage.getItem(
+      "condwriteCurrentUser"
+    ) || "";
 
-  if(!currentUser || !allAccounts[currentUser]){
-    showToast("No current account");
+  if(
+    !currentUser ||
+    !allAccounts[currentUser]
+  ){
+
+    showToast(
+      "No current account"
+    );
+
     return;
+
   }
 
-  const oldHash = allAccounts[currentUser].passwordHash;
+  const oldHash =
+    allAccounts[currentUser].passwordHash;
 
-  const newKey = trimmedName + "_" + oldHash;
+  const newKey =
+    trimmedName + "_" + oldHash;
 
-  if(allAccounts[newKey] && newKey !== currentUser){
-    showToast("Account with this name and password already exists");
+  if(
+    allAccounts[newKey] &&
+    newKey !== currentUser
+  ){
+
+    showToast(
+      "Account with this name and password already exists"
+    );
+
     return;
+
   }
 
   allAccounts[newKey] = {
-    name: trimmedName,
-    passwordHash: oldHash,
-    passwordPlain: allAccounts[currentUser].passwordPlain || "",
-    code: allAccounts[currentUser].code || defaultCode,
-    createdAt: allAccounts[currentUser].createdAt || new Date().toISOString()
+
+    name:trimmedName,
+
+    passwordHash:oldHash,
+
+    passwordPlain:
+      allAccounts[currentUser].passwordPlain || "",
+
+    code:
+      allAccounts[currentUser].code ||
+      defaultCode,
+
+    createdAt:
+      allAccounts[currentUser].createdAt ||
+      new Date().toISOString()
+
   };
 
   delete allAccounts[currentUser];
 
   saveAccounts();
 
-  localStorage.setItem("condwriteCurrentUser", newKey);
+  localStorage.setItem(
+    "condwriteCurrentUser",
+    newKey
+  );
 
-  registeredName = trimmedName;
+  registeredName =
+    trimmedName;
 
-  showToast("✓ Name changed to " + trimmedName);
+  showToast(
+    "✓ Name changed to " +
+    trimmedName
+  );
 
 }
 
 function showChangePasswordForm(){
 
-  const currentPassword = prompt("Enter current password:");
+  const currentPassword =
+    prompt(
+      "Enter current password:"
+    );
 
   if(!currentPassword){
     return;
   }
 
-  const currentHash = simpleHash(currentPassword);
+  const currentHash =
+    simpleHash(currentPassword);
 
-  if(currentHash !== registeredPasswordHash){
-    showToast("Current password is incorrect");
+  if(
+    currentHash !==
+    registeredPasswordHash
+  ){
+
+    showToast(
+      "Current password is incorrect"
+    );
+
     return;
+
   }
 
-  const newPassword = prompt("Enter new password:");
+  const newPassword =
+    prompt(
+      "Enter new password:"
+    );
 
   if(!newPassword){
     return;
   }
 
-  const requirements = checkPasswordRequirements(newPassword);
+  const requirements =
+    checkPasswordRequirements(
+      newPassword
+    );
 
   if(!requirements.length){
-    showToast("Password must be at least 8 characters");
+
+    showToast(
+      "Password must be at least 8 characters"
+    );
+
     return;
+
   }
 
   if(!requirements.upper){
-    showToast("Password must contain uppercase letter (A-Z)");
+
+    showToast(
+      "Password must contain uppercase letter (A-Z)"
+    );
+
     return;
+
   }
 
   if(!requirements.lower){
-    showToast("Password must contain lowercase letter (a-z)");
+
+    showToast(
+      "Password must contain lowercase letter (a-z)"
+    );
+
     return;
+
   }
 
   if(!requirements.number){
-    showToast("Password must contain number (0-9)");
+
+    showToast(
+      "Password must contain number (0-9)"
+    );
+
     return;
+
   }
 
   if(!requirements.special){
-    showToast("Password must contain special character");
+
+    showToast(
+      "Password must contain special character"
+    );
+
     return;
+
   }
 
-  const confirmPassword = prompt("Confirm new password:");
+  const confirmPassword =
+    prompt(
+      "Confirm new password:"
+    );
 
-  if(newPassword !== confirmPassword){
-    showToast("Passwords do not match");
+  if(
+    newPassword !==
+    confirmPassword
+  ){
+
+    showToast(
+      "Passwords do not match"
+    );
+
     return;
+
   }
 
-  const newHash = simpleHash(newPassword);
+  const newHash =
+    simpleHash(newPassword);
 
   loadAccounts();
 
-  const currentUser = localStorage.getItem("condwriteCurrentUser") || "";
+  const currentUser =
+    localStorage.getItem(
+      "condwriteCurrentUser"
+    ) || "";
 
-  if(!currentUser || !allAccounts[currentUser]){
-    showToast("No current account");
+  if(
+    !currentUser ||
+    !allAccounts[currentUser]
+  ){
+
+    showToast(
+      "No current account"
+    );
+
     return;
+
   }
 
-  const newKey = registeredName + "_" + newHash;
+  const newKey =
+    registeredName +
+    "_" +
+    newHash;
 
-  if(allAccounts[newKey] && newKey !== currentUser){
-    showToast("Account with this name and password already exists");
+  if(
+    allAccounts[newKey] &&
+    newKey !== currentUser
+  ){
+
+    showToast(
+      "Account with this name and password already exists"
+    );
+
     return;
+
   }
 
   allAccounts[newKey] = {
-    name: registeredName,
-    passwordHash: newHash,
-    passwordPlain: newPassword,
-    code: allAccounts[currentUser].code || defaultCode,
-    createdAt: allAccounts[currentUser].createdAt || new Date().toISOString()
+
+    name:registeredName,
+
+    passwordHash:newHash,
+
+    passwordPlain:newPassword,
+
+    code:
+      allAccounts[currentUser].code ||
+      defaultCode,
+
+    createdAt:
+      allAccounts[currentUser].createdAt ||
+      new Date().toISOString()
+
   };
 
   delete allAccounts[currentUser];
 
   saveAccounts();
 
-  localStorage.setItem("condwriteCurrentUser", newKey);
+  localStorage.setItem(
+    "condwriteCurrentUser",
+    newKey
+  );
 
-  registeredPasswordHash = newHash;
+  registeredPasswordHash =
+    newHash;
 
-  showToast("✓ Password changed successfully");
+  showToast(
+    "✓ Password changed successfully"
+  );
 
 }
 
+
 if(passwordToggle){
 
-  passwordToggle.addEventListener("click", function(){
-    togglePasswordVisibility("passwordInput", "passwordToggle");
-  });
+  passwordToggle.addEventListener(
+    "click",
+    function(){
+
+      togglePasswordVisibility(
+        "passwordInput",
+        "passwordToggle"
+      );
+
+    }
+  );
 
 }
 
 if(confirmPasswordToggle){
 
-  confirmPasswordToggle.addEventListener("click", function(){
-    togglePasswordVisibility("confirmPasswordInput", "confirmPasswordToggle");
-  });
+  confirmPasswordToggle.addEventListener(
+    "click",
+    function(){
+
+      togglePasswordVisibility(
+        "confirmPasswordInput",
+        "confirmPasswordToggle"
+      );
+
+    }
+  );
 
 }
 
 if(submitBtn){
-  submitBtn.addEventListener("click", handleSubmit);
+
+  submitBtn.addEventListener(
+    "click",
+    handleSubmit
+  );
+
 }
 
 if(switchModeLink){
-  switchModeLink.addEventListener("click", switchMode);
+
+  switchModeLink.addEventListener(
+    "click",
+    switchMode
+  );
+
 }
 
 if(nameInput){
 
-  nameInput.addEventListener("keydown", function(event){
+  nameInput.addEventListener(
+    "keydown",
+    function(event){
 
-    if(event.key === "Enter"){
-      event.preventDefault();
-      handleSubmit();
+      if(event.key === "Enter"){
+
+        event.preventDefault();
+
+        handleSubmit();
+
+      }
+
     }
-
-  });
+  );
 
 }
 
 if(passwordInput){
 
-  passwordInput.addEventListener("input", function(){
-    updatePasswordStrength(this.value);
-  });
+  passwordInput.addEventListener(
+    "input",
+    function(){
 
-  passwordInput.addEventListener("keydown", function(event){
+      updatePasswordStrength(
+        this.value
+      );
 
-    if(event.key === "Enter"){
-      event.preventDefault();
-      handleSubmit();
     }
+  );
 
-  });
+  passwordInput.addEventListener(
+    "keydown",
+    function(event){
+
+      if(event.key === "Enter"){
+
+        event.preventDefault();
+
+        handleSubmit();
+
+      }
+
+    }
+  );
 
 }
 
 if(confirmPasswordInput){
 
-  confirmPasswordInput.addEventListener("keydown", function(event){
+  confirmPasswordInput.addEventListener(
+    "keydown",
+    function(event){
 
-    if(event.key === "Enter"){
-      event.preventDefault();
-      handleSubmit();
+      if(event.key === "Enter"){
+
+        event.preventDefault();
+
+        handleSubmit();
+
+      }
+
     }
-
-  });
+  );
 
 }
 
-if(passwordRequirementsToggle && passwordRequirementsContent && passwordRequirementsIcon && passwordRequirements){
+if(
+  passwordRequirementsToggle &&
+  passwordRequirementsContent &&
+  passwordRequirementsIcon &&
+  passwordRequirements
+){
 
-  passwordRequirementsToggle.addEventListener("click", function(){
+  passwordRequirementsToggle.addEventListener(
+    "click",
+    function(){
 
-    const isOpen = passwordRequirementsContent.classList.contains("show");
+      const isOpen =
+        passwordRequirementsContent.classList.contains(
+          "show"
+        );
 
-    if(isOpen){
-      passwordRequirementsContent.classList.remove("show");
-      passwordRequirementsIcon.classList.remove("open");
-      passwordRequirements.classList.remove("open");
-      passwordRequirementsToggle.style.borderRadius = "50px";
+      if(isOpen){
+
+        passwordRequirementsContent.classList.remove(
+          "show"
+        );
+
+        passwordRequirementsIcon.classList.remove(
+          "open"
+        );
+
+        passwordRequirements.classList.remove(
+          "open"
+        );
+
+        passwordRequirementsToggle.style.borderRadius =
+          "50px";
+
+      }
+      else{
+
+        passwordRequirementsContent.classList.add(
+          "show"
+        );
+
+        passwordRequirementsIcon.classList.add(
+          "open"
+        );
+
+        passwordRequirements.classList.add(
+          "open"
+        );
+
+        passwordRequirementsToggle.style.borderRadius =
+          "16px 16px 0 0";
+
+      }
+
     }
-    else{
-      passwordRequirementsContent.classList.add("show");
-      passwordRequirementsIcon.classList.add("open");
-      passwordRequirements.classList.add("open");
-      passwordRequirementsToggle.style.borderRadius = "16px 16px 0 0";
-    }
-
-  });
+  );
 
 }
 
 if(faceScanSkipBtn){
 
-  faceScanSkipBtn.addEventListener("click", function(){
+  faceScanSkipBtn.addEventListener(
+    "click",
+    function(){
 
-    showStep("gmail");
+      showStep("gmail");
 
-    if(registrationOverlay){
-      registrationOverlay.classList.remove("show");
+      if(registrationOverlay){
+
+        registrationOverlay.classList.remove(
+          "show"
+        );
+
+      }
+
     }
-
-  });
+  );
 
 }
 
 if(changeNameBtn){
 
-  changeNameBtn.addEventListener("click", function(){
-    closeLogoMenu();
-    showChangeNameForm();
-  });
+  changeNameBtn.addEventListener(
+    "click",
+    function(){
+
+      closeLogoMenu();
+
+      showChangeNameForm();
+
+    }
+  );
 
 }
 
 if(changePasswordBtn){
 
-  changePasswordBtn.addEventListener("click", function(){
-    closeLogoMenu();
-    showChangePasswordForm();
-  });
+  changePasswordBtn.addEventListener(
+    "click",
+    function(){
+
+      closeLogoMenu();
+
+      showChangePasswordForm();
+
+    }
+  );
 
 }
 
 if(logoutBtnLogo){
 
-  logoutBtnLogo.addEventListener("click", function(){
-    closeLogoMenu();
-    logout();
-  });
+  logoutBtnLogo.addEventListener(
+    "click",
+    function(){
+
+      closeLogoMenu();
+
+      logout();
+
+    }
+  );
 
 }
 
 if(switchAccountBtn){
 
-  switchAccountBtn.addEventListener("click", function(){
-    switchAccount();
-    closeSettings();
-  });
+  switchAccountBtn.addEventListener(
+    "click",
+    function(){
+
+      switchAccount();
+
+      closeSettings();
+
+    }
+  );
 
 }
 
 if(logoutBtn){
 
-  logoutBtn.addEventListener("click", function(){
-    logout();
-    closeSettings();
-  });
+  logoutBtn.addEventListener(
+    "click",
+    function(){
+
+      logout();
+
+      closeSettings();
+
+    }
+  );
 
 }
 
@@ -3363,9 +4885,14 @@ if(logoutBtn){
 ===================================================== */
 
 loadProject();
+
 updateCode();
 
-history = [codeEditor ? codeEditor.value : ""];
+history = [
+  codeEditor
+    ? codeEditor.value
+    : ""
+];
 
 checkRegistered();
 
