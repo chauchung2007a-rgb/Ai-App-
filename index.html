@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="km">
+<html lang="en">
 <head>
 
 <meta charset="UTF-8">
@@ -82,6 +82,29 @@ body{
   color:#111;
   font-size:18px;
   cursor:pointer;
+}
+
+.logo-wrapper{
+  position:relative;
+  flex-shrink:0;
+}
+
+.logo-menu{
+  position:absolute;
+  top:40px;
+  left:0;
+  width:200px;
+  padding:7px;
+  display:none;
+  border:1px solid #ddd;
+  border-radius:15px;
+  background:#fff;
+  box-shadow:0 12px 35px rgba(0,0,0,.16);
+  z-index:200;
+}
+
+.logo-menu.show{
+  display:block;
 }
 
 .search-wrapper{
@@ -870,14 +893,16 @@ body{
 
   <div class="top-row">
 
-    <button class="home-btn" id="homeBtn" type="button">🖥️</button>
+    <div class="logo-wrapper">
+      <button class="home-btn" id="homeBtn" type="button">🖥️</button>
+    </div>
 
     <div class="search-wrapper">
       <input
         type="text"
         class="search-input"
         id="searchInput"
-        placeholder="ស្វែងរកកូដ..."
+        placeholder="Search code..."
         autocomplete="off"
         spellcheck="false"
       >
@@ -891,7 +916,7 @@ body{
 
   <div class="tabs">
 
-    <button class="tab active" id="codeTab" type="button">&lt;/&gt; កូដ</button>
+    <button class="tab active" id="codeTab" type="button">&lt;/&gt; Code</button>
 
     <div class="tabs-middle" id="tabsMiddle"></div>
 
@@ -900,6 +925,22 @@ body{
   </div>
 
 </header>
+
+
+<!-- =====================================================
+     LOGO MENU
+===================================================== -->
+
+<div class="logo-menu" id="logoMenu">
+
+  <button class="setting-item" id="changeNameBtn" type="button">✏️ Change Name</button>
+  <button class="setting-item" id="changePasswordBtn" type="button">🔑 Change Password</button>
+
+  <div class="settings-divider"></div>
+
+  <button class="setting-item" id="logoutBtnLogo" type="button">🚪 Logout</button>
+
+</div>
 
 
 <!-- =====================================================
@@ -912,12 +953,12 @@ body{
   <button class="setting-item" id="undoBtn" type="button">↶ Undo</button>
   <button class="setting-item" id="redoBtn" type="button">↷ Redo</button>
   <button class="setting-item" id="saveBtn" type="button">💾 Save Project</button>
-  <button class="setting-item" id="deleteCodeBtn" type="button">🗑️ លុបកូដ</button>
+  <button class="setting-item" id="deleteCodeBtn" type="button">🗑️ Delete Code</button>
 
   <div class="settings-divider"></div>
 
-  <button class="setting-item" id="switchAccountBtn" type="button">🔄 ប្តូរគណនី</button>
-  <button class="setting-item" id="logoutBtn" type="button">🚪 ចាកចេញ</button>
+  <button class="setting-item" id="switchAccountBtn" type="button">🔄 Switch Account</button>
+  <button class="setting-item" id="logoutBtn" type="button">🚪 Logout</button>
 
 </div>
 
@@ -946,7 +987,7 @@ body{
 
       <input class="range-input-top" id="startLineTop" type="number" min="1" value="1">
 
-      <span class="range-label-top">ដល់</span>
+      <span class="range-label-top">to</span>
 
       <input class="range-input-top" id="endLineTop" type="number" min="1" value="10">
 
@@ -984,7 +1025,7 @@ body{
   <section class="view preview-view" id="previewView">
 
     <div class="preview-toolbar">
-      <button class="test-app-btn" id="testAppBtn" type="button">▶ សាកល្បង App</button>
+      <button class="test-app-btn" id="testAppBtn" type="button">▶ Test App</button>
     </div>
 
     <div class="phone">
@@ -1009,8 +1050,8 @@ body{
 
     <div class="registration-logo">🖥️</div>
 
-    <h2 class="registration-title" id="regTitle">ចុះឈ្មោះ</h2>
-    <p class="registration-subtitle" id="regSubtitle">បំពេញឈ្មោះ និងពាក្យសម្ងាត់របស់អ្នក</p>
+    <h2 class="registration-title" id="regTitle">Sign Up</h2>
+    <p class="registration-subtitle" id="regSubtitle">Enter your name and password</p>
 
     <!-- Registration / Login Form -->
     <div class="registration-step active" id="stepGmail">
@@ -1020,7 +1061,7 @@ body{
           type="text"
           class="registration-input"
           id="nameInput"
-          placeholder="ឈ្មោះរបស់អ្នក"
+          placeholder="Your name"
           autocomplete="name"
         >
         <span class="input-icon">👤</span>
@@ -1031,7 +1072,7 @@ body{
           type="password"
           class="registration-input"
           id="passwordInput"
-          placeholder="ពាក្យសម្ងាត់"
+          placeholder="Password"
           autocomplete="new-password"
         >
         <span class="input-icon">🔑</span>
@@ -1046,16 +1087,16 @@ body{
 
       <div class="password-requirements" id="passwordRequirements">
         <button class="password-requirements-toggle" id="passwordRequirementsToggle" type="button">
-          <span>លក្ខខណ្ឌពាក្យសម្ងាត់</span>
+          <span>Password requirements</span>
           <span class="password-requirements-toggle-icon" id="passwordRequirementsIcon">▼</span>
         </button>
         <div class="password-requirements-content" id="passwordRequirementsContent">
-          <div class="password-requirements-title">លក្ខខណ្ឌពាក្យសម្ងាត់៖</div>
-          <div class="password-requirement" id="reqLength">✗ មានយ៉ាងហោចណាស់ 8 តួអក្សរ</div>
-          <div class="password-requirement" id="reqUpper">✗ មានអក្សរធំ (A-Z)</div>
-          <div class="password-requirement" id="reqLower">✗ មានអក្សរតូច (a-z)</div>
-          <div class="password-requirement" id="reqNumber">✗ មានលេខ (0-9)</div>
-          <div class="password-requirement" id="reqSpecial">✗ មានតួអក្សរពិសេស ( -/:;()៛&@". ,?!' )</div>
+          <div class="password-requirements-title">Password requirements:</div>
+          <div class="password-requirement" id="reqLength">✗ At least 8 characters</div>
+          <div class="password-requirement" id="reqUpper">✗ Uppercase letter (A-Z)</div>
+          <div class="password-requirement" id="reqLower">✗ Lowercase letter (a-z)</div>
+          <div class="password-requirement" id="reqNumber">✗ Number (0-9)</div>
+          <div class="password-requirement" id="reqSpecial">✗ Special character ( -/:;()៛&@". ,?!' )</div>
         </div>
       </div>
 
@@ -1064,7 +1105,7 @@ body{
           type="password"
           class="registration-input"
           id="confirmPasswordInput"
-          placeholder="បញ្ជាក់ពាក្យសម្ងាត់ម្តងទៀត"
+          placeholder="Confirm password"
           autocomplete="new-password"
         >
         <span class="input-icon">🔑</span>
@@ -1074,11 +1115,11 @@ body{
       <div class="error-message" id="formError"></div>
 
       <button class="registration-btn" id="submitBtn" type="button">
-        ចុះឈ្មោះ
+        Sign Up
       </button>
 
       <span class="switch-mode-link" id="switchModeLink">
-        មានគណនីរួចហើយ? ចូលប្រើ
+        Already have an account? Sign In
       </span>
 
     </div>
@@ -1086,10 +1127,10 @@ body{
     <!-- Face Scan Placeholder (For Future) -->
     <div class="registration-step" id="stepFaceScan">
       <p style="text-align:center; color:#666; margin-bottom:16px;">
-        ស្កេនមុខនឹងត្រូវបានបន្ថែមនៅពេលក្រោយ
+        Face scan will be added later
       </p>
       <button class="registration-btn" id="faceScanSkipBtn" type="button">
-        រំលង
+        Skip
       </button>
     </div>
 
@@ -1205,6 +1246,11 @@ const switchAccountBtn = $("switchAccountBtn");
 const logoutBtn      = $("logoutBtn");
 
 const homeBtn        = $("homeBtn");
+const logoMenu       = $("logoMenu");
+const changeNameBtn  = $("changeNameBtn");
+const changePasswordBtn = $("changePasswordBtn");
+const logoutBtnLogo  = $("logoutBtnLogo");
+
 const toast          = $("toast");
 
 const searchInput    = $("searchInput");
@@ -1299,7 +1345,7 @@ function scheduleHistory(){
 function undo(){
 
   if(history.length <= 1){
-    showToast("មិនមានអ្វីសម្រាប់ Undo ទេ");
+    showToast("Nothing to undo");
     return;
   }
 
@@ -1313,14 +1359,14 @@ function undo(){
 
   updateCode();
 
-  showToast("✓ Undo បានធ្វើរួច");
+  showToast("✓ Undo successful");
 
 }
 
 function redo(){
 
   if(future.length === 0){
-    showToast("មិនមានអ្វីសម្រាប់ Redo ទេ");
+    showToast("Nothing to redo");
     return;
   }
 
@@ -1336,7 +1382,7 @@ function redo(){
 
   updateCode();
 
-  showToast("✓ Redo បានធ្វើរួច");
+  showToast("✓ Redo successful");
 
 }
 
@@ -1605,7 +1651,7 @@ function performSearch(){
 
   if(searchResults.length > 0){
 
-    showToast("រកឃើញ " + searchResults.length + " កន្លែង");
+    showToast("Found " + searchResults.length + " places");
 
     currentSearchIndex = 0;
 
@@ -1616,7 +1662,7 @@ function performSearch(){
   }
   else{
 
-    showToast("មិនឃើញពាក្យ \"" + searchTerm + "\" ទេ");
+    showToast("Not found: \"" + searchTerm + "\"");
 
     updateSyntax();
 
@@ -1873,7 +1919,7 @@ async function copyText(text){
   try{
 
     await navigator.clipboard.writeText(text);
-    showToast("✓ បាន Copy កូដរួចហើយ");
+    showToast("✓ Code copied successfully");
 
   }
   catch(error){
@@ -1893,12 +1939,12 @@ async function copyText(text){
 
       temp.remove();
 
-      showToast("✓ បាន Copy កូដរួចហើយ");
+      showToast("✓ Code copied successfully");
 
     }
     catch(fallbackError){
 
-      showToast("✗ មិនអាច Copy បានទេ");
+      showToast("✗ Cannot copy");
 
     }
 
@@ -1925,7 +1971,7 @@ function copySelectedRange(){
     start > lines.length
   ){
 
-    showToast("សូមដាក់លេខបន្ទាត់ឱ្យត្រឹមត្រូវ");
+    showToast("Please enter valid line numbers");
     return;
 
   }
@@ -2008,8 +2054,10 @@ function saveProject(){
 
     loadAccounts();
 
-    if(registeredName && allAccounts[registeredName]){
-      allAccounts[registeredName].code = codeEditor.value;
+    const currentUser = localStorage.getItem("condwriteCurrentUser") || "";
+
+    if(currentUser && allAccounts[currentUser]){
+      allAccounts[currentUser].code = codeEditor.value;
       saveAccounts();
     }
 
@@ -2024,7 +2072,7 @@ function saveProject(){
 
   if(storedOk){
 
-    showToast("✓ បានរក្សាទុក Project រួចហើយ");
+    showToast("✓ Project saved successfully");
 
   }
   else{
@@ -2032,10 +2080,10 @@ function saveProject(){
     const downloaded = downloadCode();
 
     if(downloaded){
-      showToast("✓ បាន Save ជា File project.html");
+      showToast("✓ Saved as project.html");
     }
     else{
-      showToast("✗ មិនអាចរក្សាទុកបានទេ");
+      showToast("✗ Cannot save");
     }
 
   }
@@ -2050,7 +2098,14 @@ function loadProject(){
 
   loadAccounts();
 
-  const currentUser = localStorage.getItem("condwriteCurrentUser") || "";
+  let currentUser = "";
+
+  try{
+    currentUser = localStorage.getItem("condwriteCurrentUser") || "";
+  }
+  catch(error){
+    currentUser = "";
+  }
 
   let saved = null;
 
@@ -2085,7 +2140,7 @@ function deleteCode(){
     return;
   }
 
-  const confirmed = confirm("តើអ្នកពិតជាចង់លុបកូដទាំងអស់មែនទេ?");
+  const confirmed = confirm("Are you sure you want to delete all code?");
 
   if(!confirmed){
     return;
@@ -2099,8 +2154,10 @@ function deleteCode(){
 
     loadAccounts();
 
-    if(registeredName && allAccounts[registeredName]){
-      allAccounts[registeredName].code = "";
+    const currentUser = localStorage.getItem("condwriteCurrentUser") || "";
+
+    if(currentUser && allAccounts[currentUser]){
+      allAccounts[currentUser].code = "";
       saveAccounts();
     }
 
@@ -2118,7 +2175,7 @@ function deleteCode(){
     previewFrame.srcdoc = "";
   }
 
-  showToast("✓ បានលុបកូដរួចហើយ");
+  showToast("✓ Code deleted successfully");
 
 }
 
@@ -2154,7 +2211,7 @@ function runApp(){
   let code = codeEditor.value.trim();
 
   if(!code){
-    showToast("មិនមាន Code សម្រាប់ Run ទេ");
+    showToast("No code to run");
     return;
   }
 
@@ -2187,7 +2244,7 @@ ${code}
 
   showView("preview");
 
-  showToast("✓ App បានសាកល្បងរួចហើយ");
+  showToast("✓ App tested successfully");
 
 }
 
@@ -2233,11 +2290,20 @@ if(appTab){
   appTab.addEventListener("click", function(){ showView("preview"); });
 }
 
-if(homeBtn){
+if(homeBtn && logoMenu){
 
-  homeBtn.addEventListener("click", function(){
-    showView("code");
+  homeBtn.addEventListener("click", function(event){
+    event.stopPropagation();
+    logoMenu.classList.toggle("show");
     closeSettings();
+  });
+
+  document.addEventListener("click", function(event){
+
+    if(!logoMenu.contains(event.target) && event.target !== homeBtn){
+      logoMenu.classList.remove("show");
+    }
+
   });
 
 }
@@ -2255,11 +2321,20 @@ function closeSettings(){
 
 }
 
+function closeLogoMenu(){
+
+  if(logoMenu){
+    logoMenu.classList.remove("show");
+  }
+
+}
+
 if(settingsBtn && settingsPanel){
 
   settingsBtn.addEventListener("click", function(event){
     event.stopPropagation();
     settingsPanel.classList.toggle("show");
+    closeLogoMenu();
   });
 
   document.addEventListener("click", function(event){
@@ -2355,7 +2430,7 @@ function checkRegistered(){
 
   loadAccounts();
 
-  const currentUser = "";
+  let currentUser = "";
 
   try{
     currentUser = localStorage.getItem("condwriteCurrentUser") || "";
@@ -2366,10 +2441,10 @@ function checkRegistered(){
 
   if(currentUser && allAccounts[currentUser]){
 
-    registeredName = currentUser;
+    registeredName = allAccounts[currentUser].name || "";
     registeredPasswordHash = allAccounts[currentUser].passwordHash || "";
 
-    showToast("✓ បានចូលជាមួយ " + registeredName);
+    showToast("✓ Signed in as " + registeredName);
 
   }
   else{
@@ -2445,17 +2520,17 @@ function updatePasswordStrength(password){
   }
   else if(metCount <= 2){
     strength = 33;
-    text = "ខ្សោយ";
+    text = "Weak";
     cssClass = "weak";
   }
   else if(metCount === 3 || metCount === 4){
     strength = 66;
-    text = "មធ្យម";
+    text = "Medium";
     cssClass = "medium";
   }
   else{
     strength = 100;
-    text = "រឹងមាំ";
+    text = "Strong";
     cssClass = "strong";
   }
 
@@ -2484,27 +2559,27 @@ function updatePasswordRequirementUI(requirements){
   const reqSpecial = $("reqSpecial");
 
   if(reqLength){
-    reqLength.textContent = (requirements.length ? "✓" : "✗") + " មានយ៉ាងហោចណាស់ 8 តួអក្សរ";
+    reqLength.textContent = (requirements.length ? "✓" : "✗") + " At least 8 characters";
     reqLength.className = "password-requirement " + (requirements.length ? "met" : "unmet");
   }
 
   if(reqUpper){
-    reqUpper.textContent = (requirements.upper ? "✓" : "✗") + " មានអក្សរធំ (A-Z)";
+    reqUpper.textContent = (requirements.upper ? "✓" : "✗") + " Uppercase letter (A-Z)";
     reqUpper.className = "password-requirement " + (requirements.upper ? "met" : "unmet");
   }
 
   if(reqLower){
-    reqLower.textContent = (requirements.lower ? "✓" : "✗") + " មានអក្សរតូច (a-z)";
+    reqLower.textContent = (requirements.lower ? "✓" : "✗") + " Lowercase letter (a-z)";
     reqLower.className = "password-requirement " + (requirements.lower ? "met" : "unmet");
   }
 
   if(reqNumber){
-    reqNumber.textContent = (requirements.number ? "✓" : "✗") + " មានលេខ (0-9)";
+    reqNumber.textContent = (requirements.number ? "✓" : "✗") + " Number (0-9)";
     reqNumber.className = "password-requirement " + (requirements.number ? "met" : "unmet");
   }
 
   if(reqSpecial){
-    reqSpecial.textContent = (requirements.special ? "✓" : "✗") + " មានតួអក្សរពិសេស ( -/:;()៛&@\".,?!' )";
+    reqSpecial.textContent = (requirements.special ? "✓" : "✗") + " Special character ( -/:;()៛&@\".,?!' )";
     reqSpecial.className = "password-requirement " + (requirements.special ? "met" : "unmet");
   }
 
@@ -2572,19 +2647,19 @@ function switchMode(){
   isLoginMode = !isLoginMode;
 
   if(regTitle){
-    regTitle.textContent = isLoginMode ? "ចូលប្រើ" : "ចុះឈ្មោះ";
+    regTitle.textContent = isLoginMode ? "Sign In" : "Sign Up";
   }
 
   if(regSubtitle){
-    regSubtitle.textContent = "បំពេញឈ្មោះ និងពាក្យសម្ងាត់របស់អ្នក";
+    regSubtitle.textContent = "Enter your name and password";
   }
 
   if(submitBtn){
-    submitBtn.textContent = isLoginMode ? "ចូលប្រើ" : "ចុះឈ្មោះ";
+    submitBtn.textContent = isLoginMode ? "Sign In" : "Sign Up";
   }
 
   if(switchModeLink){
-    switchModeLink.textContent = isLoginMode ? "មិនទាន់មានគណនី? ចុះឈ្មោះ" : "មានគណនីរួចហើយ? ចូលប្រើ";
+    switchModeLink.textContent = isLoginMode ? "Don't have an account? Sign Up" : "Already have an account? Sign In";
   }
 
   if(confirmPasswordWrapper){
@@ -2625,14 +2700,14 @@ function handleSubmit(){
 
   if(!isValidName(name)){
 
-    showError("សូមបញ្ចូលឈ្មោះរបស់អ្នកយ៉ាងហោចណាស់ 2 តួអក្សរ");
+    showError("Please enter your name (at least 2 characters)");
     return;
 
   }
 
   if(password.length === 0){
 
-    showError("សូមបញ្ចូលពាក្យសម្ងាត់");
+    showError("Please enter password");
     return;
 
   }
@@ -2643,32 +2718,40 @@ function handleSubmit(){
 
     loadAccounts();
 
-    if(!allAccounts[name]){
+    let accountFound = false;
 
-      showError("មិនមានគណនីនេះទេ សូមចុះឈ្មោះថ្មី");
+    for(const accountKey in allAccounts){
+
+      if(allAccounts[accountKey].name === name && allAccounts[accountKey].passwordHash === hash){
+
+        accountFound = true;
+        break;
+
+      }
+
+    }
+
+    if(!accountFound){
+
+      showError("Invalid name or password");
       return;
 
     }
 
-    if(hash !== allAccounts[name].passwordHash){
-
-      showError("ពាក្យសម្ងាត់មិនត្រឹមត្រូវ មិនអាចចូលគណនីបានទេ");
-      return;
-
-    }
+    const accountKey = name + "_" + hash;
 
     registeredName = name;
     registeredPasswordHash = hash;
 
     try{
-      localStorage.setItem("condwriteCurrentUser", name);
+      localStorage.setItem("condwriteCurrentUser", accountKey);
     }
     catch(error){
-      /* ignore storage errors */
+      /* ignore */
     }
 
-    if(allAccounts[name].code){
-      codeEditor.value = allAccounts[name].code;
+    if(allAccounts[accountKey] && allAccounts[accountKey].code){
+      codeEditor.value = allAccounts[accountKey].code;
     }
     else{
       codeEditor.value = defaultCode;
@@ -2683,7 +2766,7 @@ function handleSubmit(){
       registrationOverlay.classList.remove("show");
     }
 
-    showToast("✓ បានចូលប្រើជា " + name + " ដោយជោគជ័យ");
+    showToast("✓ Signed in as " + name + " successfully");
 
   }
   else{
@@ -2691,33 +2774,33 @@ function handleSubmit(){
     const requirements = checkPasswordRequirements(password);
 
     if(!requirements.length){
-      showError("ពាក្យសម្ងាត់ត្រូវមានយ៉ាងហោចណាស់ 8 តួអក្សរ");
+      showError("Password must be at least 8 characters");
       return;
     }
 
     if(!requirements.upper){
-      showError("ពាក្យសម្ងាត់ត្រូវមានអក្សរធំ (A-Z)");
+      showError("Password must contain uppercase letter (A-Z)");
       return;
     }
 
     if(!requirements.lower){
-      showError("ពាក្យសម្ងាត់ត្រូវមានអក្សរតូច (a-z)");
+      showError("Password must contain lowercase letter (a-z)");
       return;
     }
 
     if(!requirements.number){
-      showError("ពាក្យសម្ងាត់ត្រូវមានលេខ (0-9)");
+      showError("Password must contain number (0-9)");
       return;
     }
 
     if(!requirements.special){
-      showError("ពាក្យសម្ងាត់ត្រូវមានតួអក្សរពិសេស ( -/:;()៛&@\".,?!' )");
+      showError("Password must contain special character ( -/:;()៛&@\".,?!' )");
       return;
     }
 
     if(password !== confirmPassword){
 
-      showError("ពាក្យសម្ងាត់មិនត្រូវគ្នា");
+      showError("Passwords do not match");
       return;
 
     }
@@ -2726,14 +2809,17 @@ function handleSubmit(){
 
     loadAccounts();
 
-    if(allAccounts[name]){
+    const accountKey = name + "_" + hash;
 
-      showError("ឈ្មោះនេះមានគណនីរួចហើយ សូមចូលប្រើ ឬប្រើឈ្មោះផ្សេងទៀត");
+    if(allAccounts[accountKey]){
+
+      showError("This account already exists");
       return;
 
     }
 
-    allAccounts[name] = {
+    allAccounts[accountKey] = {
+      name: name,
       passwordHash: hash,
       code: defaultCode,
       createdAt: new Date().toISOString()
@@ -2742,10 +2828,10 @@ function handleSubmit(){
     saveAccounts();
 
     try{
-      localStorage.setItem("condwriteCurrentUser", name);
+      localStorage.setItem("condwriteCurrentUser", accountKey);
     }
     catch(error){
-      /* ignore storage errors */
+      /* ignore */
     }
 
     registeredName = name;
@@ -2762,7 +2848,7 @@ function handleSubmit(){
       registrationOverlay.classList.remove("show");
     }
 
-    showToast("✓ បានចុះឈ្មោះដោយជោគជ័យ");
+    showToast("✓ Registered successfully");
 
   }
 
@@ -2776,7 +2862,7 @@ function logout(){
     localStorage.removeItem("condwriteCurrentUser");
   }
   catch(error){
-    /* ignore storage errors */
+    /* ignore */
   }
 
   registeredName = "";
@@ -2784,19 +2870,19 @@ function logout(){
   isLoginMode = false;
 
   if(regTitle){
-    regTitle.textContent = "ចុះឈ្មោះ";
+    regTitle.textContent = "Sign Up";
   }
 
   if(regSubtitle){
-    regSubtitle.textContent = "បំពេញឈ្មោះ និងពាក្យសម្ងាត់របស់អ្នក";
+    regSubtitle.textContent = "Enter your name and password";
   }
 
   if(submitBtn){
-    submitBtn.textContent = "ចុះឈ្មោះ";
+    submitBtn.textContent = "Sign Up";
   }
 
   if(switchModeLink){
-    switchModeLink.textContent = "មានគណនីរួចហើយ? ចូលប្រើ";
+    switchModeLink.textContent = "Already have an account? Sign In";
   }
 
   if(confirmPasswordWrapper){
@@ -2847,7 +2933,7 @@ function logout(){
     registrationOverlay.classList.add("show");
   }
 
-  showToast("✓ បានចាកចេញពីគណនី");
+  showToast("✓ Logged out successfully");
 
 }
 
@@ -2855,9 +2941,18 @@ function clearAccount(){
 
   loadAccounts();
 
-  if(registeredName && allAccounts[registeredName]){
+  let currentUser = "";
 
-    delete allAccounts[registeredName];
+  try{
+    currentUser = localStorage.getItem("condwriteCurrentUser") || "";
+  }
+  catch(error){
+    /* ignore */
+  }
+
+  if(currentUser && allAccounts[currentUser]){
+
+    delete allAccounts[currentUser];
 
     saveAccounts();
 
@@ -2869,7 +2964,7 @@ function clearAccount(){
     localStorage.removeItem("aiAppBuilderSavedAt");
   }
   catch(error){
-    /* ignore storage errors */
+    /* ignore */
   }
 
   registeredName = "";
@@ -2884,19 +2979,19 @@ function switchAccount(){
   isLoginMode = false;
 
   if(regTitle){
-    regTitle.textContent = "ចុះឈ្មោះ";
+    regTitle.textContent = "Sign Up";
   }
 
   if(regSubtitle){
-    regSubtitle.textContent = "បំពេញឈ្មោះ និងពាក្យសម្ងាត់របស់អ្នក";
+    regSubtitle.textContent = "Enter your name and password";
   }
 
   if(submitBtn){
-    submitBtn.textContent = "ចុះឈ្មោះ";
+    submitBtn.textContent = "Sign Up";
   }
 
   if(switchModeLink){
-    switchModeLink.textContent = "មានគណនីរួចហើយ? ចូលប្រើ";
+    switchModeLink.textContent = "Already have an account? Sign In";
   }
 
   if(confirmPasswordWrapper){
@@ -2954,7 +3049,147 @@ function switchAccount(){
     registrationOverlay.classList.add("show");
   }
 
-  showToast("✓ អាចចុះឈ្មោះជាមួយគណនីថ្មីបាន");
+  showToast("✓ You can register a new account");
+
+}
+
+function showChangeNameForm(){
+
+  const newName = prompt("Enter new name:", registeredName);
+
+  if(!newName || newName.trim().length < 2){
+    showToast("Name must be at least 2 characters");
+    return;
+  }
+
+  const trimmedName = newName.trim();
+
+  loadAccounts();
+
+  const currentUser = localStorage.getItem("condwriteCurrentUser") || "";
+
+  if(!currentUser || !allAccounts[currentUser]){
+    showToast("No current account");
+    return;
+  }
+
+  const oldHash = allAccounts[currentUser].passwordHash;
+
+  const newKey = trimmedName + "_" + oldHash;
+
+  if(allAccounts[newKey] && newKey !== currentUser){
+    showToast("Account with this name and password already exists");
+    return;
+  }
+
+  allAccounts[newKey] = {
+    name: trimmedName,
+    passwordHash: oldHash,
+    code: allAccounts[currentUser].code || defaultCode,
+    createdAt: allAccounts[currentUser].createdAt || new Date().toISOString()
+  };
+
+  delete allAccounts[currentUser];
+
+  saveAccounts();
+
+  localStorage.setItem("condwriteCurrentUser", newKey);
+
+  registeredName = trimmedName;
+
+  showToast("✓ Name changed to " + trimmedName);
+
+}
+
+function showChangePasswordForm(){
+
+  const currentPassword = prompt("Enter current password:");
+
+  if(!currentPassword){
+    return;
+  }
+
+  const currentHash = simpleHash(currentPassword);
+
+  if(currentHash !== registeredPasswordHash){
+    showToast("Current password is incorrect");
+    return;
+  }
+
+  const newPassword = prompt("Enter new password:");
+
+  if(!newPassword){
+    return;
+  }
+
+  const requirements = checkPasswordRequirements(newPassword);
+
+  if(!requirements.length){
+    showToast("Password must be at least 8 characters");
+    return;
+  }
+
+  if(!requirements.upper){
+    showToast("Password must contain uppercase letter (A-Z)");
+    return;
+  }
+
+  if(!requirements.lower){
+    showToast("Password must contain lowercase letter (a-z)");
+    return;
+  }
+
+  if(!requirements.number){
+    showToast("Password must contain number (0-9)");
+    return;
+  }
+
+  if(!requirements.special){
+    showToast("Password must contain special character");
+    return;
+  }
+
+  const confirmPassword = prompt("Confirm new password:");
+
+  if(newPassword !== confirmPassword){
+    showToast("Passwords do not match");
+    return;
+  }
+
+  const newHash = simpleHash(newPassword);
+
+  loadAccounts();
+
+  const currentUser = localStorage.getItem("condwriteCurrentUser") || "";
+
+  if(!currentUser || !allAccounts[currentUser]){
+    showToast("No current account");
+    return;
+  }
+
+  const newKey = registeredName + "_" + newHash;
+
+  if(allAccounts[newKey] && newKey !== currentUser){
+    showToast("Account with this name and password already exists");
+    return;
+  }
+
+  allAccounts[newKey] = {
+    name: registeredName,
+    passwordHash: newHash,
+    code: allAccounts[currentUser].code || defaultCode,
+    createdAt: allAccounts[currentUser].createdAt || new Date().toISOString()
+  };
+
+  delete allAccounts[currentUser];
+
+  saveAccounts();
+
+  localStorage.setItem("condwriteCurrentUser", newKey);
+
+  registeredPasswordHash = newHash;
+
+  showToast("✓ Password changed successfully");
 
 }
 
@@ -3058,6 +3293,33 @@ if(faceScanSkipBtn){
       registrationOverlay.classList.remove("show");
     }
 
+  });
+
+}
+
+if(changeNameBtn){
+
+  changeNameBtn.addEventListener("click", function(){
+    closeLogoMenu();
+    showChangeNameForm();
+  });
+
+}
+
+if(changePasswordBtn){
+
+  changePasswordBtn.addEventListener("click", function(){
+    closeLogoMenu();
+    showChangePasswordForm();
+  });
+
+}
+
+if(logoutBtnLogo){
+
+  logoutBtnLogo.addEventListener("click", function(){
+    closeLogoMenu();
+    logout();
   });
 
 }
