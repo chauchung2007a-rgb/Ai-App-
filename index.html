@@ -989,7 +989,7 @@ body{
   <button class="setting-item" id="settingsCopy" type="button">📎 Copy Code</button>
   <button class="setting-item" id="undoBtn" type="button">↶ Undo</button>
   <button class="setting-item" id="redoBtn" type="button">↷ Redo</button>
-  <button class="setting-item" id="saveBtn" type="button">💾 Save Project</button>
+  <button class="setting-item" id="saveBtn" type="button">💾 Save Code</button>
   <button class="setting-item" id="deleteCodeBtn" type="button">🗑️ Delete Code</button>
 
   <div class="settings-divider"></div>
@@ -2019,43 +2019,8 @@ if(copyRangeBtnTop){
 
 
 /* =====================================================
-   11. SAVE / LOAD / DELETE PROJECT
+   11. SAVE / LOAD / DELETE CODE (In App Storage)
 ===================================================== */
-
-function downloadCode(){
-
-  if(!codeEditor){
-    return;
-  }
-
-  try{
-
-    const blob = new Blob([codeEditor.value], { type:"text/html" });
-    const url = URL.createObjectURL(blob);
-
-    const link = document.createElement("a");
-
-    link.href = url;
-    link.download = "project.html";
-
-    document.body.appendChild(link);
-
-    link.click();
-
-    link.remove();
-
-    URL.revokeObjectURL(url);
-
-    return true;
-
-  }
-  catch(error){
-
-    return false;
-
-  }
-
-}
 
 function saveProject(){
 
@@ -2063,13 +2028,13 @@ function saveProject(){
     return;
   }
 
-  let storedOk = false;
-
   try{
 
-    localStorage.setItem("aiAppBuilderCode", codeEditor.value);
-    localStorage.setItem("aiAppBuilderSavedAt", new Date().toISOString());
+    // រក្សាទុកកូដទៅក្នុង localStorage របស់ App
+    localStorage.setItem("appWriteCode_CurrentCode", codeEditor.value);
+    localStorage.setItem("appWriteCode_SavedAt", new Date().toISOString());
 
+    // រក្សាទុកកូដភ្ជាប់ជាមួយគណនីអ្នកប្រើ
     loadAccounts();
 
     const currentUser = localStorage.getItem("condwriteCurrentUser") || "";
@@ -2079,30 +2044,12 @@ function saveProject(){
       saveAccounts();
     }
 
-    storedOk = true;
+    showToast("✓ Code saved in App Write Code");
 
   }
   catch(error){
 
-    storedOk = false;
-
-  }
-
-  if(storedOk){
-
-    showToast("✓ Project saved successfully");
-
-  }
-  else{
-
-    const downloaded = downloadCode();
-
-    if(downloaded){
-      showToast("✓ Saved as project.html");
-    }
-    else{
-      showToast("✗ Cannot save");
-    }
+    showToast("✗ Cannot save code");
 
   }
 
@@ -2127,6 +2074,7 @@ function loadProject(){
 
   let saved = null;
 
+  // ផ្ទុកកូដពីគណនីអ្នកប្រើបច្ចុប្បន្ន
   if(currentUser && allAccounts[currentUser] && allAccounts[currentUser].code){
 
     saved = allAccounts[currentUser].code;
@@ -2134,8 +2082,9 @@ function loadProject(){
   }
   else{
 
+    // បើគ្មានគណនី ផ្ទុកពីទំហំផ្ទុកទូទៅ
     try{
-      saved = localStorage.getItem("aiAppBuilderCode");
+      saved = localStorage.getItem("appWriteCode_CurrentCode");
     }
     catch(error){
       saved = null;
@@ -2167,8 +2116,8 @@ function deleteCode(){
   codeEditor.value = "";
 
   try{
-    localStorage.removeItem("aiAppBuilderCode");
-    localStorage.removeItem("aiAppBuilderSavedAt");
+    localStorage.removeItem("appWriteCode_CurrentCode");
+    localStorage.removeItem("appWriteCode_SavedAt");
 
     loadAccounts();
 
@@ -2193,7 +2142,7 @@ function deleteCode(){
     previewFrame.srcdoc = "";
   }
 
-  showToast("✓ Code deleted successfully");
+  showToast("✓ Code deleted from App Write Code");
 
 }
 
@@ -3024,8 +2973,8 @@ function clearAccount(){
 
   try{
     localStorage.removeItem("condwriteCurrentUser");
-    localStorage.removeItem("aiAppBuilderCode");
-    localStorage.removeItem("aiAppBuilderSavedAt");
+    localStorage.removeItem("appWriteCode_CurrentCode");
+    localStorage.removeItem("appWriteCode_SavedAt");
   }
   catch(error){
     /* ignore */
