@@ -68,12 +68,14 @@ body{
   align-items:center;
   justify-content:space-between;
   padding:0 14px;
+  gap:10px;
 }
 
 .home-btn,
 .settings-btn{
   width:36px;
   height:36px;
+  flex-shrink:0;
   border:0;
   border-radius:10px;
   background:#f1f1f3;
@@ -82,9 +84,49 @@ body{
   cursor:pointer;
 }
 
-.title{
-  font-size:15px;
-  font-weight:700;
+.search-wrapper{
+  flex:1;
+  position:relative;
+  max-width:100%;
+}
+
+.search-input{
+  width:100%;
+  height:36px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:0 36px 0 12px;
+  font-size:14px;
+  outline:none;
+  background:#fff;
+  color:#111;
+}
+
+.search-input:focus{
+  border-color:#111;
+}
+
+.search-clear-btn{
+  position:absolute;
+  right:6px;
+  top:50%;
+  transform:translateY(-50%);
+  width:26px;
+  height:26px;
+  border:0;
+  border-radius:50%;
+  background:#e5e5e7;
+  color:#111;
+  font-size:14px;
+  cursor:pointer;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+}
+
+.search-clear-btn.show{
+  display:flex;
 }
 
 .tabs{
@@ -245,11 +287,44 @@ body{
 .language-select{
   padding:0 7px;
   max-width:82px;
+  flex-shrink:0;
 }
 
 .tool-btn{
   padding:0 9px;
   cursor:pointer;
+  flex-shrink:0;
+}
+
+.copy-range-btn-top{
+  background:#fff;
+  color:#111;
+  font-weight:600;
+  border:1px solid #fff;
+  cursor:pointer;
+}
+
+.copy-range-btn-top:hover{
+  background:#e5e5e7;
+}
+
+.range-input-top{
+  width:48px;
+  height:36px;
+  border:1px solid #343943;
+  border-radius:9px;
+  outline:none;
+  background:#20242c;
+  color:#fff;
+  text-align:center;
+  font-size:12px;
+  flex-shrink:0;
+}
+
+.range-label-top{
+  color:#a0a5ae;
+  font-size:11px;
+  flex-shrink:0;
 }
 
 .code-editor-wrap{
@@ -339,45 +414,9 @@ body{
 .c-property{ color:#9cdcfe; }
 .c-value{ color:#ce9178; }
 
-.copy-range{
-  flex-shrink:0;
-  padding:8px;
-  background:#181b21;
-  border-top:1px solid #292d35;
-}
-
-.range-row{
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-
-.range-label{
-  color:#a0a5ae;
-  font-size:11px;
-}
-
-.range-input{
-  width:55px;
-  height:34px;
-  border:1px solid #343943;
-  border-radius:8px;
-  outline:none;
-  background:#20242c;
-  color:#fff;
-  text-align:center;
-}
-
-.copy-range-btn{
-  height:34px;
-  border:0;
-  border-radius:8px;
-  padding:0 10px;
-  background:#fff;
-  color:#111;
-  font-size:11px;
-  font-weight:600;
-  cursor:pointer;
+.search-highlight{
+  background:rgba(255,200,0,.4);
+  border-radius:2px;
 }
 
 
@@ -454,7 +493,7 @@ body{
   display:none;
   align-items:center;
   justify-content:center;
-  background:rgba(0,0,0,.5);
+  background:rgba(0,0,0,.6);
   padding:20px;
 }
 
@@ -464,11 +503,13 @@ body{
 
 .registration-modal{
   width:100%;
-  max-width:380px;
+  max-width:400px;
   background:#fff;
   border-radius:16px;
   padding:24px 20px;
   box-shadow:0 20px 60px rgba(0,0,0,.3);
+  max-height:90vh;
+  overflow-y:auto;
 }
 
 .registration-title{
@@ -508,6 +549,98 @@ body{
   border-color:#111;
 }
 
+.password-wrapper{
+  position:relative;
+  margin-bottom:12px;
+}
+
+.password-wrapper .registration-input{
+  margin-bottom:0;
+  padding-right:44px;
+}
+
+.password-toggle{
+  position:absolute;
+  right:8px;
+  top:50%;
+  transform:translateY(-50%);
+  width:32px;
+  height:32px;
+  border:0;
+  border-radius:8px;
+  background:#f1f1f3;
+  cursor:pointer;
+  font-size:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.password-strength{
+  height:4px;
+  border-radius:2px;
+  background:#e5e5e7;
+  margin-bottom:6px;
+  overflow:hidden;
+}
+
+.password-strength-bar{
+  height:100%;
+  width:0%;
+  border-radius:2px;
+  transition:.3s ease;
+}
+
+.password-strength-text{
+  font-size:12px;
+  color:#666;
+  margin-bottom:10px;
+  text-align:left;
+}
+
+.password-strength-text.weak{
+  color:#d32f2f;
+}
+
+.password-strength-text.medium{
+  color:#f57c00;
+}
+
+.password-strength-text.strong{
+  color:#388e3c;
+}
+
+.password-requirements{
+  background:#f8f8fa;
+  border-radius:10px;
+  padding:12px;
+  margin-bottom:12px;
+}
+
+.password-requirements-title{
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:6px;
+  color:#333;
+}
+
+.password-requirement{
+  font-size:12px;
+  color:#666;
+  margin-bottom:3px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.password-requirement.met{
+  color:#388e3c;
+}
+
+.password-requirement.unmet{
+  color:#d32f2f;
+}
+
 .registration-btn{
   width:100%;
   height:44px;
@@ -525,42 +658,6 @@ body{
   cursor:not-allowed;
 }
 
-.otp-container{
-  display:flex;
-  gap:8px;
-  justify-content:center;
-  margin-bottom:16px;
-}
-
-.otp-input{
-  width:44px;
-  height:48px;
-  border:1px solid #ddd;
-  border-radius:10px;
-  text-align:center;
-  font-size:20px;
-  font-weight:700;
-  outline:none;
-}
-
-.otp-input:focus{
-  border-color:#111;
-}
-
-.resend-link{
-  display:block;
-  text-align:center;
-  margin-top:12px;
-  color:#666;
-  font-size:13px;
-  cursor:pointer;
-  text-decoration:underline;
-}
-
-.resend-link:hover{
-  color:#111;
-}
-
 .error-message{
   color:#d32f2f;
   font-size:13px;
@@ -571,6 +668,20 @@ body{
 
 .error-message.show{
   display:block;
+}
+
+.switch-mode-link{
+  display:block;
+  text-align:center;
+  margin-top:14px;
+  color:#666;
+  font-size:13px;
+  cursor:pointer;
+  text-decoration:underline;
+}
+
+.switch-mode-link:hover{
+  color:#111;
 }
 
 
@@ -604,10 +715,12 @@ body{
     padding:0 6px;
   }
 
-  .otp-input{
+  .search-input{
+    font-size:12px;
+  }
+
+  .range-input-top{
     width:38px;
-    height:42px;
-    font-size:18px;
   }
 
 }
@@ -631,7 +744,17 @@ body{
 
     <button class="home-btn" id="homeBtn" type="button">🖥️</button>
 
-    <div class="title">App Write Code</div>
+    <div class="search-wrapper">
+      <input
+        type="text"
+        class="search-input"
+        id="searchInput"
+        placeholder="ស្វែងរកកូដ..."
+        autocomplete="off"
+        spellcheck="false"
+      >
+      <button class="search-clear-btn" id="searchClearBtn" type="button">✕</button>
+    </div>
 
     <button class="settings-btn" id="settingsBtn" type="button">⚙️</button>
 
@@ -686,8 +809,17 @@ body{
         <option value="json">JSON</option>
       </select>
 
-      <button class="tool-btn" id="copyAllBtn" type="button">📎 Copy All</button>
-      <button class="tool-btn" id="runCodeBtn" type="button">▶ Run</button>
+      <span class="range-label-top">Copy:</span>
+
+      <input class="range-input-top" id="startLineTop" type="number" min="1" value="1">
+
+      <span class="range-label-top">ដល់</span>
+
+      <input class="range-input-top" id="endLineTop" type="number" min="1" value="10">
+
+     
+
+<button class="tool-btn copy-range-btn-top" id="copyRangeBtnTop" type="button">📎 Copy Range</button>
 
     </div>
 
@@ -708,25 +840,6 @@ body{
           autocomplete="off"
           autocorrect="off"
         ></textarea>
-
-      </div>
-
-    </div>
-
-
-    <div class="copy-range">
-
-      <div class="range-row">
-
-        <span class="range-label">Copy:</span>
-
-        <input class="range-input" id="startLine" type="number" min="1" value="1">
-
-        <span class="range-label">ដល់</span>
-
-        <input class="range-input" id="endLine" type="number" min="1" value="10">
-
-        <button class="copy-range-btn" id="copyRangeBtn" type="button">📎 Copy Range</button>
 
       </div>
 
@@ -763,10 +876,9 @@ body{
 
   <div class="registration-modal">
 
-    <h2 class="registration-title">ចុះឈ្មោះ</h2>
-    <p class="registration-subtitle">ប្រើ Gmail របស់អ្នកដើម្បីបន្ត</p>
+    <h2 class="registration-title" id="regTitle">ចុះឈ្មោះ</h2>
+    <p class="registration-subtitle" id="regSubtitle">ប្រើ Gmail របស់អ្នកដើម្បីបន្ត</p>
 
-    <!-- Step 1: Enter Gmail -->
     <div class="registration-step active" id="stepGmail">
 
       <input
@@ -777,32 +889,62 @@ body{
         autocomplete="email"
       >
 
-      <button class="registration-btn" id="sendOtpBtn" type="button">
-        ផ្ញើលេខកូដ OTP
+      <div class="password-wrapper">
+        <input
+          type="password"
+          class="registration-input"
+          id="passwordInput"
+          placeholder="ពាក្យសម្ងាត់"
+          autocomplete="new-password"
+        >
+        <button class="password-toggle" id="passwordToggle" type="button">👁️</button>
+      </div>
+
+      <div class="password-strength">
+        <div class="password-strength-bar" id="passwordStrengthBar"></div>
+      </div>
+
+      <div class="password-strength-text" id="passwordStrengthText"></div>
+
+      <div class="password-requirements" id="passwordRequirements">
+        <div class="password-requirements-title">លក្ខខណ្ឌពាក្យសម្ងាត់៖</div>
+        <div class="password-requirement" id="reqLength">✗ មានយ៉ាងហោចណាស់ 8 តួអក្សរ</div>
+        <div class="password-requirement" id="reqUpper">✗ មានអក្សរធំ (A-Z)</div>
+        <div class="password-requirement" id="reqLower">✗ មានអក្សរតូច (a-z)</div>
+        <div class="password-requirement" id="reqNumber">✗ មានលេខ (0-9)</div>
+        <div class="password-requirement" id="reqSpecial">✗ មានតួអក្សរពិសេស</div>
+      </div>
+
+      <div class="password-wrapper" id="confirmPasswordWrapper" style="display:block;">
+        <input
+          type="password"
+          class="registration-input"
+          id="confirmPasswordInput"
+          placeholder="បញ្ជាក់ពាក្យសម្ងាត់ម្តងទៀត"
+          autocomplete="new-password"
+        >
+        <button class="password-toggle" id="confirmPasswordToggle" type="button">👁️</button>
+      </div>
+
+      <div class="error-message" id="formError"></div>
+
+      <button class="registration-btn" id="submitBtn" type="button">
+        ចុះឈ្មោះ
       </button>
+
+      <span class="switch-mode-link" id="switchModeLink">
+        មានគណនីរួចហើយ? ចូលប្រើ
+      </span>
 
     </div>
 
-    <!-- Step 2: Enter OTP -->
-    <div class="registration-step" id="stepOtp">
-
-      <div class="otp-container" id="otpContainer">
-        <input class="otp-input" type="text" maxlength="1" inputmode="numeric">
-        <input class="otp-input" type="text" maxlength="1" inputmode="numeric">
-        <input class="otp-input" type="text" maxlength="1" inputmode="numeric">
-        <input class="otp-input" type="text" maxlength="1" inputmode="numeric">
-        <input class="otp-input" type="text" maxlength="1" inputmode="numeric">
-        <input class="otp-input" type="text" maxlength="1" inputmode="numeric">
-      </div>
-
-      <div class="error-message" id="otpError">លេខកូដមិនត្រឹមត្រូវ សូមព្យាយាមម្តងទៀត</div>
-
-      <button class="registration-btn" id="verifyOtpBtn" type="button">
-        បញ្ជាក់ការចុះឈ្មោះ
+    <div class="registration-step" id="stepFaceScan">
+      <p style="text-align:center; color:#666; margin-bottom:16px;">
+        ស្កេនមុខនឹងត្រូវបានបន្ថែមនៅពេលក្រោយ
+      </p>
+      <button class="registration-btn" id="faceScanSkipBtn" type="button">
+        រំលង
       </button>
-
-      <span class="resend-link" id="resendLink">ផ្ញើលេខកូដម្តងទៀត</span>
-
     </div>
 
   </div>
@@ -881,8 +1023,6 @@ button{
 
 /* =====================================================
    2. DOM ELEMENT REFERENCES
-   (grabbed once, with safe fallbacks so a missing
-   element never throws and breaks the rest of the app)
 ===================================================== */
 
 function $(id){
@@ -901,11 +1041,11 @@ const highlighted    = $("highlighted");
 const lineNumbers    = $("lineNumbers");
 const languageSelect = $("languageSelect");
 
-const startLine      = $("startLine");
-const endLine        = $("endLine");
-const copyRangeBtn   = $("copyRangeBtn");
-const copyAllBtn     = $("copyAllBtn");
-const runCodeBtn     = $("runCodeBtn");
+const startLineTop   = $("startLineTop");
+const endLineTop     = $("endLineTop");
+const copyRangeBtnTop = $("copyRangeBtnTop");
+
+
 
 const testAppBtn     = $("testAppBtn");
 const previewFrame   = $("previewFrame");
@@ -921,16 +1061,26 @@ const deleteCodeBtn  = $("deleteCodeBtn");
 const homeBtn        = $("homeBtn");
 const toast          = $("toast");
 
+const searchInput    = $("searchInput");
+const searchClearBtn = $("searchClearBtn");
+
 const registrationOverlay = $("registrationOverlay");
 const stepGmail      = $("stepGmail");
-const stepOtp        = $("stepOtp");
+const stepFaceScan   = $("stepFaceScan");
 const gmailInput     = $("gmailInput");
-const sendOtpBtn     = $("sendOtpBtn");
-const verifyOtpBtn   = $("verifyOtpBtn");
-const resendLink     = $("resendLink");
-const otpContainer   = $("otpContainer");
-const otpInputs      = otpContainer ? otpContainer.querySelectorAll(".otp-input") : [];
-const otpError       = $("otpError");
+const passwordInput  = $("passwordInput");
+const confirmPasswordInput = $("confirmPasswordInput");
+const passwordToggle = $("passwordToggle");
+const confirmPasswordToggle = $("confirmPasswordToggle");
+const submitBtn      = $("submitBtn");
+const switchModeLink = $("switchModeLink");
+const faceScanSkipBtn = $("faceScanSkipBtn");
+const passwordStrengthBar = $("passwordStrengthBar");
+const passwordStrengthText = $("passwordStrengthText");
+const formError      = $("formError");
+const regTitle       = $("regTitle");
+const regSubtitle    = $("regSubtitle");
+const confirmPasswordWrapper = $("confirmPasswordWrapper");
 
 
 /* =====================================================
@@ -1174,6 +1324,8 @@ function updateSyntax(){
 
   highlighted.innerHTML = result || " ";
 
+  applySearchHighlight();
+
 }
 
 
@@ -1197,16 +1349,16 @@ function updateLineNumbers(){
 
   lineNumbers.innerHTML = output;
 
-  if(startLine){
-    startLine.max = total;
+  if(startLineTop){
+    startLineTop.max = total;
   }
 
-  if(endLine){
+  if(endLineTop){
 
-    endLine.max = total;
+    endLineTop.max = total;
 
-    if(Number(endLine.value) > total){
-      endLine.value = total;
+    if(Number(endLineTop.value) > total){
+      endLineTop.value = total;
     }
 
   }
@@ -1245,11 +1397,98 @@ function updateCode(){
 
 
 /* =====================================================
-   8. EDITOR EVENTS
-   (highlight redraw is batched with requestAnimationFrame
-   and paused during IME composition — this is what was
-   causing the lag / disappearing letters while typing,
-   especially with Khmer script)
+   8. SEARCH FUNCTION
+===================================================== */
+
+function applySearchHighlight(){
+
+  if(!highlighted || !searchInput){
+    return;
+  }
+
+  const searchTerm = searchInput.value.trim();
+
+  if(searchTerm.length === 0){
+    return;
+  }
+
+  try{
+
+    const regex = new RegExp("(" + searchTerm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
+
+    highlighted.innerHTML = highlighted.innerHTML.replace(
+      /<span class="search-highlight">(.*?)<\/span>/gi,
+      "$1"
+    );
+
+    highlighted.innerHTML = highlighted.innerHTML.replace(
+      regex,
+      '<span class="search-highlight">$1</span>'
+    );
+
+  }
+  catch(error){
+    /* Invalid regex - ignore */
+  }
+
+}
+
+if(searchInput){
+
+  searchInput.addEventListener("input", function(){
+
+    if(searchClearBtn){
+      if(this.value.length > 0){
+        searchClearBtn.classList.add("show");
+      }
+      else{
+        searchClearBtn.classList.remove("show");
+      }
+    }
+
+    updateSyntax();
+
+  });
+
+  searchInput.addEventListener("keydown", function(event){
+
+    if(event.key === "Escape"){
+
+      this.value = "";
+
+      if(searchClearBtn){
+        searchClearBtn.classList.remove("show");
+      }
+
+      updateSyntax();
+      this.blur();
+
+    }
+
+  });
+
+}
+
+if(searchClearBtn){
+
+  searchClearBtn.addEventListener("click", function(){
+
+    if(searchInput){
+      searchInput.value = "";
+      searchInput.focus();
+    }
+
+    this.classList.remove("show");
+
+    updateSyntax();
+
+  });
+
+}
+
+
+/* =====================================================
+   9. EDITOR EVENTS
 ===================================================== */
 
 let isComposing = false;
@@ -1326,7 +1565,7 @@ if(languageSelect){
 
 
 /* =====================================================
-   9. COPY HELPERS
+   10. COPY HELPERS
 ===================================================== */
 
 async function copyText(text){
@@ -1367,11 +1606,35 @@ async function copyText(text){
 
 }
 
-if(copyAllBtn){
+function copySelectedRange(){
 
-  copyAllBtn.addEventListener("click", function(){
-    copyText(codeEditor ? codeEditor.value : "");
-  });
+  if(!codeEditor){
+    return;
+  }
+
+  const lines = codeEditor.value.split("\n");
+
+  const start = Number(startLineTop ? startLineTop.value : NaN);
+  const end = Number(endLineTop ? endLineTop.value : NaN);
+
+  if(
+    !Number.isInteger(start) ||
+    !Number.isInteger(end) ||
+    start < 1 ||
+    end < start ||
+    start > lines.length
+  ){
+
+    showToast("សូមដាក់លេខបន្ទាត់ឱ្យត្រឹមត្រូវ");
+    return;
+
+  }
+
+  const finalEnd = Math.min(end, lines.length);
+
+  const selected = lines.slice(start - 1, finalEnd).join("\n");
+
+  copyText(selected);
 
 }
 
@@ -1384,47 +1647,15 @@ if(settingsCopy){
 
 }
 
-if(copyRangeBtn){
+if(copyRangeBtnTop){
 
-  copyRangeBtn.addEventListener("click", function(){
-
-    if(!codeEditor){
-      return;
-    }
-
-    const lines = codeEditor.value.split("\n");
-
-    const start = Number(startLine ? startLine.value : NaN);
-    const end = Number(endLine ? endLine.value : NaN);
-
-    if(
-      !Number.isInteger(start) ||
-      !Number.isInteger(end) ||
-      start < 1 ||
-      end < start ||
-      start > lines.length
-    ){
-
-      showToast("សូមដាក់លេខបន្ទាត់ឱ្យត្រឹមត្រូវ");
-      return;
-
-    }
-
-    const finalEnd = Math.min(end, lines.length);
-
-    const selected = lines.slice(start - 1, finalEnd).join("\n");
-
-    copyText(selected);
-
-  });
+  copyRangeBtnTop.addEventListener("click", copySelectedRange);
 
 }
 
 
 /* =====================================================
-   10. SAVE / LOAD / DELETE PROJECT
-   (localStorage calls are wrapped in try/catch since
-   some browsers/modes can block storage entirely)
+   11. SAVE / LOAD / DELETE PROJECT
 ===================================================== */
 
 function downloadCode(){
@@ -1486,7 +1717,7 @@ function saveProject(){
 
   if(storedOk){
 
-    showToast("✓ បានរក្សាទុក Project និងកូដរួចហើយ");
+    showToast("✓ បានរក្សាទុក Project រួចហើយ");
 
   }
   else{
@@ -1519,7 +1750,12 @@ function loadProject(){
     saved = null;
   }
 
-  codeEditor.value = (saved !== null) ? saved : defaultCode;
+  if(saved !== null && saved !== ""){
+    codeEditor.value = saved;
+  }
+  else{
+    codeEditor.value = defaultCode;
+  }
 
 }
 
@@ -1578,7 +1814,7 @@ if(deleteCodeBtn){
 
 
 /* =====================================================
-   11. RUN / PREVIEW APP
+   12. RUN / PREVIEW APP
 ===================================================== */
 
 function runApp(){
@@ -1627,9 +1863,6 @@ ${code}
 
 }
 
-if(runCodeBtn){
-  runCodeBtn.addEventListener("click", runApp);
-}
 
 if(testAppBtn){
   testAppBtn.addEventListener("click", runApp);
@@ -1637,7 +1870,7 @@ if(testAppBtn){
 
 
 /* =====================================================
-   12. VIEW / TAB SWITCHING
+   13. VIEW / TAB SWITCHING
 ===================================================== */
 
 function showView(view){
@@ -1684,7 +1917,7 @@ if(homeBtn){
 
 
 /* =====================================================
-   13. SETTINGS PANEL
+   14. SETTINGS PANEL
 ===================================================== */
 
 function closeSettings(){
@@ -1732,24 +1965,46 @@ if(redoBtn){
 
 
 /* =====================================================
-   14. REGISTRATION SYSTEM
+   15. REGISTRATION SYSTEM
 ===================================================== */
 
-let currentOtp = "";
-let otpExpiry = 0;
-let resendTimer = null;
 let registeredEmail = "";
+let registeredPasswordHash = "";
+let isLoginMode = false;
+
+function simpleHash(str){
+
+  let hash = 0;
+
+  if(str.length === 0){
+    return hash.toString();
+  }
+
+  for(let i = 0; i < str.length; i++){
+
+    const char = str.charCodeAt(i);
+
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash;
+
+  }
+
+  return "h_" + Math.abs(hash).toString(16);
+
+}
 
 function checkRegistered(){
 
   try{
     registeredEmail = localStorage.getItem("condwriteRegisteredEmail") || "";
+    registeredPasswordHash = localStorage.getItem("condwritePasswordHash") || "";
   }
   catch(error){
     registeredEmail = "";
+    registeredPasswordHash = "";
   }
 
-  if(registeredEmail){
+  if(registeredEmail && registeredPasswordHash){
     showToast("✓ បានចូលជាមួយ " + registeredEmail);
   }
   else if(registrationOverlay){
@@ -1770,17 +2025,140 @@ function isValidGmail(email){
 
 }
 
-function generateOtp(){
+function checkPasswordRequirements(password){
 
-  currentOtp = "";
+  return {
+    length: password.length >= 8,
+    upper: /[A-Z]/.test(password),
+    lower: /[a-z]/.test(password),
+    number: /[0-9]/.test(password),
+    special: /[\[\]{}#%\^*+=_\\|~<>$€£·.,?!']/.test(password)
+  };
 
-  for(let i = 0; i < 6; i++){
-    currentOtp += Math.floor(Math.random() * 10);
+}
+
+function updatePasswordStrength(password){
+
+  const requirements = checkPasswordRequirements(password);
+
+  let metCount = 0;
+
+  Object.keys(requirements).forEach(function(key){
+    if(requirements[key]){
+      metCount++;
+    }
+  });
+
+  let strength = 0;
+  let text = "";
+  let cssClass = "";
+
+  if(password.length === 0){
+    strength = 0;
+    text = "";
+    cssClass = "";
+  }
+  else if(metCount <= 2){
+    strength = 33;
+    text = "ខ្សោយ";
+    cssClass = "weak";
+  }
+  else if(metCount === 3 || metCount === 4){
+    strength = 66;
+    text = "មធ្យម";
+    cssClass = "medium";
+  }
+  else{
+    strength = 100;
+    text = "រឹងមាំ";
+    cssClass = "strong";
   }
 
-  otpExpiry = Date.now() + (5 * 60 * 1000); // 5 minutes
+  if(passwordStrengthBar){
+    passwordStrengthBar.style.width = strength + "%";
+    passwordStrengthBar.style.background = strength <= 33 ? "#d32f2f" : strength <= 66 ? "#f57c00" : "#388e3c";
+  }
 
-  return currentOtp;
+  if(passwordStrengthText){
+    passwordStrengthText.textContent = text;
+    passwordStrengthText.className = "password-strength-text " + cssClass;
+  }
+
+  updatePasswordRequirementUI(requirements);
+
+  return requirements;
+
+}
+
+function updatePasswordRequirementUI(requirements){
+
+  const reqLength = $("reqLength");
+  const reqUpper = $("reqUpper");
+  const reqLower = $("reqLower");
+  const reqNumber = $("reqNumber");
+  const reqSpecial = $("reqSpecial");
+
+  if(reqLength){
+    reqLength.textContent = (requirements.length ? "✓" : "✗") + " មានយ៉ាងហោចណាស់ 8 តួអក្សរ";
+    reqLength.className = "password-requirement " + (requirements.length ? "met" : "unmet");
+  }
+
+  if(reqUpper){
+    reqUpper.textContent = (requirements.upper ? "✓" : "✗") + " មានអក្សរធំ (A-Z)";
+    reqUpper.className = "password-requirement " + (requirements.upper ? "met" : "unmet");
+  }
+
+  if(reqLower){
+    reqLower.textContent = (requirements.lower ? "✓" : "✗") + " មានអក្សរតូច (a-z)";
+    reqLower.className = "password-requirement " + (requirements.lower ? "met" : "unmet");
+  }
+
+  if(reqNumber){
+    reqNumber.textContent = (requirements.number ? "✓" : "✗") + " មានលេខ (0-9)";
+    reqNumber.className = "password-requirement " + (requirements.number ? "met" : "unmet");
+  }
+
+  if(reqSpecial){
+    reqSpecial.textContent = (requirements.special ? "✓" : "✗") + " មានតួអក្សរពិសេស";
+    reqSpecial.className = "password-requirement " + (requirements.special ? "met" : "unmet");
+  }
+
+}
+
+function showError(message){
+
+  if(formError){
+    formError.textContent = message;
+    formError.classList.add("show");
+  }
+
+}
+
+function hideError(){
+
+  if(formError){
+    formError.classList.remove("show");
+  }
+
+}
+
+function togglePasswordVisibility(inputId, buttonId){
+
+  const input = $(inputId);
+  const button = $(buttonId);
+
+  if(!input || !button){
+    return;
+  }
+
+  if(input.type === "password"){
+    input.type = "text";
+    button.textContent = "🙈";
+  }
+  else{
+    input.type = "password";
+    button.textContent = "👁️";
+  }
 
 }
 
@@ -1790,135 +2168,163 @@ function showStep(step){
     stepGmail.classList.remove("active");
   }
 
-  if(stepOtp){
-    stepOtp.classList.remove("active");
+  if(stepFaceScan){
+    stepFaceScan.classList.remove("active");
   }
 
   if(step === "gmail"){
     stepGmail.classList.add("active");
   }
 
-  if(step === "otp"){
-    stepOtp.classList.add("active");
+  if(step === "faceScan"){
+    stepFaceScan.classList.add("active");
   }
 
 }
 
-function resetOtpInputs(){
+function switchMode(){
 
-  otpInputs.forEach(function(input){
-    input.value = "";
-  });
+  isLoginMode = !isLoginMode;
 
-  if(otpError){
-    otpError.classList.remove("show");
+  if(regTitle){
+    regTitle.textContent = isLoginMode ? "ចូលប្រើ" : "ចុះឈ្មោះ";
   }
 
-  const firstInput = otpInputs[0];
-
-  if(firstInput){
-    firstInput.focus();
+  if(regSubtitle){
+    regSubtitle.textContent = isLoginMode ? "បញ្ចូល Gmail និងពាក្យសម្ងាត់របស់អ្នក" : "ប្រើ Gmail របស់អ្នកដើម្បីបន្ត";
   }
+
+  if(submitBtn){
+    submitBtn.textContent = isLoginMode ? "ចូលប្រើ" : "ចុះឈ្មោះ";
+  }
+
+  if(switchModeLink){
+    switchModeLink.textContent = isLoginMode ? "មិនទាន់មានគណនី? ចុះឈ្មោះ" : "មានគណនីរួចហើយ? ចូលប្រើ";
+  }
+
+  if(confirmPasswordWrapper){
+    confirmPasswordWrapper.style.display = isLoginMode ? "none" : "block";
+  }
+
+  if(passwordStrengthBar){
+    passwordStrengthBar.style.width = "0%";
+  }
+
+  if(passwordStrengthText){
+    passwordStrengthText.textContent = "";
+  }
+
+  if(passwordInput){
+    passwordInput.value = "";
+  }
+
+  if(confirmPasswordInput){
+    confirmPasswordInput.value = "";
+  }
+
+  if(gmailInput){
+    gmailInput.value = "";
+  }
+
+  hideError();
 
 }
 
-function startResendCountdown(){
+function handleSubmit(){
 
-  let seconds = 60;
-
-  if(resendLink){
-    resendLink.style.pointerEvents = "none";
-    resendLink.style.opacity = "0.5";
-    resendLink.textContent = "អាចផ្ញើម្តងទៀតក្នុង " + seconds + " វិនាទី";
-  }
-
-  clearInterval(resendTimer);
-
-  resendTimer = setInterval(function(){
-
-    seconds--;
-
-    if(resendLink){
-      resendLink.textContent = "អាចផ្ញើម្តងទៀតក្នុង " + seconds + " វិនាទី";
-    }
-
-    if(seconds <= 0){
-
-      clearInterval(resendTimer);
-
-      if(resendLink){
-        resendLink.style.pointerEvents = "auto";
-        resendLink.style.opacity = "1";
-        resendLink.textContent = "ផ្ញើលេខកូដម្តងទៀត";
-      }
-
-    }
-
-  }, 1000);
-
-}
-
-function sendOtp(){
+  hideError();
 
   const email = gmailInput ? gmailInput.value.trim() : "";
+  const password = passwordInput ? passwordInput.value : "";
+  const confirmPassword = confirmPasswordInput ? confirmPasswordInput.value : "";
 
   if(!isValidGmail(email)){
-    showToast("សូមបញ្ចូល Gmail ឱ្យត្រឹមត្រូវ");
+
+    showError("សូមបញ្ចូល Gmail ឱ្យត្រឹមត្រូវ");
     return;
+
   }
 
-  const otp = generateOtp();
+  if(password.length === 0){
 
-  /* In a real app, you would send OTP to email here.
-     For demo, we will show it in a toast. */
+    showError("សូមបញ្ចូលពាក្យសម្ងាត់");
+    return;
 
-  showToast("OTP របស់អ្នក: " + otp);
+  }
 
-  showStep("otp");
-  resetOtpInputs();
-  startResendCountdown();
+  if(isLoginMode){
 
-}
+    const hash = simpleHash(password);
 
-function verifyOtp(){
+    if(email === registeredEmail && hash === registeredPasswordHash){
 
-  let userOtp = "";
+      if(registrationOverlay){
+        registrationOverlay.classList.remove("show");
+      }
 
-  otpInputs.forEach(function(input){
-    userOtp += input.value;
-  });
+      showToast("✓ បានចូលប្រើដោយជោគជ័យ");
 
-  if(userOtp.length !== 6){
-    if(otpError){
-      otpError.textContent = "សូមបញ្ចូលលេខកូដទាំង 6 ខ្ទង់";
-      otpError.classList.add("show");
     }
-    return;
-  }
+    else{
 
-  if(Date.now() > otpExpiry){
+      showError("Gmail ឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ");
 
-    if(otpError){
-      otpError.textContent = "លេខកូដផុតកំណត់ សូមផ្ញើថ្មី";
-      otpError.classList.add("show");
     }
 
-    return;
-
   }
+  else{
 
-  if(userOtp === currentOtp){
+    const requirements = checkPasswordRequirements(password);
 
-    const email = gmailInput ? gmailInput.value.trim() : "";
+    if(!requirements.length){
+      showError("ពាក្យសម្ងាត់ត្រូវមានយ៉ាងហោចណាស់ 8 តួអក្សរ");
+      return;
+    }
+
+    if(!requirements.upper){
+      showError("ពាក្យសម្ងាត់ត្រូវមានអក្សរធំ (A-Z)");
+      return;
+    }
+
+    if(!requirements.lower){
+      showError("ពាក្យសម្ងាត់ត្រូវមានអក្សរតូច (a-z)");
+      return;
+    }
+
+    if(!requirements.number){
+      showError("ពាក្យសម្ងាត់ត្រូវមានលេខ (0-9)");
+      return;
+    }
+
+    if(!requirements.special){
+      showError("ពាក្យសម្ងាត់ត្រូវមានតួអក្សរពិសេស");
+      return;
+    }
+
+    if(password !== confirmPassword){
+
+      showError("ពាក្យសម្ងាត់មិនត្រូវគ្នា");
+      return;
+
+    }
+
+    const hash = simpleHash(password);
 
     try{
+
       localStorage.setItem("condwriteRegisteredEmail", email);
+      localStorage.setItem("condwritePasswordHash", hash);
+
     }
     catch(error){
-      /* ignore storage errors */
+
+      showError("មិនអាចរក្សាទុកទិន្នន័យបាន");
+      return;
+
     }
 
     registeredEmail = email;
+    registeredPasswordHash = hash;
 
     if(registrationOverlay){
       registrationOverlay.classList.remove("show");
@@ -1927,74 +2333,93 @@ function verifyOtp(){
     showToast("✓ បានចុះឈ្មោះដោយជោគជ័យ");
 
   }
-  else{
-
-    if(otpError){
-      otpError.textContent = "លេខកូដមិនត្រឹមត្រូវ សូមព្យាយាមម្តងទៀត";
-      otpError.classList.add("show");
-    }
-
-    resetOtpInputs();
-
-  }
 
 }
 
-if(sendOtpBtn){
-  sendOtpBtn.addEventListener("click", sendOtp);
+if(passwordToggle){
+
+  passwordToggle.addEventListener("click", function(){
+    togglePasswordVisibility("passwordInput", "passwordToggle");
+  });
+
 }
 
-if(verifyOtpBtn){
-  verifyOtpBtn.addEventListener("click", verifyOtp);
+if(confirmPasswordToggle){
+
+  confirmPasswordToggle.addEventListener("click", function(){
+    togglePasswordVisibility("confirmPasswordInput", "confirmPasswordToggle");
+  });
+
 }
 
-if(resendLink){
-  resendLink.addEventListener("click", sendOtp);
+if(submitBtn){
+  submitBtn.addEventListener("click", handleSubmit);
+}
+
+if(switchModeLink){
+  switchModeLink.addEventListener("click", switchMode);
 }
 
 if(gmailInput){
+
   gmailInput.addEventListener("keydown", function(event){
 
     if(event.key === "Enter"){
       event.preventDefault();
-      sendOtp();
+      handleSubmit();
     }
 
   });
+
 }
 
-otpInputs.forEach(function(input, index){
+if(passwordInput){
 
-  input.addEventListener("input", function(){
-
-    if(input.value.length === 1 && index < otpInputs.length - 1){
-      otpInputs[index + 1].focus();
-    }
-
-    if(otpError){
-      otpError.classList.remove("show");
-    }
-
+  passwordInput.addEventListener("input", function(){
+    updatePasswordStrength(this.value);
   });
 
-  input.addEventListener("keydown", function(event){
-
-    if(event.key === "Backspace" && input.value === "" && index > 0){
-      otpInputs[index - 1].focus();
-    }
+  passwordInput.addEventListener("keydown", function(event){
 
     if(event.key === "Enter"){
       event.preventDefault();
-      verifyOtp();
+      handleSubmit();
     }
 
   });
 
-});
+}
+
+if(confirmPasswordInput){
+
+  confirmPasswordInput.addEventListener("keydown", function(event){
+
+    if(event.key === "Enter"){
+      event.preventDefault();
+      handleSubmit();
+    }
+
+  });
+
+}
+
+if(faceScanSkipBtn){
+
+  faceScanSkipBtn.addEventListener("click", function(){
+
+    showStep("gmail");
+
+    if(registrationOverlay){
+      registrationOverlay.classList.remove("show");
+    }
+
+  });
+
+}
 
 
 /* =====================================================
-   15. INITIALIZE
+   16. INITIALIZE
 ===================================================== */
 
 loadProject();
