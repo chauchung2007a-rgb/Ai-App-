@@ -77,7 +77,7 @@ body{
   height:36px;
   flex-shrink:0;
   border:0;
-  border-radius:10px;
+  border-radius:50px;
   background:#f1f1f3;
   color:#111;
   font-size:18px;
@@ -94,8 +94,8 @@ body{
   width:100%;
   height:36px;
   border:1px solid #ddd;
-  border-radius:10px;
-  padding:0 36px 0 12px;
+  border-radius:50px;
+  padding:0 36px 0 16px;
   font-size:14px;
   outline:none;
   background:#fff;
@@ -146,7 +146,7 @@ body{
   height:38px;
   min-width:110px;
   border:0;
-  border-radius:10px;
+  border-radius:50px;
   background:transparent;
   color:#777;
   font-size:14px;
@@ -224,6 +224,11 @@ body{
   margin-top:2px;
 }
 
+.settings-divider{
+  border-top:1px solid #ddd;
+  margin:6px 0;
+}
+
 
 /* =====================================================
    6. TOAST
@@ -240,7 +245,7 @@ body{
   min-width:190px;
   max-width:90%;
   padding:11px 16px;
-  border-radius:12px;
+  border-radius:50px;
   background:#111;
   color:#fff;
   text-align:center;
@@ -272,13 +277,14 @@ body{
   padding:7px;
   background:#181b21;
   border-bottom:1px solid #292d35;
+  overflow-x:auto;
 }
 
 .language-select,
 .tool-btn{
   height:36px;
   border:1px solid #343943;
-  border-radius:9px;
+  border-radius:50px;
   background:#20242c;
   color:#fff;
   font-size:12px;
@@ -312,7 +318,7 @@ body{
   width:48px;
   height:36px;
   border:1px solid #343943;
-  border-radius:9px;
+  border-radius:50px;
   outline:none;
   background:#20242c;
   color:#fff;
@@ -419,6 +425,12 @@ body{
   border-radius:2px;
 }
 
+.search-highlight-current{
+  background:rgba(255,150,0,.6);
+  border-radius:2px;
+  outline:1px solid #ff9800;
+}
+
 
 /* =====================================================
    8. APP PREVIEW VIEW
@@ -442,7 +454,7 @@ body{
 .test-app-btn{
   height:42px;
   border:0;
-  border-radius:12px;
+  border-radius:50px;
   padding:0 20px;
   background:#111;
   color:#fff;
@@ -493,8 +505,9 @@ body{
   display:none;
   align-items:center;
   justify-content:center;
-  background:rgba(0,0,0,.6);
+  background:rgba(0,0,0,.7);
   padding:20px;
+  backdrop-filter:blur(5px);
 }
 
 .registration-overlay.show{
@@ -503,27 +516,42 @@ body{
 
 .registration-modal{
   width:100%;
-  max-width:400px;
+  max-width:380px;
   background:#fff;
-  border-radius:16px;
-  padding:24px 20px;
-  box-shadow:0 20px 60px rgba(0,0,0,.3);
+  border-radius:24px;
+  padding:30px 24px;
+  box-shadow:0 25px 70px rgba(0,0,0,.4);
   max-height:90vh;
   overflow-y:auto;
 }
 
+.registration-logo{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:70px;
+  height:70px;
+  margin:0 auto 16px;
+  border-radius:50%;
+  background:#111;
+  color:#fff;
+  font-size:36px;
+  box-shadow:0 8px 20px rgba(0,0,0,.3);
+}
+
 .registration-title{
-  font-size:20px;
+  font-size:22px;
   font-weight:700;
   text-align:center;
   margin-bottom:8px;
+  color:#111;
 }
 
 .registration-subtitle{
   font-size:14px;
   color:#666;
   text-align:center;
-  margin-bottom:20px;
+  margin-bottom:24px;
 }
 
 .registration-step{
@@ -534,46 +562,93 @@ body{
   display:block;
 }
 
-.registration-input{
+.input-with-icon{
+  position:relative;
+  margin-bottom:14px;
+}
+
+.input-with-icon .registration-input{
   width:100%;
-  height:44px;
-  border:1px solid #ddd;
-  border-radius:10px;
-  padding:0 12px;
+  height:48px;
+  border:2px solid #e5e5e7;
+  border-radius:50px;
+  padding:0 16px 0 52px;
   font-size:15px;
   outline:none;
-  margin-bottom:12px;
+  background:#fafafa;
+  color:#111;
+  transition:border-color .2s ease, background .2s ease;
 }
 
-.registration-input:focus{
+.input-with-icon .registration-input:focus{
   border-color:#111;
+  background:#fff;
 }
 
-.password-wrapper{
-  position:relative;
-  margin-bottom:12px;
-}
-
-.password-wrapper .registration-input{
-  margin-bottom:0;
-  padding-right:44px;
-}
-
-.password-toggle{
+.input-icon{
   position:absolute;
-  right:8px;
+  left:10px;
   top:50%;
   transform:translateY(-50%);
   width:32px;
   height:32px;
+  border-radius:50%;
+  background:#111;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:15px;
+  pointer-events:none;
+  box-shadow:0 3px 8px rgba(0,0,0,.2);
+  z-index:1;
+}
+
+.registration-input{
+  width:100%;
+  height:48px;
+  border:2px solid #e5e5e7;
+  border-radius:50px;
+  padding:0 16px;
+  font-size:15px;
+  outline:none;
+  background:#fafafa;
+  color:#111;
+  transition:border-color .2s ease, background .2s ease;
+}
+
+.registration-input:focus{
+  border-color:#111;
+  background:#fff;
+}
+
+.password-wrapper{
+  position:relative;
+  margin-bottom:14px;
+}
+
+.password-wrapper .registration-input{
+  margin-bottom:0;
+  padding-right:50px;
+  padding-left:52px;
+}
+
+.password-toggle{
+  position:absolute;
+  right:10px;
+  top:50%;
+  transform:translateY(-50%);
+  width:36px;
+  height:36px;
   border:0;
-  border-radius:8px;
+  border-radius:50%;
   background:#f1f1f3;
   cursor:pointer;
   font-size:16px;
   display:flex;
   align-items:center;
   justify-content:center;
+  z-index:2;
 }
 
 .password-strength{
@@ -612,9 +687,53 @@ body{
 
 .password-requirements{
   background:#f8f8fa;
-  border-radius:10px;
-  padding:12px;
-  margin-bottom:12px;
+  border-radius:50px;
+  margin-bottom:14px;
+  overflow:hidden;
+  transition:border-radius .2s ease;
+}
+
+.password-requirements.open{
+  border-radius:16px;
+}
+
+.password-requirements-toggle{
+  width:100%;
+  height:44px;
+  border:0;
+  border-radius:50px;
+  background:#f8f8fa;
+  padding:0 16px;
+  font-size:13px;
+  font-weight:600;
+  color:#333;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  transition:background .2s ease;
+}
+
+.password-requirements-toggle:active{
+  background:#e5e5e7;
+}
+
+.password-requirements-toggle-icon{
+  font-size:12px;
+  transition:transform .2s ease;
+}
+
+.password-requirements-toggle-icon.open{
+  transform:rotate(180deg);
+}
+
+.password-requirements-content{
+  display:none;
+  padding:14px;
+}
+
+.password-requirements-content.show{
+  display:block;
 }
 
 .password-requirements-title{
@@ -643,14 +762,19 @@ body{
 
 .registration-btn{
   width:100%;
-  height:44px;
+  height:48px;
   border:0;
-  border-radius:10px;
+  border-radius:50px;
   background:#111;
   color:#fff;
   font-size:15px;
   font-weight:600;
   cursor:pointer;
+  transition:background .2s ease, transform .1s ease;
+}
+
+.registration-btn:active{
+  transform:scale(.97);
 }
 
 .registration-btn:disabled{
@@ -723,6 +847,10 @@ body{
     width:38px;
   }
 
+  .registration-modal{
+    padding:24px 18px;
+  }
+
 }
 
 </style>
@@ -786,6 +914,11 @@ body{
   <button class="setting-item" id="saveBtn" type="button">💾 Save Project</button>
   <button class="setting-item" id="deleteCodeBtn" type="button">🗑️ លុបកូដ</button>
 
+  <div class="settings-divider"></div>
+
+  <button class="setting-item" id="switchAccountBtn" type="button">🔄 ប្តូរគណនី</button>
+  <button class="setting-item" id="logoutBtn" type="button">🚪 ចាកចេញ</button>
+
 </div>
 
 
@@ -817,9 +950,7 @@ body{
 
       <input class="range-input-top" id="endLineTop" type="number" min="1" value="10">
 
-     
-
-<button class="tool-btn copy-range-btn-top" id="copyRangeBtnTop" type="button">📎 Copy Range</button>
+      <button class="tool-btn copy-range-btn-top" id="copyRangeBtnTop" type="button">📎 Copy Range</button>
 
     </div>
 
@@ -876,20 +1007,26 @@ body{
 
   <div class="registration-modal">
 
-    <h2 class="registration-title" id="regTitle">ចុះឈ្មោះ</h2>
-    <p class="registration-subtitle" id="regSubtitle">ប្រើ Gmail របស់អ្នកដើម្បីបន្ត</p>
+    <div class="registration-logo">🖥️</div>
 
+    <h2 class="registration-title" id="regTitle">ចុះឈ្មោះ</h2>
+    <p class="registration-subtitle" id="regSubtitle">បំពេញឈ្មោះ និងពាក្យសម្ងាត់របស់អ្នក</p>
+
+    <!-- Registration / Login Form -->
     <div class="registration-step active" id="stepGmail">
 
-      <input
-        type="email"
-        class="registration-input"
-        id="gmailInput"
-        placeholder="example@gmail.com"
-        autocomplete="email"
-      >
+      <div class="input-with-icon">
+        <input
+          type="text"
+          class="registration-input"
+          id="nameInput"
+          placeholder="ឈ្មោះរបស់អ្នក"
+          autocomplete="name"
+        >
+        <span class="input-icon">👤</span>
+      </div>
 
-      <div class="password-wrapper">
+      <div class="input-with-icon password-wrapper">
         <input
           type="password"
           class="registration-input"
@@ -897,6 +1034,7 @@ body{
           placeholder="ពាក្យសម្ងាត់"
           autocomplete="new-password"
         >
+        <span class="input-icon">🔑</span>
         <button class="password-toggle" id="passwordToggle" type="button">👁️</button>
       </div>
 
@@ -907,15 +1045,21 @@ body{
       <div class="password-strength-text" id="passwordStrengthText"></div>
 
       <div class="password-requirements" id="passwordRequirements">
-        <div class="password-requirements-title">លក្ខខណ្ឌពាក្យសម្ងាត់៖</div>
-        <div class="password-requirement" id="reqLength">✗ មានយ៉ាងហោចណាស់ 8 តួអក្សរ</div>
-        <div class="password-requirement" id="reqUpper">✗ មានអក្សរធំ (A-Z)</div>
-        <div class="password-requirement" id="reqLower">✗ មានអក្សរតូច (a-z)</div>
-        <div class="password-requirement" id="reqNumber">✗ មានលេខ (0-9)</div>
-        <div class="password-requirement" id="reqSpecial">✗ មានតួអក្សរពិសេស</div>
+        <button class="password-requirements-toggle" id="passwordRequirementsToggle" type="button">
+          <span>លក្ខខណ្ឌពាក្យសម្ងាត់</span>
+          <span class="password-requirements-toggle-icon" id="passwordRequirementsIcon">▼</span>
+        </button>
+        <div class="password-requirements-content" id="passwordRequirementsContent">
+          <div class="password-requirements-title">លក្ខខណ្ឌពាក្យសម្ងាត់៖</div>
+          <div class="password-requirement" id="reqLength">✗ មានយ៉ាងហោចណាស់ 8 តួអក្សរ</div>
+          <div class="password-requirement" id="reqUpper">✗ មានអក្សរធំ (A-Z)</div>
+          <div class="password-requirement" id="reqLower">✗ មានអក្សរតូច (a-z)</div>
+          <div class="password-requirement" id="reqNumber">✗ មានលេខ (0-9)</div>
+          <div class="password-requirement" id="reqSpecial">✗ មានតួអក្សរពិសេស ( -/:;()៛&@". ,?!' )</div>
+        </div>
       </div>
 
-      <div class="password-wrapper" id="confirmPasswordWrapper" style="display:block;">
+      <div class="input-with-icon password-wrapper" id="confirmPasswordWrapper" style="display:block;">
         <input
           type="password"
           class="registration-input"
@@ -923,6 +1067,7 @@ body{
           placeholder="បញ្ជាក់ពាក្យសម្ងាត់ម្តងទៀត"
           autocomplete="new-password"
         >
+        <span class="input-icon">🔑</span>
         <button class="password-toggle" id="confirmPasswordToggle" type="button">👁️</button>
       </div>
 
@@ -938,6 +1083,7 @@ body{
 
     </div>
 
+    <!-- Face Scan Placeholder (For Future) -->
     <div class="registration-step" id="stepFaceScan">
       <p style="text-align:center; color:#666; margin-bottom:16px;">
         ស្កេនមុខនឹងត្រូវបានបន្ថែមនៅពេលក្រោយ
@@ -1045,8 +1191,6 @@ const startLineTop   = $("startLineTop");
 const endLineTop     = $("endLineTop");
 const copyRangeBtnTop = $("copyRangeBtnTop");
 
-
-
 const testAppBtn     = $("testAppBtn");
 const previewFrame   = $("previewFrame");
 
@@ -1057,6 +1201,8 @@ const undoBtn        = $("undoBtn");
 const redoBtn        = $("redoBtn");
 const saveBtn        = $("saveBtn");
 const deleteCodeBtn  = $("deleteCodeBtn");
+const switchAccountBtn = $("switchAccountBtn");
+const logoutBtn      = $("logoutBtn");
 
 const homeBtn        = $("homeBtn");
 const toast          = $("toast");
@@ -1067,7 +1213,7 @@ const searchClearBtn = $("searchClearBtn");
 const registrationOverlay = $("registrationOverlay");
 const stepGmail      = $("stepGmail");
 const stepFaceScan   = $("stepFaceScan");
-const gmailInput     = $("gmailInput");
+const nameInput      = $("nameInput");
 const passwordInput  = $("passwordInput");
 const confirmPasswordInput = $("confirmPasswordInput");
 const passwordToggle = $("passwordToggle");
@@ -1081,6 +1227,10 @@ const formError      = $("formError");
 const regTitle       = $("regTitle");
 const regSubtitle    = $("regSubtitle");
 const confirmPasswordWrapper = $("confirmPasswordWrapper");
+const passwordRequirementsToggle = $("passwordRequirementsToggle");
+const passwordRequirementsIcon = $("passwordRequirementsIcon");
+const passwordRequirementsContent = $("passwordRequirementsContent");
+const passwordRequirements = $("passwordRequirements");
 
 
 /* =====================================================
@@ -1324,8 +1474,6 @@ function updateSyntax(){
 
   highlighted.innerHTML = result || " ";
 
-  applySearchHighlight();
-
 }
 
 
@@ -1400,21 +1548,135 @@ function updateCode(){
    8. SEARCH FUNCTION
 ===================================================== */
 
-function applySearchHighlight(){
+let searchResults = [];
+let currentSearchIndex = -1;
 
-  if(!highlighted || !searchInput){
+function performSearch(){
+
+  if(!codeEditor || !searchInput){
     return;
   }
 
-  const searchTerm = searchInput.value.trim();
+  const searchTerm = searchInput.value.trim().toLowerCase();
 
   if(searchTerm.length === 0){
+
+    searchResults = [];
+    currentSearchIndex = -1;
+
+    if(searchClearBtn){
+      searchClearBtn.classList.remove("show");
+    }
+
+    updateSyntax();
+    return;
+
+  }
+
+  if(searchClearBtn){
+    searchClearBtn.classList.add("show");
+  }
+
+  const code = codeEditor.value;
+  const lines = code.split("\n");
+
+  searchResults = [];
+
+  for(let i = 0; i < lines.length; i++){
+
+    const lineText = lines[i].toLowerCase();
+    let index = lineText.indexOf(searchTerm);
+
+    while(index !== -1){
+
+      searchResults.push({
+        line: i,
+        column: index,
+        length: searchTerm.length
+      });
+
+      index = lineText.indexOf(searchTerm, index + searchTerm.length);
+
+    }
+
+  }
+
+  currentSearchIndex = -1;
+
+  if(searchResults.length > 0){
+
+    showToast("រកឃើញ " + searchResults.length + " កន្លែង");
+
+    currentSearchIndex = 0;
+
+    scrollToSearchResult(currentSearchIndex);
+
+    highlightSearchResults();
+
+  }
+  else{
+
+    showToast("មិនឃើញពាក្យ \"" + searchTerm + "\" ទេ");
+
+    updateSyntax();
+
+  }
+
+}
+
+function scrollToSearchResult(index){
+
+  if(!codeEditor || index < 0 || index >= searchResults.length){
+    return;
+  }
+
+  const result = searchResults[index];
+
+  const lines = codeEditor.value.split("\n");
+
+  let charCount = 0;
+
+  for(let i = 0; i < result.line; i++){
+    charCount += lines[i].length + 1;
+  }
+
+  charCount += result.column;
+
+  codeEditor.focus();
+  codeEditor.setSelectionRange(charCount, charCount + result.length);
+
+  const lineHeight = 1.7 * 14;
+  const scrollTop = result.line * lineHeight - (codeEditor.clientHeight / 2);
+
+  codeEditor.scrollTop = Math.max(0, scrollTop);
+
+  syncScroll();
+
+}
+
+function highlightSearchResults(){
+
+  if(!highlighted || !codeEditor){
+    return;
+  }
+
+  updateSyntax();
+
+  const searchTerm = searchInput.value.trim();
+
+  if(searchTerm.length === 0 || searchResults.length === 0){
     return;
   }
 
   try{
 
-    const regex = new RegExp("(" + searchTerm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
+    const escapedTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp("(" + escapedTerm + ")", "gi");
+
+    highlighted.innerHTML = highlighted.innerHTML.replace(
+      /<span class="search-highlight-current">(.*?)<\/span>/gi,
+      "$1"
+    );
 
     highlighted.innerHTML = highlighted.innerHTML.replace(
       /<span class="search-highlight">(.*?)<\/span>/gi,
@@ -1426,6 +1688,28 @@ function applySearchHighlight(){
       '<span class="search-highlight">$1</span>'
     );
 
+    if(currentSearchIndex >= 0 && currentSearchIndex < searchResults.length){
+
+      const currentResult = searchResults[currentSearchIndex];
+
+      const lines = highlighted.innerHTML.split("\n");
+
+      if(lines[currentResult.line]){
+
+        const lineHTML = lines[currentResult.line];
+
+        const beforeText = lineHTML.substring(0, currentResult.column);
+        const matchText = lineHTML.substring(currentResult.column, currentResult.column + currentResult.length);
+        const afterText = lineHTML.substring(currentResult.column + currentResult.length);
+
+        lines[currentResult.line] = beforeText + '<span class="search-highlight-current">' + matchText + '</span>' + afterText;
+
+        highlighted.innerHTML = lines.join("\n");
+
+      }
+
+    }
+
   }
   catch(error){
     /* Invalid regex - ignore */
@@ -1436,25 +1720,38 @@ function applySearchHighlight(){
 if(searchInput){
 
   searchInput.addEventListener("input", function(){
-
-    if(searchClearBtn){
-      if(this.value.length > 0){
-        searchClearBtn.classList.add("show");
-      }
-      else{
-        searchClearBtn.classList.remove("show");
-      }
-    }
-
-    updateSyntax();
-
+    performSearch();
   });
 
   searchInput.addEventListener("keydown", function(event){
 
+    if(event.key === "Enter"){
+
+      event.preventDefault();
+
+      if(searchResults.length === 0){
+        performSearch();
+        return;
+      }
+
+      if(currentSearchIndex < searchResults.length - 1){
+        currentSearchIndex++;
+      }
+      else{
+        currentSearchIndex = 0;
+      }
+
+      scrollToSearchResult(currentSearchIndex);
+      highlightSearchResults();
+
+    }
+
     if(event.key === "Escape"){
 
       this.value = "";
+
+      searchResults = [];
+      currentSearchIndex = -1;
 
       if(searchClearBtn){
         searchClearBtn.classList.remove("show");
@@ -1477,6 +1774,9 @@ if(searchClearBtn){
       searchInput.value = "";
       searchInput.focus();
     }
+
+    searchResults = [];
+    currentSearchIndex = -1;
 
     this.classList.remove("show");
 
@@ -1863,7 +2163,6 @@ ${code}
 
 }
 
-
 if(testAppBtn){
   testAppBtn.addEventListener("click", runApp);
 }
@@ -1968,7 +2267,7 @@ if(redoBtn){
    15. REGISTRATION SYSTEM
 ===================================================== */
 
-let registeredEmail = "";
+let registeredName = "";
 let registeredPasswordHash = "";
 let isLoginMode = false;
 
@@ -1996,16 +2295,16 @@ function simpleHash(str){
 function checkRegistered(){
 
   try{
-    registeredEmail = localStorage.getItem("condwriteRegisteredEmail") || "";
+    registeredName = localStorage.getItem("condwriteRegisteredName") || "";
     registeredPasswordHash = localStorage.getItem("condwritePasswordHash") || "";
   }
   catch(error){
-    registeredEmail = "";
+    registeredName = "";
     registeredPasswordHash = "";
   }
 
-  if(registeredEmail && registeredPasswordHash){
-    showToast("✓ បានចូលជាមួយ " + registeredEmail);
+  if(registeredName && registeredPasswordHash){
+    showToast("✓ បានចូលជាមួយ " + registeredName);
   }
   else if(registrationOverlay){
     registrationOverlay.classList.add("show");
@@ -2013,15 +2312,15 @@ function checkRegistered(){
 
 }
 
-function isValidGmail(email){
+function isValidName(name){
 
-  if(!email){
+  if(!name){
     return false;
   }
 
-  email = email.toLowerCase();
+  name = name.trim();
 
-  return /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(email);
+  return name.length >= 2;
 
 }
 
@@ -2032,7 +2331,7 @@ function checkPasswordRequirements(password){
     upper: /[A-Z]/.test(password),
     lower: /[a-z]/.test(password),
     number: /[0-9]/.test(password),
-    special: /[\[\]{}#%\^*+=_\\|~<>$€£·.,?!']/.test(password)
+    special: /[\[\]{}#%\^*+=_\\|~<>$€£·.,?!'\-/:;()៛&@"]/.test(password)
   };
 
 }
@@ -2040,6 +2339,19 @@ function checkPasswordRequirements(password){
 function updatePasswordStrength(password){
 
   const requirements = checkPasswordRequirements(password);
+
+  if(password.length > 0){
+
+    if(passwordRequirementsContent && !passwordRequirementsContent.classList.contains("show")){
+
+      passwordRequirementsContent.classList.add("show");
+      passwordRequirementsIcon.classList.add("open");
+      passwordRequirements.classList.add("open");
+      passwordRequirementsToggle.style.borderRadius = "16px 16px 0 0";
+
+    }
+
+  }
 
   let metCount = 0;
 
@@ -2119,7 +2431,7 @@ function updatePasswordRequirementUI(requirements){
   }
 
   if(reqSpecial){
-    reqSpecial.textContent = (requirements.special ? "✓" : "✗") + " មានតួអក្សរពិសេស";
+    reqSpecial.textContent = (requirements.special ? "✓" : "✗") + " មានតួអក្សរពិសេស ( -/:;()៛&@\".,?!' )";
     reqSpecial.className = "password-requirement " + (requirements.special ? "met" : "unmet");
   }
 
@@ -2191,7 +2503,7 @@ function switchMode(){
   }
 
   if(regSubtitle){
-    regSubtitle.textContent = isLoginMode ? "បញ្ចូល Gmail និងពាក្យសម្ងាត់របស់អ្នក" : "ប្រើ Gmail របស់អ្នកដើម្បីបន្ត";
+    regSubtitle.textContent = "បំពេញឈ្មោះ និងពាក្យសម្ងាត់របស់អ្នក";
   }
 
   if(submitBtn){
@@ -2222,8 +2534,8 @@ function switchMode(){
     confirmPasswordInput.value = "";
   }
 
-  if(gmailInput){
-    gmailInput.value = "";
+  if(nameInput){
+    nameInput.value = "";
   }
 
   hideError();
@@ -2234,13 +2546,13 @@ function handleSubmit(){
 
   hideError();
 
-  const email = gmailInput ? gmailInput.value.trim() : "";
+  const name = nameInput ? nameInput.value.trim() : "";
   const password = passwordInput ? passwordInput.value : "";
   const confirmPassword = confirmPasswordInput ? confirmPasswordInput.value : "";
 
-  if(!isValidGmail(email)){
+  if(!isValidName(name)){
 
-    showError("សូមបញ្ចូល Gmail ឱ្យត្រឹមត្រូវ");
+    showError("សូមបញ្ចូលឈ្មោះរបស់អ្នកយ៉ាងហោចណាស់ 2 តួអក្សរ");
     return;
 
   }
@@ -2256,20 +2568,32 @@ function handleSubmit(){
 
     const hash = simpleHash(password);
 
-    if(email === registeredEmail && hash === registeredPasswordHash){
+    if(!registeredName || !registeredPasswordHash){
 
-      if(registrationOverlay){
-        registrationOverlay.classList.remove("show");
-      }
-
-      showToast("✓ បានចូលប្រើដោយជោគជ័យ");
+      showError("មិនមានគណនីទេ សូមចុះឈ្មោះថ្មី");
+      return;
 
     }
-    else{
 
-      showError("Gmail ឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ");
+    if(name !== registeredName){
+
+      showError("ឈ្មោះមិនត្រឹមត្រូវ មិនអាចចូលគណនីចាស់បានទេ សូមចុះឈ្មោះថ្មី");
+      return;
 
     }
+
+    if(hash !== registeredPasswordHash){
+
+      showError("ពាក្យសម្ងាត់មិនត្រឹមត្រូវ មិនអាចចូលគណនីចាស់បានទេ សូមចុះឈ្មោះថ្មី");
+      return;
+
+    }
+
+    if(registrationOverlay){
+      registrationOverlay.classList.remove("show");
+    }
+
+    showToast("✓ បានចូលប្រើដោយជោគជ័យ");
 
   }
   else{
@@ -2297,7 +2621,7 @@ function handleSubmit(){
     }
 
     if(!requirements.special){
-      showError("ពាក្យសម្ងាត់ត្រូវមានតួអក្សរពិសេស");
+      showError("ពាក្យសម្ងាត់ត្រូវមានតួអក្សរពិសេស ( -/:;()៛&@\".,?!' )");
       return;
     }
 
@@ -2312,7 +2636,7 @@ function handleSubmit(){
 
     try{
 
-      localStorage.setItem("condwriteRegisteredEmail", email);
+      localStorage.setItem("condwriteRegisteredName", name);
       localStorage.setItem("condwritePasswordHash", hash);
 
     }
@@ -2323,7 +2647,7 @@ function handleSubmit(){
 
     }
 
-    registeredEmail = email;
+    registeredName = name;
     registeredPasswordHash = hash;
 
     if(registrationOverlay){
@@ -2333,6 +2657,96 @@ function handleSubmit(){
     showToast("✓ បានចុះឈ្មោះដោយជោគជ័យ");
 
   }
+
+}
+
+function logout(){
+
+  try{
+    localStorage.removeItem("condwriteRegisteredName");
+    localStorage.removeItem("condwritePasswordHash");
+  }
+  catch(error){
+    /* ignore storage errors */
+  }
+
+  registeredName = "";
+  registeredPasswordHash = "";
+  isLoginMode = false;
+
+  if(regTitle){
+    regTitle.textContent = "ចុះឈ្មោះ";
+  }
+
+  if(regSubtitle){
+    regSubtitle.textContent = "បំពេញឈ្មោះ និងពាក្យសម្ងាត់របស់អ្នក";
+  }
+
+  if(submitBtn){
+    submitBtn.textContent = "ចុះឈ្មោះ";
+  }
+
+  if(switchModeLink){
+    switchModeLink.textContent = "មានគណនីរួចហើយ? ចូលប្រើ";
+  }
+
+  if(confirmPasswordWrapper){
+    confirmPasswordWrapper.style.display = "block";
+  }
+
+  if(nameInput){
+    nameInput.value = "";
+  }
+
+  if(passwordInput){
+    passwordInput.value = "";
+  }
+
+  if(confirmPasswordInput){
+    confirmPasswordInput.value = "";
+  }
+
+  if(passwordStrengthBar){
+    passwordStrengthBar.style.width = "0%";
+  }
+
+  if(passwordStrengthText){
+    passwordStrengthText.textContent = "";
+  }
+
+  if(passwordRequirementsContent){
+    passwordRequirementsContent.classList.remove("show");
+  }
+
+  if(passwordRequirementsIcon){
+    passwordRequirementsIcon.classList.remove("open");
+  }
+
+  if(passwordRequirements){
+    passwordRequirements.classList.remove("open");
+  }
+
+  if(passwordRequirementsToggle){
+    passwordRequirementsToggle.style.borderRadius = "50px";
+  }
+
+  hideError();
+
+  showStep("gmail");
+
+  if(registrationOverlay){
+    registrationOverlay.classList.add("show");
+  }
+
+  showToast("✓ បានចាកចេញពីគណនី");
+
+}
+
+function switchAccount(){
+
+  logout();
+
+  showToast("✓ អាចចុះឈ្មោះជាមួយគណនីថ្មីបាន");
 
 }
 
@@ -2360,9 +2774,9 @@ if(switchModeLink){
   switchModeLink.addEventListener("click", switchMode);
 }
 
-if(gmailInput){
+if(nameInput){
 
-  gmailInput.addEventListener("keydown", function(event){
+  nameInput.addEventListener("keydown", function(event){
 
     if(event.key === "Enter"){
       event.preventDefault();
@@ -2403,6 +2817,29 @@ if(confirmPasswordInput){
 
 }
 
+if(passwordRequirementsToggle && passwordRequirementsContent && passwordRequirementsIcon && passwordRequirements){
+
+  passwordRequirementsToggle.addEventListener("click", function(){
+
+    const isOpen = passwordRequirementsContent.classList.contains("show");
+
+    if(isOpen){
+      passwordRequirementsContent.classList.remove("show");
+      passwordRequirementsIcon.classList.remove("open");
+      passwordRequirements.classList.remove("open");
+      passwordRequirementsToggle.style.borderRadius = "50px";
+    }
+    else{
+      passwordRequirementsContent.classList.add("show");
+      passwordRequirementsIcon.classList.add("open");
+      passwordRequirements.classList.add("open");
+      passwordRequirementsToggle.style.borderRadius = "16px 16px 0 0";
+    }
+
+  });
+
+}
+
 if(faceScanSkipBtn){
 
   faceScanSkipBtn.addEventListener("click", function(){
@@ -2413,6 +2850,24 @@ if(faceScanSkipBtn){
       registrationOverlay.classList.remove("show");
     }
 
+  });
+
+}
+
+if(switchAccountBtn){
+
+  switchAccountBtn.addEventListener("click", function(){
+    switchAccount();
+    closeSettings();
+  });
+
+}
+
+if(logoutBtn){
+
+  logoutBtn.addEventListener("click", function(){
+    logout();
+    closeSettings();
   });
 
 }
