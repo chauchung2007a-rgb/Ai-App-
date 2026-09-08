@@ -2847,47 +2847,15 @@ function deleteCode(){
 
   const confirmed =
     confirm(
-      "Are you sure you want to delete all code?"
+      "Are you sure you want to delete current code? Saved code will not be deleted."
     );
 
   if(!confirmed){
     return;
   }
 
+  // លុបតែកូដនៅក្នុង Editor ប៉ុណ្ណោះ
   codeEditor.value = "";
-
-  try{
-
-    localStorage.removeItem(
-      "appWriteCode_CurrentCode"
-    );
-
-    localStorage.removeItem(
-      "appWriteCode_SavedAt"
-    );
-
-    loadAccounts();
-
-    const currentUser =
-      localStorage.getItem(
-        "condwriteCurrentUser"
-      ) || "";
-
-    if(
-      currentUser &&
-      allAccounts[currentUser]
-    ){
-
-      allAccounts[currentUser].code = "";
-
-      saveAccounts();
-
-    }
-
-  }
-  catch(error){
-    /* ignore storage errors */
-  }
 
   history = [""];
   future = [];
@@ -2899,7 +2867,7 @@ function deleteCode(){
   }
 
   showToast(
-    "✓ Code deleted from App Write Code"
+    "✓ Current code deleted. Saved code is safe."
   );
 
 }
