@@ -1,0 +1,12 @@
+{
+  "name": "App Write Code",
+  "short_name": "Write Code",
+  "description": "App Write Code - write, edit, save and test code.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#aebdc9",
+  "theme_color": "#738696",
+  "icons": []
+}
